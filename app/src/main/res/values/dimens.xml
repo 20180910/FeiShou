@@ -3,4 +3,5 @@
     <dimen name="edit_height">38dp</dimen>
     <dimen name="asterisk_padding">8dp</dimen>
     <dimen name="edit_default_height">35dp</dimen>
+    <dimen name="app_title_height">45dp</dimen>
 </resources>
