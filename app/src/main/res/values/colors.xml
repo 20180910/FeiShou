@@ -10,6 +10,7 @@
     <color name="background_f2">#f2f2f2</color>
     <color name="gray_d4">#d4d4d4</color>
     <color name="blue">#4ed3fd</color>
+    <color name="blue_press">#FF15C0F5</color>
     <color name="black_33">#333333</color>
     <color name="home_title">#2ACBE0</color>
     <color name="orange_ff">#ff712b</color>
@@ -35,7 +36,7 @@
     <color name="transparent_half_darker">#90000000</color>
     <color name="transparent_half_darker_darker">#a0000000</color>
     <color name="transparent_half_darker_darker_dark">#b0000000</color>
-    <color name="c_F8F8F8">#F8F8F8</color>
+    <color name="border_e5">#e5e5e5</color>
     <color name="c_F8F8F81">#C0C5CA</color>
     <color name="c_F8F8F83">#BEC2C7</color>
     <color name="c_B2B2B2">#B2B2B2</color>
