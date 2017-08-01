@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_f6"
+                tools:context="com.zhizhong.feishou.MainActivity"
+    >
+
+    <View
+        android:id="@id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <FrameLayout
+        android:id="@+id/layout_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/line1"
+        android:layout_below="@+id/status_bar"
+        ></FrameLayout>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/rg_main"
+        android:background="@color/gray_d7"/>
+
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <com.github.customview.MyRadioButton
+            android:id="@+id/rb_home_rwdt"
+            style="@style/radio_main"
+            android:checked="true"
+            android:text="任务大厅"
+            app:my_radio_checked="@drawable/rwdt_select"
+            app:my_radio_checked_color="@color/blue"
+            app:my_radio_checked_drawable="top"
+            app:my_radio_normal="@drawable/rwdt_normal"
+            app:my_radio_normal_color="@color/gray_99"
+            />
+
+        <com.github.customview.MyRadioButton
+            android:id="@+id/rb_home_zzfw"
+            style="@style/radio_main"
+            android:text="增值服务"
+            app:my_radio_checked="@drawable/zzfw_select"
+            app:my_radio_checked_color="@color/blue"
+            app:my_radio_checked_drawable="top"
+            app:my_radio_normal="@drawable/zzfw_normal"
+            app:my_radio_normal_color="@color/gray_99"
+            />
+
+        <com.github.customview.MyRadioButton
+            android:id="@+id/rb_home_my"
+            style="@style/radio_main"
+            android:text="我的"
+            app:my_radio_checked="@drawable/my_select"
+            app:my_radio_checked_color="@color/blue"
+            app:my_radio_checked_drawable="top"
+            app:my_radio_normal="@drawable/my_normal"
+            app:my_radio_normal_color="@color/gray_99"
+            />
+    </RadioGroup>
+</RelativeLayout>
