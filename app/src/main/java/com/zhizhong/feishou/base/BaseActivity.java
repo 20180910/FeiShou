@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.feishou.zhizhong.R;
+import com.zhizhong.feishou.R;
 import com.github.androidtools.ClickUtils;
 import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.StatusBarUtils;

@@ -1,9 +1,9 @@
 package com.zhizhong.feishou.tools;
 
 import com.github.rxjava.rxbus.RxUtils;
-import com.haitaoit.yinya.base.BaseObj;
-import com.haitaoit.yinya.base.ResponseObj;
-import com.haitaoit.yinya.base.ServerException;
+import com.zhizhong.feishou.base.BaseObj;
+import com.zhizhong.feishou.base.ResponseObj;
+import com.zhizhong.feishou.base.ServerException;
 
 import rx.Observable;
 import rx.functions.Func1;

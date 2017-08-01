@@ -3,6 +3,7 @@ package com.zhizhong.feishou.module.renwu.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 
 /**
@@ -12,7 +13,7 @@ import com.zhizhong.feishou.base.BaseFragment;
 public class RenWuFragment extends BaseFragment {
     @Override
     protected int getContentView() {
-        return 0;
+        return R.layout.frag_ren_wu;
     }
 
     public static RenWuFragment newInstance() {

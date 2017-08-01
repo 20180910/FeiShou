@@ -1,4 +1,4 @@
-package feishou.zhizhong.com.feishou;
+package com.zhizhong.feishou;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("feishou.zhizhong.com.feishou", appContext.getPackageName());
+        assertEquals("com.zhizhong.feishou", appContext.getPackageName());
     }
 }

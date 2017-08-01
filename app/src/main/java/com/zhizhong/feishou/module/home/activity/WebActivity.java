@@ -5,7 +5,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.base.BaseActivity;
+import com.zhizhong.feishou.base.BaseActivity;
 import com.zhizhong.feishou.module.home.Constant;
 
 import org.jsoup.Jsoup;

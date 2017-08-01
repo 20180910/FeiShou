@@ -3,6 +3,7 @@ package com.zhizhong.feishou.module.my.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 
 
@@ -13,7 +14,7 @@ import com.zhizhong.feishou.base.BaseFragment;
 public class MyFragment extends BaseFragment {
     @Override
     protected int getContentView() {
-        return 0;
+        return R.layout.frag_my;
     }
 
     public static MyFragment newInstance() {

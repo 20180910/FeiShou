@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.feishou.zhizhong.R;
+import com.zhizhong.feishou.R;
 import com.github.androidtools.inter.MyOnClickListener;
 
 import java.util.ArrayList;

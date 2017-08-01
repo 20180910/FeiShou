@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.feishou.zhizhong.R;
+import com.zhizhong.feishou.R;
 import com.github.androidtools.StatusBarUtils;
 import com.github.customview.MyRadioButton;
 import com.zhizhong.feishou.base.BaseActivity;
