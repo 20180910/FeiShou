@@ -39,4 +39,9 @@ public class ZengZhiFragment extends BaseFragment {
     protected void onViewClick(View v) {
 
     }
+
+    @Override
+    public void again() {
+
+    }
 }

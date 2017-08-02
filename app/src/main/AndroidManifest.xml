@@ -12,13 +12,43 @@
         <activity
             android:name="com.zhizhong.feishou.module.home.activity.MainActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--忘记密码-->
+        <activity android:name=".module.my.activity.ForgetPWDActivity"/>
+        <!--登录-->
+        <activity android:name=".module.my.activity.LoginActivity"/>
+        <!--我的订单-->
+        <activity android:name=".module.my.activity.MyOrderActivity"/>
+        <!--实名认证-->
+        <activity android:name=".module.my.activity.RealNameAuthActivity"/>
+        <!--注册-->
+        <activity android:name=".module.my.activity.RegisterActivity"/>
+        <!--我的等级-->
+        <activity android:name=".module.my.activity.VIPLevelActivity"/>
+        <!--我的钱包-->
+        <activity android:name=".module.my.activity.MyWalletActivity"/>
+        <!--收支明细-->
+        <activity android:name=".module.my.activity.ShouZhiMingXiActivity"/>
+        <!--提现-->
+        <activity android:name=".module.my.activity.TiXianActivity"/>
+        <!--账户列表-->
+        <activity android:name=".module.my.activity.AccountListActivity"/>
+
+
+
+        <!--任务列表-->
+        <activity android:name=".module.renwu.activity.RenWuDetailsActivity"/>
+
+        <!--webview-->
+        <activity android:name=".module.home.activity.WebActivity"/>
+
     </application>
 
 </manifest>

@@ -103,6 +103,7 @@
         android:gravity="center_vertical"
         >
         <TextView
+            android:id="@+id/tv_my_all"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -114,10 +115,11 @@
             android:drawablePadding="5dp"
             />
         <TextView
+            android:id="@+id/tv_my_djd"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="全部订单"
+            android:text="待接单"
             android:textSize="13dp"
             android:textColor="@color/gray_33"
             android:drawableTop="@drawable/img10"
@@ -125,10 +127,11 @@
             android:drawablePadding="5dp"
             />
         <TextView
+            android:id="@+id/tv_my_yjd"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="全部订单"
+            android:text="已接单"
             android:textSize="13dp"
             android:textColor="@color/gray_33"
             android:drawableTop="@drawable/img11"
@@ -136,10 +139,11 @@
             android:drawablePadding="5dp"
             />
         <TextView
+            android:id="@+id/tv_my_complete"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="全部订单"
+            android:text="已完成"
             android:textSize="13dp"
             android:textColor="@color/gray_33"
             android:drawableTop="@drawable/img12"
@@ -157,7 +161,7 @@
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             >
@@ -167,6 +171,7 @@
                 android:src="@drawable/img13"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_my_wallet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的钱包"
@@ -177,7 +182,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             >
@@ -197,7 +202,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             >
@@ -217,7 +222,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             >

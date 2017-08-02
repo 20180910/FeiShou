@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.github.androidtools.ClickUtils;
 import com.github.baseclass.fragment.IBaseFragment;
 import com.github.baseclass.rx.RxBus;
+import com.zhizhong.feishou.view.ProgressLayout;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,7 +19,7 @@ import butterknife.Unbinder;
  * Created by Administrator on 2017/7/13.
  */
 
-public abstract class BaseFragment extends IBaseFragment implements View.OnClickListener{
+public abstract class BaseFragment extends IBaseFragment implements View.OnClickListener,ProgressLayout.OnAgainInter{
     protected int pageNum=1;
     protected int pageSize=20;
 

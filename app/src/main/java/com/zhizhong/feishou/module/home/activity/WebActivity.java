@@ -87,4 +87,9 @@ public class WebActivity extends BaseActivity {
     protected void onViewClick(View v) {
 
     }
+
+    @Override
+    public void again() {
+
+    }
 }

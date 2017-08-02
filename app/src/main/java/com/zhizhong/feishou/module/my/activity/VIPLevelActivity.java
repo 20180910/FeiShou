@@ -6,14 +6,19 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 
 /**
- * Created by administartor on 2017/8/1.
+ * Created by administartor on 2017/8/2.
  */
 
-public class RealNameAuthActivity extends BaseActivity {
+public class VIPLevelActivity extends BaseActivity {
+
+    @Override
+    public void again() {
+
+    }
+
     @Override
     protected int getContentView() {
-        setAppTitle("实名认证");
-        return R.layout.act_real_name_auth;
+        return R.layout.act_vip_level;
     }
 
     @Override
@@ -28,11 +33,6 @@ public class RealNameAuthActivity extends BaseActivity {
 
     @Override
     protected void onViewClick(View v) {
-
-    }
-
-    @Override
-    public void again() {
 
     }
 }

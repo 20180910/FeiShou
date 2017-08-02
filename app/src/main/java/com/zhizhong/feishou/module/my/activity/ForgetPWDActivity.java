@@ -31,4 +31,9 @@ public class ForgetPWDActivity extends BaseActivity {
     protected void onViewClick(View v) {
 
     }
+
+    @Override
+    public void again() {
+
+    }
 }

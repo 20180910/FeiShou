@@ -1,4 +1,4 @@
-package com.zhizhong.feishou.module.my.activity;
+package com.zhizhong.feishou.module.renwu.activity;
 
 import android.view.View;
 
@@ -6,14 +6,14 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 
 /**
- * Created by administartor on 2017/8/1.
+ * Created by administartor on 2017/8/2.
  */
 
-public class RealNameAuthActivity extends BaseActivity {
+public class RenWuDetailsActivity extends BaseActivity {
     @Override
     protected int getContentView() {
-        setAppTitle("实名认证");
-        return R.layout.act_real_name_auth;
+        setAppTitle("产品详情");
+        return R.layout.act_renwu_details;
     }
 
     @Override

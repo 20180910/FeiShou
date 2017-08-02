@@ -16,12 +16,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.zhizhong.feishou.R;
 import com.github.androidtools.ClickUtils;
 import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.StatusBarUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.activity.IBaseActivity;
+import com.zhizhong.feishou.R;
+import com.zhizhong.feishou.view.ProgressLayout;
 
 import butterknife.ButterKnife;
 
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/6/1.
  */
 
-public abstract class BaseActivity extends IBaseActivity implements View.OnClickListener{
+public abstract class BaseActivity extends IBaseActivity implements ProgressLayout.OnAgainInter,View.OnClickListener{
 
     /*************************************************/
     protected Toolbar toolbar;
@@ -174,6 +175,7 @@ public abstract class BaseActivity extends IBaseActivity implements View.OnClick
             if(navigationIcon!=-1){
                 getSupportActionBar().setHomeAsUpIndicator(navigationIcon);
             }else{
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
             }
             getSupportActionBar().setDisplayHomeAsUpEnabled(showNavigationIcon);
