@@ -5,6 +5,8 @@ import android.view.View;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 
+import butterknife.OnClick;
+
 /**
  * Created by administartor on 2017/8/1.
  */
@@ -27,9 +29,13 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @Override
+    @OnClick({R.id.tv_my_login})
     protected void onViewClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_my_login:
 
+            break;
+        }
     }
 
     @Override

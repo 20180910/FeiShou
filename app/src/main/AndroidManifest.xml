@@ -23,7 +23,9 @@
         <!--忘记密码-->
         <activity android:name=".module.my.activity.ForgetPWDActivity"/>
         <!--登录-->
-        <activity android:name=".module.my.activity.LoginActivity"/>
+        <activity android:name=".module.my.activity.LoginActivity"
+                  android:windowSoftInputMode="adjustResize"
+            />
         <!--我的订单-->
         <activity android:name=".module.my.activity.MyOrderActivity"/>
         <!--实名认证-->
@@ -40,6 +42,8 @@
         <activity android:name=".module.my.activity.TiXianActivity"/>
         <!--账户列表-->
         <activity android:name=".module.my.activity.AccountListActivity"/>
+        <!--添加银行卡-->
+        <activity android:name=".module.my.activity.AddBankCardActivity"/>
 
 
 

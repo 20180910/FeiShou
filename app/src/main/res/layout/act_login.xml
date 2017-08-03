@@ -17,13 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:gravity="center"
             >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.2"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
+                android:layout_marginBottom="40dp"
                 >
                 <ImageView
                     android:layout_width="wrap_content"
@@ -45,6 +46,9 @@
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:layout_marginBottom="50dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 >
             <com.github.customview.MyLinearLayout
                 android:layout_width="match_parent"
@@ -112,6 +116,7 @@
                     android:layout_gravity="right"
                     />
                 <com.github.customview.MyTextView
+                    android:id="@+id/tv_my_login"
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
                     app:my_tv_corner_radius="23dp"
@@ -145,14 +150,7 @@
                         />
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                >
 
-            </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

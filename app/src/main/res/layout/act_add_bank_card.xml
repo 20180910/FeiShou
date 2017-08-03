@@ -32,6 +32,8 @@
         android:layout_marginRight="20dp"
         android:hint="请输入持卡人"
         android:textSize="16sp"
+        android:maxLines="1"
+        android:inputType="text"
         />
 </LinearLayout>
     <LinearLayout
@@ -58,6 +60,8 @@
             android:layout_marginRight="20dp"
             android:hint="请输入卡号"
             android:textSize="16sp"
+            android:maxLines="1"
+            android:inputType="number"
             />
     </LinearLayout>
     <LinearLayout

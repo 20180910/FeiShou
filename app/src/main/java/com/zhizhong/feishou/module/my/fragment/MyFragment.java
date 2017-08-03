@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
+import com.zhizhong.feishou.module.my.activity.LoginActivity;
 import com.zhizhong.feishou.module.my.activity.MyOrderActivity;
 import com.zhizhong.feishou.module.my.activity.MyWalletActivity;
 
@@ -46,9 +47,12 @@ public class MyFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.tv_my_wallet,R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
+    @OnClick({R.id.iv_my_set,R.id.tv_my_wallet,R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
     public void onViewClick(View view) {
         switch (view.getId()) {
+            case R.id.iv_my_set://设置
+                STActivity(LoginActivity.class);
+                break;
             case R.id.tv_my_wallet://我的钱包
                 STActivity(MyWalletActivity.class);
                 break;
