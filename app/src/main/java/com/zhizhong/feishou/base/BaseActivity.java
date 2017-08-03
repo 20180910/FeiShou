@@ -143,22 +143,22 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
         }
         if(null!=findViewById(R.id.app_right_tv)){
             app_right_tv= (TextView) findViewById(R.id.app_right_tv);
-            if(appRightTitle!=null){
-                app_right_tv.setText(appRightTitle);
-                app_right_tv.setVisibility(View.VISIBLE);
-                app_right_iv.setVisibility(View.GONE);
-                if(appRightTitleColor!=0){
-                    app_right_tv.setTextColor(appRightTitleColor);
-                }
-            }
         }
         if(null!=findViewById(R.id.app_right_iv)){
             app_right_iv= (ImageView) findViewById(R.id.app_right_iv);
-            if(appRightImg!=0){
-                app_right_iv.setImageResource(appRightImg);
+        }
+        if(appRightImg!=0){
+            app_right_iv.setImageResource(appRightImg);
 
-                app_right_tv.setVisibility(View.GONE);
-                app_right_iv.setVisibility(View.VISIBLE);
+            app_right_tv.setVisibility(View.GONE);
+            app_right_iv.setVisibility(View.VISIBLE);
+        }
+        if(appRightTitle!=null){
+            app_right_tv.setText(appRightTitle);
+            app_right_tv.setVisibility(View.VISIBLE);
+            app_right_iv.setVisibility(View.GONE);
+            if(appRightTitleColor!=0){
+                app_right_tv.setTextColor(appRightTitleColor);
             }
         }
         /*if(null!=findViewById(R.id.pcfl_refresh)){

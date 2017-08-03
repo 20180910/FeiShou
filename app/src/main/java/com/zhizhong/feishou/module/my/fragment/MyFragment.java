@@ -5,9 +5,9 @@ import android.view.View;
 
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
-import com.zhizhong.feishou.module.my.activity.LoginActivity;
 import com.zhizhong.feishou.module.my.activity.MyOrderActivity;
 import com.zhizhong.feishou.module.my.activity.MyWalletActivity;
+import com.zhizhong.feishou.module.zengzhi.activity.MyToolListActivity;
 
 import butterknife.OnClick;
 
@@ -51,7 +51,8 @@ public class MyFragment extends BaseFragment {
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.iv_my_set://设置
-                STActivity(LoginActivity.class);
+                STActivity(MyToolListActivity.class);
+//                STActivity(LoginActivity.class);
                 break;
             case R.id.tv_my_wallet://我的钱包
                 STActivity(MyWalletActivity.class);

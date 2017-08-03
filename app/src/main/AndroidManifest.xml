@@ -53,6 +53,17 @@
         <!--webview-->
         <activity android:name=".module.home.activity.WebActivity"/>
 
+        <!--测亩工具-->
+        <activity android:name=".module.zengzhi.activity.CeMuToolActivity"/>
+        <!--增加作业范围-->
+        <activity android:name=".module.zengzhi.activity.AddHomeworkScopeActivity"/>
+        <!--作业范围-->
+        <activity android:name=".module.zengzhi.activity.HomeworkScopeActivity"/>
+        <!--添加工具-->
+        <activity android:name=".module.zengzhi.activity.AddToolActivity"/>
+        <!--我的工具-->
+        <activity android:name=".module.zengzhi.activity.MyToolListActivity"/>
+
     </application>
 
 </manifest>
