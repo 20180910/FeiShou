@@ -54,15 +54,17 @@
         <activity android:name=".module.home.activity.WebActivity"/>
 
         <!--测亩工具-->
-        <activity android:name=".module.zengzhi.activity.CeMuToolActivity"/>
+        <activity android:name=".module.my.activity.CeMuToolActivity"/>
         <!--增加作业范围-->
-        <activity android:name=".module.zengzhi.activity.AddHomeworkScopeActivity"/>
+        <activity android:name=".module.my.activity.AddHomeworkScopeActivity"/>
         <!--作业范围-->
-        <activity android:name=".module.zengzhi.activity.HomeworkScopeActivity"/>
+        <activity android:name=".module.my.activity.HomeworkScopeActivity"/>
         <!--添加工具-->
-        <activity android:name=".module.zengzhi.activity.AddToolActivity"/>
+        <activity android:name=".module.my.activity.AddToolActivity"/>
         <!--我的工具-->
-        <activity android:name=".module.zengzhi.activity.MyToolListActivity"/>
+        <activity android:name=".module.my.activity.MyToolListActivity"/>
+        <!--订单详情-->
+        <activity android:name=".module.my.activity.OrderDetailsActivity"/>
 
     </application>
 

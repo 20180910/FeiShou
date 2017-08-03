@@ -1,4 +1,4 @@
-package com.zhizhong.feishou.module.zengzhi.adapter;
+package com.zhizhong.feishou.module.my.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

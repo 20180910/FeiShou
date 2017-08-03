@@ -7,7 +7,7 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 import com.zhizhong.feishou.module.my.activity.MyOrderActivity;
 import com.zhizhong.feishou.module.my.activity.MyWalletActivity;
-import com.zhizhong.feishou.module.zengzhi.activity.MyToolListActivity;
+import com.zhizhong.feishou.module.my.activity.MyToolListActivity;
 
 import butterknife.OnClick;
 

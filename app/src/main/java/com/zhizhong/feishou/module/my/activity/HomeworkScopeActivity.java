@@ -1,4 +1,4 @@
-package com.zhizhong.feishou.module.zengzhi.activity;
+package com.zhizhong.feishou.module.my.activity;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
-import com.zhizhong.feishou.module.zengzhi.adapter.HomeworkScopeAdapter;
+import com.zhizhong.feishou.module.my.adapter.HomeworkScopeAdapter;
 import com.zhizhong.feishou.tools.SpaceItemDecoration;
 
 import butterknife.BindView;

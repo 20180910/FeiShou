@@ -1,4 +1,4 @@
-package com.zhizhong.feishou.module.zengzhi.activity;
+package com.zhizhong.feishou.module.my.activity;
 
 import android.view.View;
 
@@ -9,7 +9,7 @@ import com.zhizhong.feishou.base.BaseActivity;
  * Created by administartor on 2017/8/3.
  */
 
-public class AddHomeworkScopeActivity extends BaseActivity {
+public class OrderDetailsActivity extends BaseActivity {
     @Override
     public void again() {
 
@@ -17,10 +17,8 @@ public class AddHomeworkScopeActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        setAppTitle("新增作业范围");
-        setAppRightTitle("确定");
-        setAppRightTitleColor(getResources().getColor(R.color.blue));
-        return R.layout.act_add_homework_scope;
+        setAppTitle("订单详情");
+        return R.layout.act_order_details;
     }
 
     @Override

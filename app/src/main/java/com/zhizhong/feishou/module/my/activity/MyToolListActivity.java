@@ -1,4 +1,4 @@
-package com.zhizhong.feishou.module.zengzhi.activity;
+package com.zhizhong.feishou.module.my.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
