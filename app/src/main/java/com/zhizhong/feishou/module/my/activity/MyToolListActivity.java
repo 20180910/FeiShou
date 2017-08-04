@@ -27,7 +27,7 @@ public class MyToolListActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        setAppTitle("添加工具");
+        setAppTitle("我的工具");
         setAppRightTitle("编辑");
         setAppRightTitleColor(getResources().getColor(R.color.blue));
         return R.layout.act_my_tool_list;

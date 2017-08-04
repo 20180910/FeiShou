@@ -157,15 +157,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
         android:background="@color/white"
         android:layout_marginTop="10dp"
         >
-        <LinearLayout
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_my_wallet"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            app:my_ll_press="@color/c_press"
             >
             <ImageView
                 android:layout_width="36dp"
@@ -173,7 +175,6 @@
                 android:src="@drawable/img13"
                 />
             <com.github.customview.MyTextView
-                android:id="@+id/tv_my_wallet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的钱包"
@@ -181,12 +182,15 @@
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
                 />
-        </LinearLayout>
-        <LinearLayout
+        </com.github.customview.MyLinearLayout>
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_my_tool"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            app:my_ll_press="@color/c_press"
             >
             <ImageView
                 android:layout_width="36dp"
@@ -201,12 +205,15 @@
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
                 />
-        </LinearLayout>
-        <LinearLayout
+        </com.github.customview.MyLinearLayout>
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_my_homework"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            app:my_ll_press="@color/c_press"
             >
             <ImageView
                 android:layout_width="36dp"
@@ -221,12 +228,15 @@
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
                 />
-        </LinearLayout>
-        <LinearLayout
+        </com.github.customview.MyLinearLayout>
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_my_cemu_tool"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            app:my_ll_press="@color/c_press"
             >
             <ImageView
                 android:layout_width="36dp"
@@ -241,6 +251,6 @@
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
                 />
-        </LinearLayout>
+        </com.github.customview.MyLinearLayout>
     </LinearLayout>
 </LinearLayout>
