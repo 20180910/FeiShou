@@ -176,7 +176,7 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
                 getSupportActionBar().setHomeAsUpIndicator(navigationIcon);
             }else{
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
+//                getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
             }
             getSupportActionBar().setDisplayHomeAsUpEnabled(showNavigationIcon);
         }

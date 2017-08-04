@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.zhizhong.feishou.R;
 import com.github.androidtools.StatusBarUtils;
 import com.github.customview.MyRadioButton;
+import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 import com.zhizhong.feishou.module.my.fragment.MyFragment;
 import com.zhizhong.feishou.module.renwu.fragment.RenWuFragment;
@@ -46,7 +46,6 @@ public class MainActivity extends BaseActivity {
         super.onNewIntent(intent);
         if (intent != null && "login".equals(intent.getAction())) {
 //            selectPerson();
-//            RxBus.getInstance().postSticky(new RefreshInfoEvent());
 //            selectButton.setChecked(true);
         }
     }
