@@ -4,14 +4,13 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/gray_f6"
+              android:background="@drawable/login_bg"
     >
 <include layout="@layout/app_title"/>
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:background="@color/white"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,6 +74,7 @@
                     android:layout_marginRight="15dp"
                     android:textColorHint="@color/gray_99"
                     android:textColor="@color/colorText"
+                    android:textSize="15sp"
                     />
             </com.github.customview.MyLinearLayout>
                 <com.github.customview.MyLinearLayout
@@ -103,6 +103,7 @@
                         android:layout_marginRight="15dp"
                         android:textColorHint="@color/gray_99"
                         android:textColor="@color/colorText"
+                        android:textSize="15sp"
                         />
                 </com.github.customview.MyLinearLayout>
                 <TextView
