@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -49,9 +50,10 @@
             />
 
         <TextView
+            android:id="@+id/tv_info_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="张三丰"
+            tools:text="张三丰"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:layout_margin="10dp"
@@ -67,9 +69,10 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/img8"/>
             <com.github.customview.MyTextView
+                android:id="@+id/tv_info_auth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="身份证未认证"
+                tools:text="身份证未认证"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_marginLeft="6dp"
@@ -90,11 +93,28 @@
             app:my_ll_corner_topLeftRadius="14dp"
             app:my_ll_corner_bottomLeftRadius="14dp"
             >
-            <ImageView
+            <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img7"
-                />
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_info_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/level"
+                    />
+                <TextView
+                    android:id="@+id/tv_info_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="1"
+                    android:textColor="#FFFFC346"
+                    android:layout_gravity="bottom|right"
+                    android:textSize="7sp"
+                    android:gravity="center_horizontal|bottom"
+                    tools:text="1"
+                    />
+            </FrameLayout>
+
         </com.github.customview.MyLinearLayout>
     </RelativeLayout>
     <LinearLayout

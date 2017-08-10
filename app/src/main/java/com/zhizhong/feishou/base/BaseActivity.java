@@ -250,6 +250,9 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
         return SPUtils.getPrefString(mContext,Config.user_id,null);
     }
     protected String getSign(){
-        return GetSign.getSign("user_id",getUserId());
+        return getSign("user_id",getUserId());
+    }
+    protected String getSign(String key,String value){
+        return GetSign.getSign(key,value);
     }
 }

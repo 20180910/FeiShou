@@ -8,8 +8,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.github.androidtools.ClickUtils;
+import com.github.androidtools.SPUtils;
 import com.github.baseclass.fragment.IBaseFragment;
 import com.github.baseclass.rx.RxBus;
+import com.zhizhong.feishou.Config;
+import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.view.ProgressLayout;
 
 import butterknife.ButterKnife;
@@ -100,5 +103,12 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
         super.onDestroy();
         mUnBind.unbind();
         RxBus.getInstance().removeAllStickyEvents();
+    }
+
+    protected String getUserId(){
+        return SPUtils.getPrefString(mContext, Config.user_id,null);
+    }
+    protected String getSign(){
+        return GetSign.getSign("user_id",getUserId());
     }
 }

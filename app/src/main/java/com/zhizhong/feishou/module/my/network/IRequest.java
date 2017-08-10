@@ -3,11 +3,15 @@ package com.zhizhong.feishou.module.my.network;
 
 import com.zhizhong.feishou.base.BaseObj;
 import com.zhizhong.feishou.base.ResponseObj;
+import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
+import com.zhizhong.feishou.module.my.network.response.InfoObj;
 import com.zhizhong.feishou.module.my.network.response.LoginObj;
 
 import java.util.Map;
 
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import rx.Observable;
@@ -27,9 +31,13 @@ public interface IRequest {
     @GET("api/FlyMember/GetUserLogin")
     Observable<ResponseObj<LoginObj>> login(@QueryMap Map<String,String> map);
 
-    //忘记密码-修改密码
+    //修改密码
     @GET("api/FlyMember/GetSetNewPassword")
     Observable<ResponseObj<BaseObj>> setNewPassword(@QueryMap Map<String,String> map);
+
+    //忘记密码
+    @GET("api/FlyMember/GetSetPassword")
+    Observable<ResponseObj<BaseObj>> resetPassword(@QueryMap Map<String,String> map);
 
     //获取验证码
     @GET("api/Lib/GetSMSCode")
@@ -37,7 +45,7 @@ public interface IRequest {
 
     //获取我的资料
     @GET("api/FlyMember/GetMemberInfo")
-    Observable<ResponseObj<BaseObj>> getInfo(@Query("user_id") String user_id,@Query("sign") String sign);
+    Observable<ResponseObj<InfoObj>> getInfo(@Query("user_id") String user_id, @Query("sign") String sign);
 
     //用户资料修改
     @GET("api/FlyMember/GetSetMemberInfo")
@@ -50,5 +58,9 @@ public interface IRequest {
     //设置实名验证信息
     @GET("api/FlyMember/GetSetMemberAuthentication")
     Observable<ResponseObj<BaseObj>> setMemberAuthentication(@QueryMap Map<String,String> map);
+
+    //上传图片
+    @POST("api/Lib/PostUploadFileBase64")
+    Observable<ResponseObj<BaseObj>> uploadImg(@Query("rnd") String rnd, @Query("sign") String sign, @Body UploadImgItem item);
 
 }

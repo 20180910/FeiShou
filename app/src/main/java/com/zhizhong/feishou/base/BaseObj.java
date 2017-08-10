@@ -19,6 +19,15 @@ public class BaseObj implements Serializable {
 
 
     private String SMSCode;
+    private String img;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getSMSCode() {
         return SMSCode;
@@ -27,4 +36,5 @@ public class BaseObj implements Serializable {
     public void setSMSCode(String SMSCode) {
         this.SMSCode = SMSCode;
     }
+
 }

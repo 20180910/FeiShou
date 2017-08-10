@@ -2,16 +2,23 @@ package com.zhizhong.feishou.module.my.fragment;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.github.androidtools.SPUtils;
+import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
+import com.zhizhong.feishou.base.MySub;
 import com.zhizhong.feishou.module.my.activity.CeMuToolActivity;
 import com.zhizhong.feishou.module.my.activity.HomeworkScopeActivity;
 import com.zhizhong.feishou.module.my.activity.MyDataActivity;
 import com.zhizhong.feishou.module.my.activity.MyOrderActivity;
 import com.zhizhong.feishou.module.my.activity.MyToolListActivity;
 import com.zhizhong.feishou.module.my.activity.MyWalletActivity;
+import com.zhizhong.feishou.module.my.network.ApiRequest;
+import com.zhizhong.feishou.module.my.network.response.InfoObj;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 
@@ -20,6 +27,13 @@ import butterknife.OnClick;
  */
 
 public class MyFragment extends BaseFragment {
+
+    @BindView(R.id.tv_info_name)
+    TextView tv_info_name;
+    @BindView(R.id.tv_info_auth)
+    TextView tv_info_auth;
+    @BindView(R.id.tv_info_level)
+    TextView tv_info_level;
 
     @Override
     protected int getContentView() {
@@ -37,12 +51,34 @@ public class MyFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        String userName = SPUtils.getPrefString(mContext, Config.user_name, null);
+        int level = SPUtils.getPrefInt(mContext, Config.level, 0);
+        int auth = SPUtils.getPrefInt(mContext, Config.authentication, 0);
+        if (auth == 0) {
+            tv_info_auth.setText("身份证未认证");
+        } else {
+            tv_info_auth.setText("身份证已认证");
+        }
+        tv_info_name.setText(userName);
+        tv_info_level.setText(level+"");
 
     }
 
     @Override
     protected void initData() {
+        getData();
+    }
 
+    private void getData() {
+        showLoading();
+        addSubscription(ApiRequest.getInfo(getUserId(), getSign()).subscribe(new MySub<InfoObj>(mContext) {
+            @Override
+            public void onMyNext(InfoObj obj) {
+                SPUtils.setPrefString(mContext,Config.sex,obj.getSex());
+                SPUtils.setPrefString(mContext,Config.birthday,obj.getBirthday());
+                SPUtils.setPrefString(mContext,Config.nick_name,obj.getNick_name());
+            }
+        }));
     }
 
     @Override
@@ -50,7 +86,7 @@ public class MyFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.tv_my_wallet, R.id.tv_my_tool, R.id.tv_my_homework, R.id.tv_my_cemu_tool,R.id.iv_my_set, R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
+    @OnClick({R.id.tv_my_wallet, R.id.tv_my_tool, R.id.tv_my_homework, R.id.tv_my_cemu_tool, R.id.iv_my_set, R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.iv_my_set://设置

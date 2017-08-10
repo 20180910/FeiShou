@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.github.androidtools.SPUtils;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
 import com.github.rxjava.rxbus.RxUtils;
@@ -91,23 +90,23 @@ public class ForgetPWDActivity extends BaseActivity {
                     showMsg("密码不能为空");
                     return;
                 }
-                updatePwd(getSStr(et_forget_newpwd));
+                resetPwd(phone,getSStr(et_forget_newpwd));
                 break;
         }
     }
 
-    private void updatePwd(String pwd) {
+    private void resetPwd(String phone, String pwd) {
         showLoading();
-        String oldPwd= SPUtils.getPrefString(mContext,Config.pwd,null);
         Map<String,String>map=new HashMap<String,String>();
-        map.put("user_id",getUserId());
-        map.put("oldPassword",oldPwd);
+        map.put("username",phone);
+        map.put("user_type",Config.user_type_1);
         map.put("newPassword",pwd);
         map.put("sign",GetSign.getSign(map));
-        addSubscription(ApiRequest.setNewPassword(map).subscribe(new MySub<BaseObj>(mContext) {
+        addSubscription(ApiRequest.resetPassword(map).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
                 showMsg(obj.getMsg());
+                finish();
             }
         }));
 

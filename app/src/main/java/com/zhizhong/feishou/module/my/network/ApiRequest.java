@@ -1,6 +1,7 @@
 package com.zhizhong.feishou.module.my.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
 import com.zhizhong.feishou.tools.RxResult;
 
 import java.util.Map;
@@ -34,8 +35,20 @@ public class ApiRequest {
     public static Observable login(Map map){
         return getCommonClient().login(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getInfo(String userId,String sign){
+        return getCommonClient().getInfo(userId,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable setNewPassword(Map map){
         return getCommonClient().setNewPassword(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable resetPassword(Map map){
+        return getCommonClient().resetPassword(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable uploadImg(String rnd,String sign, UploadImgItem imgItem){
+        return getCommonClient().uploadImg(rnd,sign,imgItem).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable updateInfo(Map map){
+        return getCommonClient().updateInfo(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
 
 }

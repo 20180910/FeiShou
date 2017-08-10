@@ -103,8 +103,8 @@ public class LoginActivity extends BaseActivity {
                 SPUtils.setPrefString(mContext,Config.sex,obj.getSex());
                 SPUtils.setPrefString(mContext,Config.birthday,obj.getBirthday());
                 SPUtils.setPrefString(mContext,Config.user_name,obj.getUser_name());
-                SPUtils.setPrefString(mContext,Config.level,obj.getUser_level()+"");
-                SPUtils.setPrefString(mContext,Config.authentication,obj.getIs_authentication()+"");
+                SPUtils.setPrefInt(mContext,Config.level,obj.getUser_level());
+                SPUtils.setPrefInt(mContext,Config.authentication,obj.getIs_authentication());
 
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent(Config.Bro.login));
 

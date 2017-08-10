@@ -12,6 +12,7 @@ public class Config {
     public static final String user_id="user_id";
     public static final String pwd="pwd";
     public static final String user_name="user_name";
+    public static final String nick_name="nick_name";
     public static final String sex="sex";
     public static final String area="area";
     public static final String mobile="mobile";
