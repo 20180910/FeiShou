@@ -120,6 +120,7 @@ public class LoginActivity extends BaseActivity {
             switch (requestCode){
                 case 1000:
                     et_login_phone.setText(data.getStringExtra(Constant.IParam.phone));
+                    et_login_pwd.setText(null);
                     et_login_pwd.findFocus();
                 break;
             }

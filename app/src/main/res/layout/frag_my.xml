@@ -43,9 +43,10 @@
         android:orientation="vertical"
         >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_my_img"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
             android:src="@drawable/img6"
             />
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.github.androidtools.SPUtils;
 import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.R;
@@ -20,6 +21,7 @@ import com.zhizhong.feishou.module.my.network.response.InfoObj;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -28,6 +30,8 @@ import butterknife.OnClick;
 
 public class MyFragment extends BaseFragment {
 
+    @BindView(R.id.civ_my_img)
+    CircleImageView civ_my_img;
     @BindView(R.id.tv_info_name)
     TextView tv_info_name;
     @BindView(R.id.tv_info_auth)
@@ -51,7 +55,18 @@ public class MyFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        String userName = SPUtils.getPrefString(mContext, Config.user_name, null);
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        String userName = SPUtils.getPrefString(mContext, Config.nick_name, null);
+        String avatar = SPUtils.getPrefString(mContext, Config.avatar, null);
+        if (avatar != null) {
+            Glide.with(mContext).load(avatar).into(civ_my_img);
+        }
         int level = SPUtils.getPrefInt(mContext, Config.level, 0);
         int auth = SPUtils.getPrefInt(mContext, Config.authentication, 0);
         if (auth == 0) {
@@ -61,7 +76,6 @@ public class MyFragment extends BaseFragment {
         }
         tv_info_name.setText(userName);
         tv_info_level.setText(level+"");
-
     }
 
     @Override
@@ -77,6 +91,9 @@ public class MyFragment extends BaseFragment {
                 SPUtils.setPrefString(mContext,Config.sex,obj.getSex());
                 SPUtils.setPrefString(mContext,Config.birthday,obj.getBirthday());
                 SPUtils.setPrefString(mContext,Config.nick_name,obj.getNick_name());
+                tv_info_name.setText(obj.getNick_name());
+
+                Glide.with(mContext).load(obj.getAvatar()).error(R.color.c_press).into(civ_my_img);
             }
         }));
     }

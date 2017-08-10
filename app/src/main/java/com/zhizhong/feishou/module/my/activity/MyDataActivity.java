@@ -13,6 +13,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,7 +95,9 @@ public class MyDataActivity extends BaseActivity {
         et_info_name.setText(userName);
         tv_info_birthday.setText(birthday);
         tv_info_sex.setText(sex);
-        Glide.with(mContext).load(avatar).into(civ_info_img);
+        if (avatar != null) {
+            Glide.with(mContext).load(avatar).error(R.color.c_press).into(civ_info_img);
+        }
     }
 
     @Override
@@ -294,10 +297,18 @@ public class MyDataActivity extends BaseActivity {
             @Override
             public void onMyNext(BaseObj obj) {
                 showMsg(obj.getMsg());
-                SPUtils.setPrefString(mContext,Config.avatar,imgUrl);
-                SPUtils.setPrefString(mContext,Config.sex,sex);
-                SPUtils.setPrefString(mContext,Config.birthday,birthday);
-                SPUtils.setPrefString(mContext,Config.user_name,name);
+                if(!TextUtils.isEmpty(imgUrl)){
+                    SPUtils.setPrefString(mContext,Config.avatar,imgUrl);
+                }
+                if(!TextUtils.isEmpty(sex)){
+                    SPUtils.setPrefString(mContext,Config.sex,sex);
+                }
+                if(!TextUtils.isEmpty(birthday)){
+                    SPUtils.setPrefString(mContext,Config.birthday,birthday);
+                }
+                if(!TextUtils.isEmpty(name)){
+                    SPUtils.setPrefString(mContext,Config.nick_name,name);
+                }
             }
         }));
 
