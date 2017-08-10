@@ -1,10 +1,54 @@
 package com.zhizhong.feishou.module.my.network;
 
 
+import com.zhizhong.feishou.base.BaseObj;
+import com.zhizhong.feishou.base.ResponseObj;
+import com.zhizhong.feishou.module.my.network.response.LoginObj;
+
+import java.util.Map;
+
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
+import rx.Observable;
+
 /**
  * Created by Administrator on 2017/6/28.
  */
 
 public interface IRequest {
+    // @QueryMap Map<String,String> map
+    // @Query("user_id") String user_id,@Query("sign") String sign
+    //用户注册
+    @GET("api/FlyMember/GetMemberRegister")
+    Observable<ResponseObj<BaseObj>> register(@QueryMap Map<String,String> map);
+
+    //用户登录
+    @GET("api/FlyMember/GetUserLogin")
+    Observable<ResponseObj<LoginObj>> login(@QueryMap Map<String,String> map);
+
+    //忘记密码-修改密码
+    @GET("api/FlyMember/GetSetNewPassword")
+    Observable<ResponseObj<BaseObj>> setNewPassword(@QueryMap Map<String,String> map);
+
+    //获取验证码
+    @GET("api/Lib/GetSMSCode")
+    Observable<ResponseObj<BaseObj>> getMsgCode(@QueryMap Map<String,String> map);
+
+    //获取我的资料
+    @GET("api/FlyMember/GetMemberInfo")
+    Observable<ResponseObj<BaseObj>> getInfo(@Query("user_id") String user_id,@Query("sign") String sign);
+
+    //用户资料修改
+    @GET("api/FlyMember/GetSetMemberInfo")
+    Observable<ResponseObj<BaseObj>> updateInfo(@QueryMap Map<String,String> map);
+
+    //获取实名验证信息
+    @GET("api/FlyMember/GetMemberAuthentication")
+    Observable<ResponseObj<BaseObj>> getMemberAuthentication(@Query("user_id") String user_id,@Query("sign") String sign);
+
+    //设置实名验证信息
+    @GET("api/FlyMember/GetSetMemberAuthentication")
+    Observable<ResponseObj<BaseObj>> setMemberAuthentication(@QueryMap Map<String,String> map);
 
 }

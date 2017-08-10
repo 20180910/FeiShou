@@ -18,9 +18,12 @@ import android.widget.TextView;
 
 import com.github.androidtools.ClickUtils;
 import com.github.androidtools.PhoneUtils;
+import com.github.androidtools.SPUtils;
 import com.github.androidtools.StatusBarUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.activity.IBaseActivity;
+import com.zhizhong.feishou.Config;
+import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.view.ProgressLayout;
 
@@ -241,5 +244,12 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
             }
         });
 
+    }
+
+    protected String getUserId(){
+        return SPUtils.getPrefString(mContext,Config.user_id,null);
+    }
+    protected String getSign(){
+        return GetSign.getSign("user_id",getUserId());
     }
 }

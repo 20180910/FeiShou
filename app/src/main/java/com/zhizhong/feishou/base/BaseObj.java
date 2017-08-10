@@ -16,4 +16,15 @@ public class BaseObj implements Serializable {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+
+    private String SMSCode;
+
+    public String getSMSCode() {
+        return SMSCode;
+    }
+
+    public void setSMSCode(String SMSCode) {
+        this.SMSCode = SMSCode;
+    }
 }

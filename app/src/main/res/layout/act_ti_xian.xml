@@ -65,6 +65,8 @@
             android:inputType="numberDecimal"
             android:hint="最多可转出8000元"
             android:textColorHint="#dcdcdc"
+
+            android:textSize="17sp"
             />
         <TextView
             android:layout_width="wrap_content"

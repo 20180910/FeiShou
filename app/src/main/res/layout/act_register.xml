@@ -7,208 +7,238 @@
               android:background="@color/gray_f6"
     >
 <include layout="@layout/app_title"/>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         android:background="@color/white"
+        android:fillViewport="true"
         >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:layout_marginTop="50dp"
-                >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            >
+
             <com.github.customview.MyLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
-                app:my_ll_corner_radius="23dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
                 app:my_ll_all_line="true"
                 app:my_ll_border_color="@color/border_e5"
                 app:my_ll_border_width="2px"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
+                app:my_ll_corner_radius="23dp"
                 >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img19"
-                />
+
+                <ImageView
+                    android:layout_width="33dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img19"
+                    />
+
                 <com.github.customview.MyEditText
+                    android:id="@+id/et_register_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
-                    android:hint="输入手机号"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="15dp"
-                    android:textColorHint="@color/gray_99"
-                    android:textColor="@color/colorText"
+                    android:layout_marginTop="3dp"
+                    android:hint="输入手机号"
                     android:inputType="number"
-                    android:maxLines="1"
                     android:maxLength="11"
+                    android:maxLines="1"
+                    android:textColor="@color/colorText"
+                    android:textColorHint="@color/gray_99"
+                    android:textSize="16sp"
                     />
             </com.github.customview.MyLinearLayout>
-                <com.github.customview.MyLinearLayout
+
+            <com.github.customview.MyLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                app:my_ll_all_line="true"
+                app:my_ll_border_color="@color/border_e5"
+                app:my_ll_border_width="2px"
+                app:my_ll_corner_radius="23dp"
+                >
+
+                <ImageView
+                    android:layout_width="33dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img21"
+                    />
+
+                <EditText
+                    android:id="@+id/et_register_code"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="短信验证码"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingLeft="7dp"
+                    android:textColor="@color/colorText"
+                    android:textColorHint="@color/gray_99"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_register_getcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:text="获取验证码"
+                    android:textColor="@color/blue"
+                    android:textSize="15dp"
+                    />
+            </com.github.customview.MyLinearLayout>
+
+            <com.github.customview.MyLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                app:my_ll_all_line="true"
+                app:my_ll_border_color="@color/border_e5"
+                app:my_ll_border_width="2px"
+                app:my_ll_corner_radius="23dp"
+                >
+
+                <ImageView
+                    android:layout_width="33dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img20"
+                    />
+
+                <com.github.customview.MyEditText
+                    android:id="@+id/et_register_pwd"
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    app:my_ll_corner_radius="23dp"
-                    app:my_ll_all_line="true"
-                    app:my_ll_border_color="@color/border_e5"
-                    app:my_ll_border_width="2px"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="20dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/img21"
-                        />
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:hint="短信验证码"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="15dp"
-                        android:textColorHint="@color/gray_99"
-                        android:textColor="@color/colorText"
-                        android:background="@color/white"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="获取验证码"
-                        android:layout_marginRight="15dp"
-                        android:textSize="15dp"
-                        android:gravity="center"
-                        android:textColor="@color/blue"
-                        />
-                </com.github.customview.MyLinearLayout>
-                <com.github.customview.MyLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    app:my_ll_corner_radius="23dp"
-                    app:my_ll_all_line="true"
-                    app:my_ll_border_color="@color/border_e5"
-                    app:my_ll_border_width="2px"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="20dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/img20"
-                        />
-                    <com.github.customview.MyEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:hint="密码"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="15dp"
-                        android:textColorHint="@color/gray_99"
-                        android:textColor="@color/colorText"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="3dp"
+                    android:hint="密码"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                        />
-                </com.github.customview.MyLinearLayout>
-                <com.github.customview.MyLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    app:my_ll_corner_radius="23dp"
-                    app:my_ll_all_line="true"
-                    app:my_ll_border_color="@color/border_e5"
-                    app:my_ll_border_width="2px"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="20dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/img20"
-                        />
-                    <com.github.customview.MyEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:hint="确认密码"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="15dp"
-                        android:textColorHint="@color/gray_99"
-                        android:textColor="@color/colorText"
-                        android:inputType="textPassword"
-                        android:maxLines="1"
-                        />
-                </com.github.customview.MyLinearLayout>
+                    android:textColor="@color/colorText"
+                    android:textColorHint="@color/gray_99"
+                    android:textSize="16sp"
+                    />
+            </com.github.customview.MyLinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="15dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:text="注册表示你已同意"
-                        android:gravity="center_vertical"
-                         android:textSize="12sp"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="《益农宝飞首协议》"
-                        android:textColor="@color/blue"
-                        android:textSize="12sp"
-                        />
-                </LinearLayout>
+            <com.github.customview.MyLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                app:my_ll_all_line="true"
+                app:my_ll_border_color="@color/border_e5"
+                app:my_ll_border_width="2px"
+                app:my_ll_corner_radius="23dp"
+                >
 
-                <com.github.customview.MyTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    app:my_tv_corner_radius="23dp"
-                    app:my_tv_solid="@color/blue"
-                    app:my_tv_press="@color/blue_press"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="20dp"
-                    android:text="注册"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"
-                   />
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="33dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="20dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:text="已有账号?"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:text="立即登录"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="@color/blue"
-                        />
-                </LinearLayout>
+                    android:src="@drawable/img20"
+                    />
+
+                <com.github.customview.MyEditText
+                    android:id="@+id/et_register_repwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="3dp"
+                    android:hint="确认密码"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@color/colorText"
+                    android:textColorHint="@color/gray_99"
+                    android:textSize="16sp"
+                    />
+            </com.github.customview.MyLinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center_vertical"
+                    android:text="注册表示你已同意"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="《益农宝飞首协议》"
+                    android:textColor="@color/blue"
+                    android:textSize="12sp"
+                    />
             </LinearLayout>
+
+            <com.github.customview.MyTextView
+                android:id="@+id/tv_register_commit"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:text="注册"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:my_tv_corner_radius="23dp"
+                app:my_tv_press="@color/blue_press"
+                app:my_tv_solid="@color/blue"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical"
+                    android:text="已有账号?"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_register_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="立即登录"
+                    android:textColor="@color/blue"
+                    />
+            </LinearLayout>
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

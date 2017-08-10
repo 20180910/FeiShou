@@ -7,6 +7,7 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 import com.zhizhong.feishou.module.my.activity.CeMuToolActivity;
 import com.zhizhong.feishou.module.my.activity.HomeworkScopeActivity;
+import com.zhizhong.feishou.module.my.activity.MyDataActivity;
 import com.zhizhong.feishou.module.my.activity.MyOrderActivity;
 import com.zhizhong.feishou.module.my.activity.MyToolListActivity;
 import com.zhizhong.feishou.module.my.activity.MyWalletActivity;
@@ -49,14 +50,14 @@ public class MyFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.ll_my_wallet, R.id.ll_my_tool, R.id.ll_my_homework, R.id.ll_my_cemu_tool,R.id.iv_my_set, R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
+    @OnClick({R.id.tv_my_wallet, R.id.tv_my_tool, R.id.tv_my_homework, R.id.tv_my_cemu_tool,R.id.iv_my_set, R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.iv_my_set://设置
-                STActivity(MyToolListActivity.class);
+                STActivity(MyDataActivity.class);
 //                STActivity(LoginActivity.class);
                 break;
-            case R.id.ll_my_wallet://我的钱包
+            case R.id.tv_my_wallet://我的钱包
                 STActivity(MyWalletActivity.class);
                 break;
             case R.id.tv_my_all:
@@ -71,13 +72,13 @@ public class MyFragment extends BaseFragment {
             case R.id.tv_my_complete:
                 STActivity(MyOrderActivity.class);
                 break;
-            case R.id.ll_my_tool:
+            case R.id.tv_my_tool:
                 STActivity(MyToolListActivity.class);
                 break;
-            case R.id.ll_my_homework:
+            case R.id.tv_my_homework:
                 STActivity(HomeworkScopeActivity.class);
                 break;
-            case R.id.ll_my_cemu_tool:
+            case R.id.tv_my_cemu_tool:
                 STActivity(CeMuToolActivity.class);
                 break;
         }

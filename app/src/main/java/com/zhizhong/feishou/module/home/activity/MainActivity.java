@@ -1,13 +1,19 @@
 package com.zhizhong.feishou.module.home.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.github.androidtools.StatusBarUtils;
 import com.github.customview.MyRadioButton;
+import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
+import com.zhizhong.feishou.broadcast.LoginBro;
+import com.zhizhong.feishou.module.my.activity.LoginActivity;
 import com.zhizhong.feishou.module.my.fragment.MyFragment;
 import com.zhizhong.feishou.module.renwu.fragment.RenWuFragment;
 import com.zhizhong.feishou.module.zengzhi.fragment.ZengZhiFragment;
@@ -35,7 +41,8 @@ public class MainActivity extends BaseActivity {
     MyRadioButton rb_home_my;
 
     private MyRadioButton selectButton;
-
+    private LocalBroadcastManager localBroadcastManager;
+    private LoginBro loginBro;
     @Override
     protected int getContentView() {
         return R.layout.act_home;
@@ -52,6 +59,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setBroadcast();
+
         int statusBarHeight = StatusBarUtils.getStatusBarHeight(this);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.height = statusBarHeight;
@@ -60,10 +69,36 @@ public class MainActivity extends BaseActivity {
 
         selectButton = rb_home_rwdt;
         renWuFragment = new RenWuFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, renWuFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, renWuFragment).commitAllowingStateLoss();
 
     }
 
+    private void setBroadcast() {
+        localBroadcastManager = LocalBroadcastManager.getInstance( this );
+        loginBro=new LoginBro(new LoginBro.LoginBroInter() {
+            @Override
+            public void loginSuccess() {
+                selectMy();
+                selectButton.setChecked(true);
+            }
+
+            @Override
+            public void exitLogin() {
+                selectRWDT();
+                selectButton.setChecked(true);
+                myFragment=null;
+            }
+        });
+        localBroadcastManager.registerReceiver(loginBro,new IntentFilter(Config.Bro.login));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (localBroadcastManager != null) {
+            localBroadcastManager.unregisterReceiver(loginBro);
+        }
+    }
 
     @Override
     protected void initRxBus() {
@@ -79,21 +114,13 @@ public class MainActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.rb_home_rwdt:
-                selectButton = rb_home_rwdt;
-                if (renWuFragment == null) {
-                    renWuFragment = new RenWuFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, renWuFragment).commit();
-                } else {
-                    showFragment(renWuFragment);
-                }
-                hideFragment(zengZhiFragment);
-                hideFragment(myFragment);
+                selectRWDT();
                 break;
             case R.id.rb_home_zzfw:
                 selectButton = rb_home_zzfw;
                 if (zengZhiFragment == null) {
                     zengZhiFragment = new ZengZhiFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, zengZhiFragment).commit();
+                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, zengZhiFragment).commitAllowingStateLoss();
                 } else {
                     showFragment(zengZhiFragment);
                 }
@@ -101,17 +128,37 @@ public class MainActivity extends BaseActivity {
                 hideFragment(myFragment);
                 break;
             case R.id.rb_home_my:
-                selectButton = rb_home_my;
-                if (myFragment == null) {
-                    myFragment = new MyFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, myFragment).commit();
-                } else {
-                    showFragment(myFragment);
+                if(TextUtils.isEmpty(getUserId())){
+                    STActivity(LoginActivity.class);
+                    return;
                 }
-                hideFragment(zengZhiFragment);
-                hideFragment(renWuFragment);
+                selectMy();
                 break;
         }
+    }
+
+    private void selectRWDT() {
+        selectButton = rb_home_rwdt;
+        if (renWuFragment == null) {
+            renWuFragment = new RenWuFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, renWuFragment).commitAllowingStateLoss();
+        } else {
+            showFragment(renWuFragment);
+        }
+        hideFragment(zengZhiFragment);
+        hideFragment(myFragment);
+    }
+
+    private void selectMy() {
+        selectButton = rb_home_my;
+        if (myFragment == null) {
+            myFragment = new MyFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, myFragment).commitAllowingStateLoss();
+        } else {
+            showFragment(myFragment);
+        }
+        hideFragment(zengZhiFragment);
+        hideFragment(renWuFragment);
     }
 
     private long mExitTime;

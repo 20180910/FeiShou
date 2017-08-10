@@ -66,6 +66,7 @@
                 android:src="@drawable/img19"
                 />
                 <com.github.customview.MyEditText
+                    android:id="@+id/et_login_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="3dp"
@@ -76,6 +77,8 @@
                     android:textColorHint="@color/gray_99"
                     android:textColor="@color/colorText"
                     android:textSize="15sp"
+                    android:maxLines="1"
+                    android:inputType="number"
                     />
             </com.github.customview.MyLinearLayout>
                 <com.github.customview.MyLinearLayout
@@ -95,6 +98,7 @@
                         android:src="@drawable/img20"
                         />
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_login_pwd"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="3dp"
@@ -105,11 +109,14 @@
                         android:textColorHint="@color/gray_99"
                         android:textColor="@color/colorText"
                         android:textSize="15sp"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
                         />
                 </com.github.customview.MyLinearLayout>
                 <TextView
+                    android:id="@+id/tv_login_forget"
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
+                    android:layout_height="28dp"
                     android:text="忘记密码?"
                     android:gravity="right|center_vertical"
                     android:layout_marginTop="10dp"
@@ -126,7 +133,7 @@
                     app:my_tv_press="@color/blue_press"
                     android:gravity="center"
                     android:paddingLeft="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:text="登录"
                     android:textColor="@color/white"
                     android:textSize="17sp"
@@ -136,19 +143,22 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:text="没有账号?"
+                        android:gravity="center_vertical"
                         />
                     <TextView
+                        android:id="@+id/tv_login_register"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:text="立即注册"
                         android:layout_marginLeft="5dp"
                         android:textColor="@color/blue"
+                        android:gravity="center_vertical"
                         />
                 </LinearLayout>
             </LinearLayout>

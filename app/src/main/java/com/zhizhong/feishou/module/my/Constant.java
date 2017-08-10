@@ -20,7 +20,7 @@ public class Constant {
         public static final int login=400;
     }
     public static class IParam{
-        public static final String mobile="mobile";
+        public static final String phone="phone";
         public static final String name="name";
         public static final String user_id="user_id";
         public static final String msgId="msgId";

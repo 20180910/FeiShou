@@ -161,7 +161,6 @@
         android:layout_marginTop="10dp"
         >
         <com.github.customview.MyLinearLayout
-            android:id="@+id/ll_my_wallet"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
@@ -175,16 +174,17 @@
                 android:src="@drawable/img13"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_my_wallet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的钱包"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
+                app:my_tv_solid="@color/transparent"
                 />
         </com.github.customview.MyLinearLayout>
         <com.github.customview.MyLinearLayout
-            android:id="@+id/ll_my_tool"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
@@ -198,16 +198,17 @@
                 android:src="@drawable/img14"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_my_tool"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的工具"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
+                app:my_tv_solid="@color/transparent"
                 />
         </com.github.customview.MyLinearLayout>
         <com.github.customview.MyLinearLayout
-            android:id="@+id/ll_my_homework"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
@@ -221,16 +222,17 @@
                 android:src="@drawable/img15"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_my_homework"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="作业范围"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
+                app:my_tv_solid="@color/transparent"
                 />
         </com.github.customview.MyLinearLayout>
         <com.github.customview.MyLinearLayout
-            android:id="@+id/ll_my_cemu_tool"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
@@ -244,12 +246,14 @@
                 android:src="@drawable/img16"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_my_cemu_tool"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="测亩工具"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
+                app:my_tv_solid="@color/transparent"
                 />
         </com.github.customview.MyLinearLayout>
     </LinearLayout>
