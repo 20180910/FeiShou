@@ -8,12 +8,49 @@
     >
 
     <include layout="@layout/app_title"/>
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rv_my_tool"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="5dp"
-    >
+    <com.zhizhong.feishou.view.ProgressLayout
+        android:id="@id/pl_load"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:id="@id/pcfl_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:ptr_resistance="2.1"
+            app:ptr_ratio_of_header_height_to_refresh="1.2"
+            android:layout_above="@+id/ll_tool_bottom"
+            >
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_my_tool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                >
 
-</android.support.v7.widget.RecyclerView>
+            </android.support.v7.widget.RecyclerView>
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+        <com.github.customview.MyLinearLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/ll_tool_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:my_ll_top_line="true"
+            >
+            <com.github.customview.MyTextView
+                android:id="@+id/tv_tool_add"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                app:my_tv_corner_radius="23dp"
+                app:my_tv_solid="@color/blue"
+                app:my_tv_press="@color/blue_press"
+                android:gravity="center"
+                android:text="添加"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                />
+        </com.github.customview.MyLinearLayout>
+
+    </com.zhizhong.feishou.view.ProgressLayout>
+
 </LinearLayout>

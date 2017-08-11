@@ -51,7 +51,7 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     protected TextView app_title,app_right_tv;
     protected ImageView app_right_iv;
     private View status_bar;
-   protected PtrClassicFrameLayout pcfl;
+    protected PtrClassicFrameLayout pcfl;
 
     protected ProgressLayout pl_load;
     /****************************************************/

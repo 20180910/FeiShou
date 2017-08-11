@@ -16,6 +16,8 @@ import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.view.ProgressLayout;
 
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -112,5 +114,18 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
     }
     protected String getSign(){
         return GetSign.getSign("user_id",getUserId());
+    }
+
+    protected boolean isEmpty(List list){
+        if(list==null||list.size()==0){
+            return true;
+        }
+        return false;
+    }
+    protected boolean notEmpty(List list){
+        if(list==null||list.size()==0){
+            return false;
+        }
+        return true;
     }
 }

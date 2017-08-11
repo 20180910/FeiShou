@@ -7,8 +7,10 @@ import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
 import com.zhizhong.feishou.module.my.network.response.InfoObj;
 import com.zhizhong.feishou.module.my.network.response.LevelObj;
 import com.zhizhong.feishou.module.my.network.response.LoginObj;
+import com.zhizhong.feishou.module.my.network.response.MyToolObj;
 import com.zhizhong.feishou.module.my.network.response.WalletObj;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.http.Body;
@@ -76,5 +78,9 @@ public interface IRequest {
     //收支明细
     @GET("api/FlyMember/GetMemberMoneyLog")
     Observable<ResponseObj<WalletObj>> getWalletDetailsList(@QueryMap Map<String,String> map);
+
+    //获取我的工具列表
+    @GET("api/FlyMember/GetMyToolList")
+    Observable<ResponseObj<List<MyToolObj>>> getMyToolList(@QueryMap Map<String,String> map);
 
 }

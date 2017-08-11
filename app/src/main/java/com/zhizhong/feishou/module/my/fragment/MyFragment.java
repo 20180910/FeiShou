@@ -66,7 +66,7 @@ public class MyFragment extends BaseFragment {
         String userName = SPUtils.getPrefString(mContext, Config.nick_name, null);
         String avatar = SPUtils.getPrefString(mContext, Config.avatar, null);
         if (avatar != null) {
-            Glide.with(mContext).load(avatar).into(civ_my_img);
+            Glide.with(mContext).load(avatar).error(R.color.c_press).into(civ_my_img);
         }
         int level = SPUtils.getPrefInt(mContext, Config.level, 0);
         int auth = SPUtils.getPrefInt(mContext, Config.authentication, 0);
@@ -129,7 +129,7 @@ public class MyFragment extends BaseFragment {
             case R.id.tv_my_complete:
                 STActivity(MyOrderActivity.class);
                 break;
-            case R.id.tv_my_tool:
+            case R.id.tv_my_tool://我的工具
                 STActivity(MyToolListActivity.class);
                 break;
             case R.id.tv_my_homework:

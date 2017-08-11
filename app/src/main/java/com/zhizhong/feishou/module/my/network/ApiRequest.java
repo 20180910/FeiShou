@@ -59,5 +59,8 @@ public class ApiRequest {
     public static Observable getWalletDetailsList(Map map){
         return getCommonClient().getWalletDetailsList(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getMyToolList(Map map){
+        return getCommonClient().getMyToolList(map).compose(RxResult.appSchedulers()).compose(RxResult.handleListResult());
+    }
 
 }

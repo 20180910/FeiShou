@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/white"
+              android:background="@color/background_f2"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,12 +13,13 @@
         android:orientation="horizontal"
         android:background="@color/white"
         android:padding="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2px"
         >
         <ImageView
+            android:id="@+id/iv_tool_img"
             android:layout_width="100dp"
             android:layout_height="75dp"
-            android:src="@drawable/img5"
+            tools:src="@drawable/img5"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,34 +29,51 @@
             android:layout_marginLeft="13dp"
             >
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 >
                 <TextView
+                    android:id="@+id/tv_tool_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="多轴农用植保无人机"
+                    tools:text="多轴农用植保无人机"
                     android:textColor="@color/gray_33"
                     android:textSize="15sp"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="品牌型号:手动版8轴7kg"
-                    android:textColor="@color/gray_99"
-                    android:textSize="13sp"
-                    />
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="品牌型号："
+                        android:textColor="@color/gray_99"
+                        android:textSize="13sp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_tool_model"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        tools:text="手动版8轴7kg"
+                        android:textColor="@color/gray_99"
+                        android:textSize="13sp"
+                        />
+                </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_tool_num"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="数量：3架"
-                    android:textColor="@color/blue"
+                    tools:text="数量：3架"
+                    android:textColor="@color/gray_66"
                     android:textSize="13sp"
                     android:gravity="bottom"
                     android:layout_marginBottom="3dp"

@@ -59,4 +59,20 @@ public class RxResult extends RxUtils {
             }
         });
     }
+
+    public static <T> Observable.Transformer<ResponseObj<T>, T> handleListResult(){
+        return apiResponse -> apiResponse.flatMap(
+                new Func1<ResponseObj<T>, Observable<T>>() {
+                    @Override
+                    public Observable<T> call(ResponseObj<T> response) {
+                        if (response==null){
+                            return Observable.empty();
+                        }else if (response.isSuccess()){
+                            return returnData(response.getResponse());
+                        }else{
+                            return Observable.error(new ServerException(response.getErrMsg()+""));
+                        }
+                    }
+                });
+    }
 }
