@@ -47,7 +47,7 @@ public class ShouZhiMingXiActivity extends BaseActivity {
     protected void initView() {
         adapter=new ShouZhiMingXiFragmentAdapter(getSupportFragmentManager());
         shouRuFragment=ShouZhiMingXiFragment.newInstance(1);
-        zhiChuFragment=ShouZhiMingXiFragment.newInstance(0);
+        zhiChuFragment=ShouZhiMingXiFragment.newInstance(-1);
         list.add(shouRuFragment);
         list.add(zhiChuFragment);
         adapter.setList(list);

@@ -50,5 +50,14 @@ public class ApiRequest {
     public static Observable updateInfo(Map map){
         return getCommonClient().updateInfo(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getVIPLevel(String userId,String sign){
+        return getCommonClient().getVIPLevel(userId,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getMyWallet(String userId,String sign){
+        return getCommonClient().getMyWallet(userId,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getWalletDetailsList(Map map){
+        return getCommonClient().getWalletDetailsList(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 }

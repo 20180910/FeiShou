@@ -16,6 +16,7 @@ import com.zhizhong.feishou.module.my.activity.MyDataActivity;
 import com.zhizhong.feishou.module.my.activity.MyOrderActivity;
 import com.zhizhong.feishou.module.my.activity.MyToolListActivity;
 import com.zhizhong.feishou.module.my.activity.MyWalletActivity;
+import com.zhizhong.feishou.module.my.activity.VIPLevelActivity;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
 import com.zhizhong.feishou.module.my.network.response.InfoObj;
 
@@ -103,9 +104,12 @@ public class MyFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.tv_my_wallet, R.id.tv_my_tool, R.id.tv_my_homework, R.id.tv_my_cemu_tool, R.id.iv_my_set, R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
+    @OnClick({R.id.ll_my_vip,R.id.tv_my_wallet, R.id.tv_my_tool, R.id.tv_my_homework, R.id.tv_my_cemu_tool, R.id.iv_my_set, R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
     public void onViewClick(View view) {
         switch (view.getId()) {
+            case R.id.ll_my_vip://设置
+                STActivity(VIPLevelActivity.class);
+                break;
             case R.id.iv_my_set://设置
                 STActivity(MyDataActivity.class);
 //                STActivity(LoginActivity.class);

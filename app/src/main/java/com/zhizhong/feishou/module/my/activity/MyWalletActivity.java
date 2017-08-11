@@ -3,11 +3,15 @@ package com.zhizhong.feishou.module.my.activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
+import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.my.network.ApiRequest;
+import com.zhizhong.feishou.module.my.network.response.WalletObj;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,6 +24,8 @@ public class MyWalletActivity extends BaseActivity {
     LoadMoreAdapter adapter;
     @BindView(R.id.rv_my_wallet)
     RecyclerView rv_my_wallet;
+    @BindView(R.id.tv_wallet_total)
+    TextView tv_wallet_total;
 
     @Override
     public void again() {
@@ -34,21 +40,36 @@ public class MyWalletActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        adapter=new LoadMoreAdapter(mContext,R.layout.item_wallet_shouyi,0) {
+        adapter=new LoadMoreAdapter<WalletObj.UserMoneyLogBean>(mContext,R.layout.item_wallet_shouyi,0) {
             @Override
-            public void bindData(LoadMoreViewHolder loadMoreViewHolder, int i, Object o) {
+            public void bindData(LoadMoreViewHolder holder, int position, WalletObj.UserMoneyLogBean item) {
+                holder.setText(R.id.tv_wallet_title,item.getRemark())
+                        .setText(R.id.tv_wallet_money,item.getValue()+"")
+                .setText(R.id.tv_wallet_time,item.getAdd_time());
+                TextView textView = holder.getTextView(R.id.tv_wallet_money);
+                if(item.getValue()>0){
+                    textView.setTextColor(getResources().getColor(R.color.blue));
+                }else{
+                    textView.setTextColor(getResources().getColor(R.color.red));
+                }
 
             }
         };
-        adapter.setTestListSize(10);
-
         rv_my_wallet.setLayoutManager(new LinearLayoutManager(mContext));
         rv_my_wallet.setAdapter(adapter);
     }
 
     @Override
     protected void initData() {
-
+        showLoading();
+        addSubscription(ApiRequest.getMyWallet(getUserId(),getSign()).subscribe(new MySub<WalletObj>(mContext) {
+            @Override
+            public void onMyNext(WalletObj obj) {
+                String totalMoney = obj.getUser_money() + "";
+                tv_wallet_total.setText(totalMoney);
+                adapter.setList(obj.getUser_money_log(),true);
+            }
+        }));
     }
 
     @OnClick({R.id.ll_wallet_szmx,R.id.ll_my_tixian})

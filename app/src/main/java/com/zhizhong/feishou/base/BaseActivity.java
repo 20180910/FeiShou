@@ -28,6 +28,7 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.view.ProgressLayout;
 
 import butterknife.ButterKnife;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 
 
 /**
@@ -50,9 +51,9 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     protected TextView app_title,app_right_tv;
     protected ImageView app_right_iv;
     private View status_bar;
-//    protected PtrClassicFrameLayout pcfl;
+   protected PtrClassicFrameLayout pcfl;
 
-//    protected ProgressLayout pl_load;
+    protected ProgressLayout pl_load;
     /****************************************************/
     protected abstract int getContentView();
     protected abstract void initView();
@@ -164,13 +165,14 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
                 app_right_tv.setTextColor(appRightTitleColor);
             }
         }
-        /*if(null!=findViewById(R.id.pcfl_refresh)){
+        if(null!=findViewById(R.id.pcfl_refresh)){
             pcfl = (PtrClassicFrameLayout) findViewById(R.id.pcfl_refresh);
             pcfl.setLastUpdateTimeRelateObject(this);
         }
         if(null!=findViewById(R.id.pl_load)){
             pl_load = (ProgressLayout) findViewById(R.id.pl_load);
-        }*/
+            pl_load.setInter(this);
+        }
         setInput();
         initRxBus();
         initView();
@@ -204,8 +206,7 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
             return null;
         }
     }
-    /*public void showProgress(ProgressLayout.OnAgainInter inter){
-        pl_load.setInter(inter);
+    public void showProgress(){
         if (pl_load != null) {
             pl_load.showProgress();
         }
@@ -219,7 +220,7 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
         if (pl_load != null) {
             pl_load.showErrorText();
         }
-    }*/
+    }
     @Override
     public void onClick(View v) {
         if(!ClickUtils.isFastClick(v, 800)){

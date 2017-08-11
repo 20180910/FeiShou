@@ -77,4 +77,6 @@ dependencies {
     compile 'com.contrarywind:Android-PickerView:3.2.6'
     //圆形图片
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    //下拉刷新
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
 }

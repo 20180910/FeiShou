@@ -5,7 +5,9 @@ import com.zhizhong.feishou.base.BaseObj;
 import com.zhizhong.feishou.base.ResponseObj;
 import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
 import com.zhizhong.feishou.module.my.network.response.InfoObj;
+import com.zhizhong.feishou.module.my.network.response.LevelObj;
 import com.zhizhong.feishou.module.my.network.response.LoginObj;
+import com.zhizhong.feishou.module.my.network.response.WalletObj;
 
 import java.util.Map;
 
@@ -62,5 +64,17 @@ public interface IRequest {
     //上传图片
     @POST("api/Lib/PostUploadFileBase64")
     Observable<ResponseObj<BaseObj>> uploadImg(@Query("rnd") String rnd, @Query("sign") String sign, @Body UploadImgItem item);
+
+    //会员等级
+    @GET("api/FlyMember/GetMemberLevel")
+    Observable<ResponseObj<LevelObj>> getVIPLevel(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //我的钱包
+    @GET("api/FlyMember/GetMemberMoneyBag")
+    Observable<ResponseObj<WalletObj>> getMyWallet(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //收支明细
+    @GET("api/FlyMember/GetMemberMoneyLog")
+    Observable<ResponseObj<WalletObj>> getWalletDetailsList(@QueryMap Map<String,String> map);
 
 }

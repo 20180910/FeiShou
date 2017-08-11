@@ -85,6 +85,7 @@
         </LinearLayout>
     </LinearLayout>
         <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_my_vip"
             android:layout_width="55dp"
             android:layout_height="28dp"
             android:layout_alignParentRight="true"
