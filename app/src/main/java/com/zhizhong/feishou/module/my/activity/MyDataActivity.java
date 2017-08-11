@@ -232,7 +232,7 @@ public class MyDataActivity extends BaseActivity {
             public void onMyNext(String baseImg) {
                 UploadImgItem item=new UploadImgItem();
                 item.setFile(baseImg);
-                String rnd = System.currentTimeMillis() + "";
+                String rnd = getRnd();
                 addSubscription(ApiRequest.uploadImg(rnd,getSign("rnd",rnd),item).subscribe(new MySub<BaseObj>(mContext) {
                     @Override
                     public void onMyNext(BaseObj obj) {

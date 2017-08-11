@@ -1,5 +1,6 @@
 package com.zhizhong.feishou.module.my.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.my.Constant;
 import com.zhizhong.feishou.module.my.adapter.HomeworkScopeAdapter;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
 import com.zhizhong.feishou.module.my.network.response.HomeworkObj;
@@ -71,9 +73,12 @@ public class HomeworkScopeActivity extends BaseActivity {
         }));
     }
 
-    @OnClick({R.id.app_right_tv})
+    @OnClick({R.id.app_right_tv,R.id.tv_homework_add})
     protected void onViewClick(View v) {
         switch (v.getId()){
+            case R.id.tv_homework_add:
+                STActivityForResult(AddHomeworkScopeActivity.class, Constant.RCode.addHomework);
+                break;
             case R.id.app_right_tv:
                 adapter.setDelete(!adapter.isDelete());
                 if(adapter.isDelete()){
@@ -82,6 +87,18 @@ public class HomeworkScopeActivity extends BaseActivity {
                     setAppRightTitle("编辑");
                 }
             break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case Constant.RCode.addHomework:
+                    initData();
+                break;
+            }
         }
     }
 }

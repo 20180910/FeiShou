@@ -24,6 +24,8 @@
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
     app:my_tv_solid="@color/white"
+    android:ellipsize="end"
+    android:maxLines="1"
     />
 
     <com.github.customview.MyFrameLayout

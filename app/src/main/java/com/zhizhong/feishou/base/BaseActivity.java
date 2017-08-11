@@ -27,6 +27,9 @@ import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.view.ProgressLayout;
 
+import java.util.List;
+import java.util.Random;
+
 import butterknife.ButterKnife;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 
@@ -260,5 +263,22 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     }
     protected String getSign(String key,String value){
         return GetSign.getSign(key,value);
+    }
+    protected boolean isEmpty(List list){
+        if(list==null||list.size()==0){
+            return true;
+        }
+        return false;
+    }
+    protected boolean notEmpty(List list){
+        if(list==null||list.size()==0){
+            return false;
+        }
+        return true;
+    }
+    protected String getRnd(){
+        Random random = new Random();
+        int rnd = random.nextInt(9000) + 1000;
+        return rnd+"";
     }
 }

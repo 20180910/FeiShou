@@ -17,6 +17,7 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.view.ProgressLayout;
 
 import java.util.List;
+import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -127,5 +128,10 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
             return false;
         }
         return true;
+    }
+    protected String getRnd(){
+        Random random = new Random();
+        int rnd = random.nextInt(9000) + 1000;
+        return rnd+"";
     }
 }

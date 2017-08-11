@@ -1,6 +1,7 @@
 package com.zhizhong.feishou.module.my.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.feishou.module.my.network.request.HomeworkCityItem;
 import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
 import com.zhizhong.feishou.tools.RxResult;
 
@@ -73,6 +74,18 @@ public class ApiRequest {
     }
     public static Observable deleteHomework(String id,String sign){
         return getCommonClient().deleteHomework(id, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable addHomework(String userId, String sign, HomeworkCityItem item){
+        return getCommonClient().addHomework(userId, sign,item).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getProvince(String rnd, String sign){
+        return getCommonClient().getProvince(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getAllCity(String rnd,String sign){
+        return getCommonClient().getAllCity(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getCityForProvince(String rnd,String sign){
+        return getCommonClient().getCityForProvince(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
 
 }

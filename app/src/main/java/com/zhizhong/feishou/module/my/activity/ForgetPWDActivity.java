@@ -116,7 +116,7 @@ public class ForgetPWDActivity extends BaseActivity {
         showLoading();
         Map<String, String> map = new HashMap<String, String>();
         map.put("mobile",getSStr(et_forget_phone));
-        map.put("rnd",System.currentTimeMillis()+"");
+        map.put("rnd",getRnd());
         String sign = GetSign.getSign(map);
         map.put("sign", sign);
         showLoading();
