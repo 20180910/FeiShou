@@ -4,6 +4,7 @@ package com.zhizhong.feishou.module.my.network;
 import com.zhizhong.feishou.base.BaseObj;
 import com.zhizhong.feishou.base.ResponseObj;
 import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
+import com.zhizhong.feishou.module.my.network.response.HomeworkObj;
 import com.zhizhong.feishou.module.my.network.response.InfoObj;
 import com.zhizhong.feishou.module.my.network.response.LevelObj;
 import com.zhizhong.feishou.module.my.network.response.LoginObj;
@@ -82,5 +83,21 @@ public interface IRequest {
     //获取我的工具列表
     @GET("api/FlyMember/GetMyToolList")
     Observable<ResponseObj<List<MyToolObj>>> getMyToolList(@QueryMap Map<String,String> map);
+
+    //删除工具
+    @GET("api/FlyMember/GetDelTool")
+    Observable<ResponseObj<BaseObj>> deleteTool(@Query("tool_id") String tool_id, @Query("sign") String sign);
+
+    //添加工具
+    @GET("api/FlyMember/GetMyToolList")
+    Observable<ResponseObj<BaseObj>> addTool(@QueryMap Map<String,String> map);
+
+    //作业范围列表
+    @GET("api/FlyMember/GetOperatingRangeList")
+    Observable<ResponseObj<List<HomeworkObj>>> getHomeworkList(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //删除作业范围
+    @GET("api/FlyMember/GetDelOperatingRange")
+    Observable<ResponseObj<BaseObj>> deleteHomework(@Query("or_id") String or_id, @Query("sign") String sign);
 
 }

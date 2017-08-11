@@ -60,7 +60,19 @@ public class ApiRequest {
         return getCommonClient().getWalletDetailsList(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
     public static Observable getMyToolList(Map map){
-        return getCommonClient().getMyToolList(map).compose(RxResult.appSchedulers()).compose(RxResult.handleListResult());
+        return getCommonClient().getMyToolList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable deleteTool(String id,String sign){
+        return getCommonClient().deleteTool(id,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable addTool(Map map){
+        return getCommonClient().addTool(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getHomeworkList(String userId,String sign){
+        return getCommonClient().getHomeworkList(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable deleteHomework(String id,String sign){
+        return getCommonClient().deleteHomework(id, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
 
 }

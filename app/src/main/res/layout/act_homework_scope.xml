@@ -7,6 +7,17 @@
               android:background="@color/background_f2"
     >
 <include layout="@layout/app_title"/>
+    <com.zhizhong.feishou.view.ProgressLayout
+        android:id="@id/pl_load"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,18 +51,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
-    <TextView
+    <com.github.customview.MyTextView
+        android:id="@+id/tv_homework_add"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:text="新增作业范围"
         android:drawableRight="@drawable/jiantou_right"
         android:gravity="center_vertical"
-        android:background="@color/white"
+        app:my_tv_solid="@color/white"
+        app:my_tv_press="@color/c_press"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textColor="@color/gray_33"
         />
-
     </LinearLayout>
 
+    </LinearLayout>
+    </com.zhizhong.feishou.view.ProgressLayout>
 </LinearLayout>

@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -27,33 +28,46 @@
                 android:orientation="horizontal"
                 android:padding="10dp"
                 >
+                <FrameLayout
+                    android:id="@+id/fl_add_tool_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.github.customview.MyLinearLayout
+                        android:layout_width="115dp"
+                        android:layout_height="86dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:my_ll_border_color="@color/gray_66"
+                        app:my_ll_border_dashGap="3dp"
+                        app:my_ll_border_dashWidth="3dp"
+                        app:my_ll_border_width="1px"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img38"
+                            />
 
-                <com.github.customview.MyLinearLayout
-                    android:layout_width="115dp"
-                    android:layout_height="86dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:my_ll_border_color="@color/gray_66"
-                    app:my_ll_border_dashGap="3dp"
-                    app:my_ll_border_dashWidth="3dp"
-                    app:my_ll_border_width="1px"
-                    >
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="添加图片"
+                            android:textColor="@color/gray_33"
+                            android:textSize="15sp"
+                            />
+                    </com.github.customview.MyLinearLayout>
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/img38"
+                        android:id="@+id/iv_add_tool_img"
+                        android:layout_width="115dp"
+                        android:layout_height="86dp"
+                        android:scaleType="fitCenter"
+                        tools:src="@drawable/bird"
+                        android:background="@color/c_press"
+                        android:visibility="gone"
                         />
+                </FrameLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="添加图片"
-                        android:textColor="@color/gray_33"
-                        android:textSize="16sp"
-                        />
-                </com.github.customview.MyLinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -76,14 +90,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="产品名称"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:ems="4"
                     />
                 <com.github.customview.MyEditText
+                    android:id="@+id/et_add_tool_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="请输入产品名称"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:paddingLeft="10dp"
                     android:maxLines="1"
                     />
@@ -101,14 +116,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="产品型号"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:ems="4"
                     />
                 <com.github.customview.MyEditText
+                    android:id="@+id/et_add_tool_model"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="请输入产品型号"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:paddingLeft="10dp"
                     android:maxLines="1"
                     />
@@ -126,14 +142,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="厂家"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:ems="4"
                     />
                 <com.github.customview.MyEditText
+                    android:id="@+id/et_add_tool_cj"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="请输入产品厂家"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:paddingLeft="10dp"
                     android:maxLines="1"
                     />
@@ -151,20 +168,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="产品数量"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:ems="4"
                     />
                 <com.github.customview.MyEditText
+                    android:id="@+id/et_add_tool_num"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="请输入产品数量"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:paddingLeft="10dp"
                     android:inputType="number"
                     android:maxLines="1"
+                    android:maxLength="5"
                     />
             </LinearLayout>
             <com.github.customview.MyTextView
+                android:id="@+id/tv_add_tool_commit"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:text="提交"

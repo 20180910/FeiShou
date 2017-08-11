@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -10,9 +11,10 @@
     android:layout_height="wrap_content"
     >
 <com.github.customview.MyTextView
+    android:id="@+id/tv_homework_city"
     android:layout_width="match_parent"
     android:layout_height="32dp"
-    android:text="上海"
+    tools:text="上海"
     android:textColor="@color/blue"
     android:gravity="center"
     android:textSize="14sp"
@@ -25,6 +27,7 @@
     />
 
     <com.github.customview.MyFrameLayout
+        android:id="@+id/fl_homework_delete"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:text="×"

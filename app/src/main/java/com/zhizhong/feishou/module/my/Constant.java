@@ -18,6 +18,7 @@ public class Constant {
         public static final int update_name=200;
         public static final int update_phone=300;
         public static final int login=400;
+        public static final int addTool=1000;
     }
     public static class IParam{
         public static final String phone="phone";

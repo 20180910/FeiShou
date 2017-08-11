@@ -68,6 +68,11 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     }
     public void setAppRightTitle(String appRightTitle) {
         this.appRightTitle = appRightTitle;
+        if(app_right_tv!=null){
+            app_right_tv.setText(appRightTitle);
+            app_right_tv.setVisibility(View.VISIBLE);
+            app_right_iv.setVisibility(View.GONE);
+        }
     }
     public void setAppRightImg(int appRightImg) {
         this.appRightImg = appRightImg;

@@ -60,7 +60,7 @@ public class RxResult extends RxUtils {
         });
     }
 
-    public static <T> Observable.Transformer<ResponseObj<T>, T> handleListResult(){
+    public static <T> Observable.Transformer<ResponseObj<T>, T> listResult(){
         return apiResponse -> apiResponse.flatMap(
                 new Func1<ResponseObj<T>, Observable<T>>() {
                     @Override
