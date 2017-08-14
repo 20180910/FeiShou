@@ -1,6 +1,11 @@
 package com.zhizhong.feishou.module.zengzhi.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.feishou.tools.RxResult;
+
+import java.util.Map;
+
+import rx.Observable;
 
 /**
  * Created by Administrator on 2017/6/28.
@@ -20,6 +25,8 @@ public class ApiRequest {
         return NetWorkManager.getGeneralStringClient().create(IRequest.class);
     }
 
-
+    public static Observable getZengZhiList(Map map){
+        return getCommonClient().getZengZhiList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 
 }

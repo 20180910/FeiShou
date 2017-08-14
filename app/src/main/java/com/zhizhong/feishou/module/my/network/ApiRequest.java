@@ -30,6 +30,12 @@ public class ApiRequest {
     public static Observable register(Map map){
         return getCommonClient().register(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getTXXieYi(String rnd,String sign){
+        return getCommonClient().getTXXieYi(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getRegisterXieYi(String rnd,String sign){
+        return getCommonClient().getRegisterXieYi(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable getMsgCode(Map map){
         return getCommonClient().getMsgCode(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
@@ -86,6 +92,27 @@ public class ApiRequest {
     }
     public static Observable getCityForProvince(String rnd,String sign){
         return getCommonClient().getCityForProvince(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getBankList(String rnd,String sign){
+        return getCommonClient().getBankList(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable addBank(Map map){
+        return getCommonClient().addBank(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getAccount(String userId,String sign){
+        return getCommonClient().getAccount(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getDefaultAccount(String userId,String sign){
+        return getCommonClient().getDefaultAccount(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable setDefaultAccount(Map map){
+        return getCommonClient().setDefaultAccount(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getAllMoney(String userId,String sign){
+        return getCommonClient().getAllMoney(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable tiXian(Map map){
+        return getCommonClient().tiXian(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
 
 }

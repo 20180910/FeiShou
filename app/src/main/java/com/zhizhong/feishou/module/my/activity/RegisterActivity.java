@@ -1,11 +1,16 @@
 package com.zhizhong.feishou.module.my.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.BottomSheetDialog;
 import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
 import com.github.rxjava.rxbus.RxUtils;
@@ -46,6 +51,8 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.tv_register_commit)
     MyTextView tv_register_commit;
     private String smsCode;
+    private BottomSheetDialog xieYiDialog;
+    private String agreement;
 
     @Override
     protected int getContentView() {
@@ -60,12 +67,57 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        getXieYi(false);
+    }
+    private void showXieYi(String content) {
+        View xieYi = LayoutInflater.from(mContext).inflate(R.layout.popu_tx_xieyi, null);
+        xieYiDialog = new BottomSheetDialog(mContext);
+        xieYiDialog.setCancelable(false);
+        xieYiDialog.setContentView(xieYi);
+        xieYiDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if(xieYiDialog.isShowing()&&keyCode==KeyEvent.KEYCODE_BACK){
+                    xieYiDialog.dismiss();
+                    return true;
+                }
+                return false;
+            }
+        });
+        xieYiDialog.show();
+        xieYi.findViewById(R.id.tv_xy_queding).setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                xieYiDialog.dismiss();
+            }
+        });
+        TextView xieYiContent = (TextView) xieYi.findViewById(R.id.tv_tx_xieyi_content);
+        xieYiContent.setText(content);
 
     }
-
-    @OnClick({R.id.tv_register_commit,R.id.tv_register_getcode,R.id.tv_register_login})
+    private void getXieYi(boolean manual){
+        String rnd=getRnd();
+        addSubscription(ApiRequest.getRegisterXieYi(rnd,getSign("rnd",rnd)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                agreement = obj.getFly_first_agreement();
+                if(manual){
+                    showXieYi(agreement);
+                }
+            }
+        }));
+    }
+    @OnClick({R.id.tv_register_commit,R.id.tv_register_getcode,R.id.tv_register_login,R.id.tv_regiser_xy})
     protected void onViewClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_regiser_xy:
+                if(TextUtils.isEmpty(agreement)){
+                    showLoading();
+                    getXieYi(true);
+                }else{
+                    showXieYi(agreement);
+                }
+                break;
             case R.id.tv_register_login:
                 finish();
                 break;

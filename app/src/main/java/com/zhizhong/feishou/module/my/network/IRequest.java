@@ -5,6 +5,8 @@ import com.zhizhong.feishou.base.BaseObj;
 import com.zhizhong.feishou.base.ResponseObj;
 import com.zhizhong.feishou.module.my.network.request.HomeworkCityItem;
 import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
+import com.zhizhong.feishou.module.my.network.response.AccountObj;
+import com.zhizhong.feishou.module.my.network.response.BankObj;
 import com.zhizhong.feishou.module.my.network.response.CityObj;
 import com.zhizhong.feishou.module.my.network.response.HomeworkObj;
 import com.zhizhong.feishou.module.my.network.response.InfoObj;
@@ -31,7 +33,14 @@ import rx.Observable;
 public interface IRequest {
     // @QueryMap Map<String,String> map
     // @Query("user_id") String user_id,@Query("sign") String sign
-    //用户注册
+    //获取资金快捷收付及授权协议
+    @GET("api/FlyMember/GetQuickCashPaymentLicensingAgreement")
+    Observable<ResponseObj<BaseObj>> getTXXieYi(@Query("rnd") String rnd, @Query("sign") String sign);
+
+    //注册授权协议
+    @GET("api/FlyMember/GetFlyAgreement")
+    Observable<ResponseObj<BaseObj>> getRegisterXieYi(@Query("rnd") String rnd, @Query("sign") String sign);
+
     @GET("api/FlyMember/GetMemberRegister")
     Observable<ResponseObj<BaseObj>> register(@QueryMap Map<String,String> map);
 
@@ -118,5 +127,33 @@ public interface IRequest {
     //获取城市
     @GET("api/Lib/GetCity")
     Observable<ResponseObj<List<CityObj>>> getCityForProvince(@Query("parent_id") String parent_id, @Query("sign") String sign);
+
+    //获取银行列表
+    @GET("api/FlyMember/GetBankList")
+    Observable<ResponseObj<List<BankObj>>> getBankList(@Query("rnd") String rnd, @Query("sign") String sign);
+
+    //添加银行卡
+    @GET("api/FlyMember/GetAddAccount")
+    Observable<ResponseObj<BaseObj>> addBank(@QueryMap Map<String,String> map);
+
+    //获取账户列表
+    @GET("api/FlyMember/GetAccount")
+    Observable<ResponseObj<List<AccountObj>>> getAccount(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //设置默认账户
+    @GET("api/FlyMember/GetEditDefalut")
+    Observable<ResponseObj<BaseObj>> setDefaultAccount(@QueryMap Map<String,String> map);
+
+    //获取默认账户
+    @GET("api/FlyMember/GetAccountDefault")
+    Observable<ResponseObj<List<AccountObj>>> getDefaultAccount(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //获取所有金额(全部转出)
+    @GET("api/FlyMember/GetAllMoney")
+    Observable<ResponseObj<BaseObj>> getAllMoney(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //提现申请
+    @GET("api/FlyMember/GetWithdrawals")
+    Observable<ResponseObj<BaseObj>> tiXian(@QueryMap Map<String,String> map);
 
 }

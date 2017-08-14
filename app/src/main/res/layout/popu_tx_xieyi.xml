@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:gravity="center"
+              android:orientation="vertical"
+    >
+
+    <com.github.customview.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="授权协议"
+        app:my_tv_bottom_line="true"
+        app:my_tv_press="@color/c_press"
+        />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:padding="10dp"
+        >
+        <TextView
+            android:id="@+id/tv_tx_xieyi_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议授权协议"
+            />
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <com.github.customview.MyTextView
+        android:id="@+id/tv_xy_queding"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="确  定"
+        android:textColor="@color/blue"
+        app:my_tv_press="@color/c_press"
+        app:my_tv_top_line="true"
+        />
+</LinearLayout>

@@ -28,5 +28,6 @@ public class Constant {
         public static final String msgId="msgId";
         public static final String title="title";
         public static final String code="code";
+        public static final String account="account";
     }
 }
