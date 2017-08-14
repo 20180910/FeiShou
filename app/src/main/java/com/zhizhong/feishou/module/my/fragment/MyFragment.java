@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.androidtools.SPUtils;
+import com.github.androidtools.inter.MyOnClickListener;
 import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
@@ -16,6 +17,7 @@ import com.zhizhong.feishou.module.my.activity.MyDataActivity;
 import com.zhizhong.feishou.module.my.activity.MyOrderActivity;
 import com.zhizhong.feishou.module.my.activity.MyToolListActivity;
 import com.zhizhong.feishou.module.my.activity.MyWalletActivity;
+import com.zhizhong.feishou.module.my.activity.RealNameAuthActivity;
 import com.zhizhong.feishou.module.my.activity.VIPLevelActivity;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
 import com.zhizhong.feishou.module.my.network.response.InfoObj;
@@ -72,6 +74,12 @@ public class MyFragment extends BaseFragment {
         int auth = SPUtils.getPrefInt(mContext, Config.authentication, 0);
         if (auth == 0) {
             tv_info_auth.setText("身份证未认证");
+            tv_info_auth.setOnClickListener(new MyOnClickListener() {
+                @Override
+                protected void onNoDoubleClick(View view) {
+                    STActivity(RealNameAuthActivity.class);
+                }
+            });
         } else {
             tv_info_auth.setText("身份证已认证");
         }

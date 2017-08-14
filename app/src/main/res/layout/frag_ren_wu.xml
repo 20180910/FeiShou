@@ -1,69 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/background_f2"
+              android:orientation="vertical"
     >
-<com.github.customview.MyTextView
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/app_title_height"
-    android:text="益农宝"
-    android:gravity="center"
-    android:textSize="17sp"
-    android:textColor="@color/gray_33"
-    app:my_tv_bottom_line="true"
-    />
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="45dp"
-         android:gravity="center_vertical"
-         android:orientation="horizontal"
-         android:background="@color/white"
-         android:layout_marginBottom="1px"
-         >
-         <TextView
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="match_parent"
-             android:text="农作物"
-             android:drawableRight="@drawable/jiantou_bottom"
-             android:layout_marginLeft="20dp"
-             android:paddingRight="20dp"
-             android:textColor="@color/blue"
-             android:textSize="15sp"
-             android:gravity="center"
-             />
-          <TextView
-              android:layout_width="0dp"
-              android:layout_weight="1"
-              android:layout_height="match_parent"
-              android:text="面积"
-              android:textSize="15sp"
-              android:gravity="center"
-              />
-          <TextView
-              android:layout_width="0dp"
-              android:layout_weight="1"
-              android:layout_height="match_parent"
-              android:text="地区"
-              android:textSize="15sp"
-              android:gravity="center"
-              />
-          <TextView
-              android:layout_width="0dp"
-              android:layout_weight="1"
-              android:layout_height="match_parent"
-              android:text="作业时间"
-              android:textSize="15sp"
-              android:gravity="center"
-              />
-     </LinearLayout>
-     <android.support.v7.widget.RecyclerView
-         android:id="@+id/rv_renwu"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent">
 
-     </android.support.v7.widget.RecyclerView>
+    <com.github.customview.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_title_height"
+        android:gravity="center"
+        android:text="益农宝"
+        android:textColor="@color/gray_33"
+        android:textSize="17sp"
+        app:my_tv_bottom_line="true"
+        />
+
+    <com.zhizhong.feishou.view.ProgressLayout
+        android:id="@id/pl_load"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="1px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingRight="10dp"
+                >
+                <TextView
+                    android:id="@+id/tv_rw_zuowu"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="农作物"
+                    android:ellipsize="end"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp"
+                    android:maxLines="1"
+                    />
+                <TextView
+                    android:id="@+id/tv_rw_area"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="面积"
+                    android:textSize="15sp"
+                    android:drawableRight="@drawable/jiantou_bottom"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_rw_diqu"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="地区"
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_rw_homework"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="作业时间"
+                    android:textSize="15sp"
+                    android:drawableRight="@drawable/jiantou_bottom"
+                    />
+            </LinearLayout>
+
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
+                android:id="@id/pcfl_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:ptr_ratio_of_header_height_to_refresh="1.2"
+                app:ptr_resistance="2.1"
+                >
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_renwu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </android.support.v7.widget.RecyclerView>
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+        </LinearLayout>
+    </com.zhizhong.feishou.view.ProgressLayout>
+
+
 </LinearLayout>

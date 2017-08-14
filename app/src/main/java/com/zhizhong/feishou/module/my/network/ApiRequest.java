@@ -36,6 +36,9 @@ public class ApiRequest {
     public static Observable getRegisterXieYi(String rnd,String sign){
         return getCommonClient().getRegisterXieYi(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getAuthXieYi(String rnd,String sign){
+        return getCommonClient().getAuthXieYi(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable getMsgCode(Map map){
         return getCommonClient().getMsgCode(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
@@ -113,6 +116,9 @@ public class ApiRequest {
     }
     public static Observable tiXian(Map map){
         return getCommonClient().tiXian(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable authCommit(Map map){
+        return getCommonClient().authCommit(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
 
 }

@@ -72,7 +72,8 @@
             <com.github.customview.MyTextView
                 android:id="@+id/tv_info_auth"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="23dp"
+                android:gravity="center_vertical"
                 tools:text="身份证未认证"
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -80,7 +81,7 @@
                 app:my_tv_bottom_line="true"
                 app:my_tv_solid="@color/blue"
                 app:my_tv_border_color="@color/white"
-                app:my_tv_border_width="1dp"
+                app:my_tv_border_width="2px"
                 />
         </LinearLayout>
     </LinearLayout>

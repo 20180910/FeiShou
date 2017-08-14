@@ -41,6 +41,10 @@ public interface IRequest {
     @GET("api/FlyMember/GetFlyAgreement")
     Observable<ResponseObj<BaseObj>> getRegisterXieYi(@Query("rnd") String rnd, @Query("sign") String sign);
 
+    //实名认证协议
+    @GET("api/FlyMember/GetRealnameAuthenticationAgreement")
+    Observable<ResponseObj<BaseObj>> getAuthXieYi(@Query("rnd") String rnd, @Query("sign") String sign);
+
     @GET("api/FlyMember/GetMemberRegister")
     Observable<ResponseObj<BaseObj>> register(@QueryMap Map<String,String> map);
 
@@ -155,5 +159,9 @@ public interface IRequest {
     //提现申请
     @GET("api/FlyMember/GetWithdrawals")
     Observable<ResponseObj<BaseObj>> tiXian(@QueryMap Map<String,String> map);
+
+    //实名认证申请
+    @GET("api/FlyMember/GetSetMemberAuthentication")
+    Observable<ResponseObj<BaseObj>> authCommit(@QueryMap Map<String,String> map);
 
 }

@@ -1,6 +1,11 @@
 package com.zhizhong.feishou.module.renwu.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.feishou.tools.RxResult;
+
+import java.util.Map;
+
+import rx.Observable;
 
 /**
  * Created by Administrator on 2017/6/28.
@@ -16,10 +21,12 @@ public class ApiRequest {
         return NetWorkManager.getGeneralClient().create(IRequest.class);
     }
     //返回String无缓存
+    private static IRequest getGeneralStringClient(){
+        return NetWorkManager.getGeneralStringClient().create(IRequest.class);
+    }
 
-
-
-
-
+    public static Observable getProductList(Map map){
+        return getCommonClient().getProductList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 
 }
