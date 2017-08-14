@@ -337,7 +337,7 @@ public class MyDataActivity extends BaseActivity {
 
     private void exitLogin() {
         SPUtils.removeKey(mContext, Config.user_id);
-        Intent intent = new Intent(Config.Bro.login);
+        Intent intent = new Intent(Config.Bro.operation);
         intent.putExtra(Config.Bro.flag, Config.Bro.exit_login);
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 

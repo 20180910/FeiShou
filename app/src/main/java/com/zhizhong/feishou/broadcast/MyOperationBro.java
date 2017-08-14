@@ -10,13 +10,14 @@ import com.zhizhong.feishou.Config;
  * Created by administartor on 2017/8/10.
  */
 
-public class LoginBro extends BroadcastReceiver {
+public class MyOperationBro extends BroadcastReceiver {
     public interface LoginBroInter{
        void loginSuccess();
        void exitLogin();
+       void addHomeworkSuccess();
     };
     private LoginBroInter inter;
-    public LoginBro(LoginBroInter inter) {
+    public MyOperationBro(LoginBroInter inter) {
         this.inter=inter;
     }
     @Override
@@ -28,6 +29,9 @@ public class LoginBro extends BroadcastReceiver {
             break;
             case 0:
                 inter.loginSuccess();
+            break;
+            case Config.Bro.addHomeworkSuccess:
+                inter.addHomeworkSuccess();
             break;
         }
     }

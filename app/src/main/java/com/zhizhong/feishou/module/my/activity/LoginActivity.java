@@ -106,7 +106,7 @@ public class LoginActivity extends BaseActivity {
                 SPUtils.setPrefInt(mContext,Config.level,obj.getUser_level());
                 SPUtils.setPrefInt(mContext,Config.authentication,obj.getIs_authentication());
 
-                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent(Config.Bro.login));
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent(Config.Bro.operation));
 
                 finish();
             }

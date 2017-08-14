@@ -1,6 +1,8 @@
 package com.zhizhong.feishou.module.my.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -10,6 +12,7 @@ import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.github.baseclass.view.Loading;
 import com.github.baseclass.view.MyDialog;
+import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseObj;
@@ -66,6 +69,10 @@ public class HomeworkScopeAdapter extends LoadMoreAdapter<HomeworkObj> {
         ApiRequest.deleteHomework(id+"",sign).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
+                Intent intent = new Intent(Config.Bro.operation);
+                intent.putExtra(Config.Bro.flag, Config.Bro.addHomeworkSuccess);
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+
                 ToastUtils.showToast(mContext,obj.getMsg());
                 getList().remove(position);
                 notifyDataSetChanged();

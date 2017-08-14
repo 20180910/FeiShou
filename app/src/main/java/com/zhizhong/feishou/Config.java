@@ -26,9 +26,10 @@ public class Config {
 
     /*广播参数*/
     public static class Bro{
-        public static final String login="login";
+        public static final String operation ="operation";
         public static final String flag="flag";
         public static final int exit_login=1000;
+        public static final int addHomeworkSuccess=1001;
     }
     public static class SP{
         public static final String dai_kuan_edu_order="dai_kuan_edu_order";

@@ -28,5 +28,11 @@ public class ApiRequest {
     public static Observable getProductList(Map map){
         return getCommonClient().getProductList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
+    public static Observable getNZW(String rnd,String sign){
+        return getCommonClient().getNZW(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getDQ(String userId,String sign){
+        return getCommonClient().getDQ(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 
 }

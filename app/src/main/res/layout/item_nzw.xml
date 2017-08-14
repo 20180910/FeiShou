@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.customview.MyLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      xmlns:app="http://schemas.android.com/apk/res-auto"
+                                      xmlns:tools="http://schemas.android.com/tools"
+                                      android:orientation="vertical"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+    >
+<TextView
+    android:id="@+id/tv_nzw_name"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:minWidth="90dp"
+    android:gravity="center"
+    android:layout_gravity="center"
+    tools:text="水稻"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:background="@color/white"
+    />
+</com.github.customview.MyLinearLayout>

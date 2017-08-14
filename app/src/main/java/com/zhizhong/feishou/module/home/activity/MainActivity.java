@@ -12,7 +12,7 @@ import com.github.customview.MyRadioButton;
 import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
-import com.zhizhong.feishou.broadcast.LoginBro;
+import com.zhizhong.feishou.broadcast.MyOperationBro;
 import com.zhizhong.feishou.module.my.activity.LoginActivity;
 import com.zhizhong.feishou.module.my.fragment.MyFragment;
 import com.zhizhong.feishou.module.renwu.fragment.RenWuFragment;
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
 
     private MyRadioButton selectButton;
     private LocalBroadcastManager localBroadcastManager;
-    private LoginBro loginBro;
+    private MyOperationBro myOperationBro;
     @Override
     protected int getContentView() {
         return R.layout.act_home;
@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (intent != null && "login".equals(intent.getAction())) {
+        if (intent != null && "operation".equals(intent.getAction())) {
 //            selectPerson();
 //            selectButton.setChecked(true);
         }
@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity {
 
     private void setBroadcast() {
         localBroadcastManager = LocalBroadcastManager.getInstance( this );
-        loginBro=new LoginBro(new LoginBro.LoginBroInter() {
+        myOperationBro =new MyOperationBro(new MyOperationBro.LoginBroInter() {
             @Override
             public void loginSuccess() {
                 selectMy();
@@ -88,15 +88,19 @@ public class MainActivity extends BaseActivity {
                 selectButton.setChecked(true);
                 myFragment=null;
             }
+            @Override
+            public void addHomeworkSuccess() {
+                renWuFragment.getHomework();
+            }
         });
-        localBroadcastManager.registerReceiver(loginBro,new IntentFilter(Config.Bro.login));
+        localBroadcastManager.registerReceiver(myOperationBro,new IntentFilter(Config.Bro.operation));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (localBroadcastManager != null) {
-            localBroadcastManager.unregisterReceiver(loginBro);
+            localBroadcastManager.unregisterReceiver(myOperationBro);
         }
     }
 

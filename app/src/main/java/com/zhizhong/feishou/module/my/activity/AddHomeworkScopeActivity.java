@@ -1,6 +1,8 @@
 package com.zhizhong.feishou.module.my.activity;
 
+import android.content.Intent;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.github.customview.MyTextView;
+import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 import com.zhizhong.feishou.base.BaseObj;
@@ -198,6 +201,9 @@ public class AddHomeworkScopeActivity extends BaseActivity {
         addSubscription(ApiRequest.addHomework(getUserId(),getSign("userid",getUserId()), item).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
+                Intent intent = new Intent(Config.Bro.operation);
+                intent.putExtra(Config.Bro.flag, Config.Bro.addHomeworkSuccess);
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                 showMsg(obj.getMsg());
                 setResult(RESULT_OK);
                 finish();
