@@ -73,7 +73,7 @@ public class RenWuDetailsActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        setAppTitle("产品详情");
+        setAppTitle("任务详情");
         return R.layout.act_renwu_details;
     }
 
