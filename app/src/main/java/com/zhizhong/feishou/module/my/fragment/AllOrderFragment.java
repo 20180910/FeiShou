@@ -1,5 +1,6 @@
 package com.zhizhong.feishou.module.my.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 import com.zhizhong.feishou.base.MySub;
 import com.zhizhong.feishou.module.my.Constant;
+import com.zhizhong.feishou.module.my.activity.OrderDetailsActivity;
 import com.zhizhong.feishou.module.my.adapter.AllOrderAdapter;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
 import com.zhizhong.feishou.module.my.network.response.OrderObj;
@@ -54,6 +56,16 @@ public class AllOrderFragment extends BaseFragment implements LoadMoreAdapter.On
     protected void initView() {
         allOrderAdapter=new AllOrderAdapter(mContext,R.layout.item_all_order,pageSize);
         allOrderAdapter.setOnLoadMoreListener(this);
+        allOrderAdapter.setClickListener(new LoadMoreAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                String orderNo = allOrderAdapter.getList().get(position).getOrder_no();
+                Intent intent=new Intent();
+                intent.putExtra(Constant.IParam.orderNo,orderNo);
+                STActivityForResult(intent, OrderDetailsActivity.class,1000);
+
+            }
+        });
         rv_all_order.setLayoutManager(new LinearLayoutManager(mContext));
         rv_all_order.setAdapter(allOrderAdapter);
         pcfl.setPtrHandler(new PtrDefaultHandler() {
@@ -62,7 +74,6 @@ public class AllOrderFragment extends BaseFragment implements LoadMoreAdapter.On
                 getData(1,false);
             }
         });
-
     }
 
     @Override

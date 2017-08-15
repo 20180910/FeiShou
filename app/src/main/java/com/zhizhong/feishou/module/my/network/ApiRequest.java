@@ -138,5 +138,8 @@ public class ApiRequest {
     public static Observable tiXing(String orderNo,String sign){
         return getCommonClient().tiXing(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getOrderDetail(String orderNo,String sign){
+        return getCommonClient().getOrderDetail(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 }

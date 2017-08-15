@@ -40,9 +40,6 @@ public class ResponseObj<T> {
         this.Response = Response;
     }
     public boolean isSuccess(){
-        if(getErrCode()==0){
-            return true;
-        }
-        return false;
+        return getErrCode() == 0;
     }
 }

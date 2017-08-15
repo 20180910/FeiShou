@@ -1,5 +1,6 @@
 package com.zhizhong.feishou.module.my.activity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -188,5 +189,19 @@ public class MyOrderActivity extends BaseActivity {
 
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case 1000:
+                    allOrderFragment.getData(1,false);
+                    daiJieDanOrderFragment.getData(1,false);
+                    daiZhiXingOrderFragment.getData(1,false);
+                    daiJieSuanOrderFragment.getData(1,false);
+                    completeOrderFragment.getData(1,false);
+                break;
+            }
+        }
+    }
 }

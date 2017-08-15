@@ -15,7 +15,8 @@ public class MyOperationBro extends BroadcastReceiver {
        void loginSuccess();
        void exitLogin();
        void addHomeworkSuccess();
-    };
+    }
+
     private LoginBroInter inter;
     public MyOperationBro(LoginBroInter inter) {
         this.inter=inter;

@@ -32,7 +32,7 @@ public class ProgressLayout extends RelativeLayout {
         this.inter=inter;
     }
 
-    public static enum State {
+    public enum State {
         CONTENT, PROGRESS, ERROR
     }
 
@@ -125,7 +125,7 @@ public class ProgressLayout extends RelativeLayout {
     }
 
     public void showProgress() {
-        switchState(State.PROGRESS, null, Collections.<Integer>emptyList());
+        switchState(State.PROGRESS, null, Collections.emptyList());
     }
 
     public void showProgress(List<Integer> skipIds) {
@@ -133,7 +133,7 @@ public class ProgressLayout extends RelativeLayout {
     }
 
     public void showErrorText() {
-        switchState(State.ERROR, null, Collections.<Integer>emptyList());
+        switchState(State.ERROR, null, Collections.emptyList());
     }
 
     public void showErrorText(List<Integer> skipIds) {
@@ -141,7 +141,7 @@ public class ProgressLayout extends RelativeLayout {
     }
 
     public void showErrorText(String error) {
-        switchState(State.ERROR, error, Collections.<Integer>emptyList());
+        switchState(State.ERROR, error, Collections.emptyList());
     }
 
     public void showErrorText(String error, List<Integer> skipIds) {
@@ -149,7 +149,7 @@ public class ProgressLayout extends RelativeLayout {
     }
 
     public void showContent() {
-        switchState(State.CONTENT, null, Collections.<Integer>emptyList());
+        switchState(State.CONTENT, null, Collections.emptyList());
     }
 
     public void showContent(List<Integer> skipIds) {
@@ -157,11 +157,11 @@ public class ProgressLayout extends RelativeLayout {
     }
 
     public void switchState(State state) {
-        switchState(state, null, Collections.<Integer>emptyList());
+        switchState(state, null, Collections.emptyList());
     }
 
     public void switchState(State state, String errorText) {
-        switchState(state, errorText, Collections.<Integer>emptyList());
+        switchState(state, errorText, Collections.emptyList());
     }
 
     public void switchState(State state, List<Integer> skipIds) {

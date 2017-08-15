@@ -62,7 +62,8 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     protected abstract void initView();
     protected abstract void initData();
     protected abstract void onViewClick(View v);
-    protected void initRxBus(){};
+    protected void initRxBus(){}
+
     protected void setAppTitle(String title){
         appTitle=title;
         if(app_title!=null){
@@ -265,16 +266,10 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
         return GetSign.getSign(key,value);
     }
     protected boolean isEmpty(List list){
-        if(list==null||list.size()==0){
-            return true;
-        }
-        return false;
+        return list == null || list.size() == 0;
     }
     protected boolean notEmpty(List list){
-        if(list==null||list.size()==0){
-            return false;
-        }
-        return true;
+        return !(list == null || list.size() == 0);
     }
     protected String getRnd(){
         Random random = new Random();

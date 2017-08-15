@@ -40,6 +40,7 @@ public class Constant {
         public static final String code="code";
         public static final String account="account";
         public static final String orderType="orderType";
+        public static final String orderNo="orderNo";
     }
 
 

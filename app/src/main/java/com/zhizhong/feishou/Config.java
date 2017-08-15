@@ -5,6 +5,8 @@ package com.zhizhong.feishou;
  */
 
 public class Config {
+    //百度地图-KEY：8aFeUXK0pzqiFi58WUniIV8S2RWCVNq7
+
     //飞首
     public static final Object KEY = "D98TZQWpTVlb1nqfkfO615U5ZEignoqW";
 //    public static final Object KEY = "D98TZQWpTVlb1nqfkfO615U5ZEignoqW";

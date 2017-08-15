@@ -3,13 +3,19 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
 
     <include layout="@layout/app_title"/>
+<com.zhizhong.feishou.view.ProgressLayout
+    android:id="@id/pl_load"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.v4.widget.NestedScrollView
+        android:layout_above="@+id/ll_order_detail_bottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -38,17 +44,19 @@
                     >
 
                     <TextView
+                        android:id="@+id/tv_order_detail_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="订单待执行"
+                        tools:text="订单待执行"
                         android:textColor="@color/white"
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_status_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="订单还剩3天开始"
+                        tools:text="订单还剩3天开始"
                         android:textColor="@color/white"
                         />
                 </LinearLayout>
@@ -87,7 +95,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="订单编号:SC123456"
+                    android:text="订单编号:"
+                    android:textSize="15sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_order_detail_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="SC123456"
                     android:textSize="15sp"
                     />
             </LinearLayout>
@@ -116,10 +131,11 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_dq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="上海市"
+                        tools:text="上海市"
                         android:textColor="@color/gray_33"
                         android:textSize="16sp"
                         />
@@ -148,10 +164,11 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_nzw"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="早稻"
+                        tools:text="早稻"
                         android:textColor="@color/gray_33"
                         android:textSize="16sp"
                         />
@@ -180,10 +197,11 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_dj"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="12元/亩"
+                        tools:text="12元/亩"
                         android:textColor="@color/gray_33"
                         android:textSize="16sp"
                         />
@@ -212,10 +230,11 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_ms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="500亩"
+                        tools:text="500亩"
                         android:textColor="@color/gray_33"
                         android:textSize="16sp"
                         />
@@ -249,9 +268,10 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_qwsj"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2017/06/25-2017/07/30(5天)"
+                        tools:text="2017/06/25-2017/07/30(5天)"
                         />
                 </LinearLayout>
 
@@ -271,9 +291,10 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_zccs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="无"
+                        tools:text="无"
                         />
                 </LinearLayout>
 
@@ -293,9 +314,10 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_zcsm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="无"
+                        tools:text="无"
                         />
                 </LinearLayout>
 
@@ -315,9 +337,10 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_dk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="作物高度4cm,不连片，"
+                        tools:text="作物高度4cm,不连片，"
                         />
                 </LinearLayout>
 
@@ -337,9 +360,10 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_zaw"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="作物高度4cm,不连片，无障碍物"
+                        tools:text="作物高度4cm,不连片，无障碍物"
                         />
                 </LinearLayout>
 
@@ -350,7 +374,6 @@
                     >
 
                     <TextView
-                        android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -359,9 +382,10 @@
                         android:text="订单备注"/>
 
                     <TextView
+                        android:id="@+id/tv_order_detail_beizhu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="无"
+                        tools:text="无"
                         />
                 </LinearLayout>
 
@@ -375,101 +399,120 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     >
-
                     <LinearLayout
+                        android:id="@+id/ll_order_detail_bao1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="15dp"
                         >
-
                         <com.github.customview.MyFrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/img2"
                             >
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
                                 android:src="@drawable/icon2"
+                                android:layout_gravity="center"
                                 />
                         </com.github.customview.MyFrameLayout>
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center_vertical"
                             android:text="包吃"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
                             />
                     </LinearLayout>
-
                     <LinearLayout
+                        android:id="@+id/ll_order_detail_bao2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="15dp"
                         >
-
                         <com.github.customview.MyFrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/img2"
+                            android:background="@drawable/img2_2"
                             >
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:src="@drawable/icon3"
                                 android:layout_gravity="center"
-                                android:src="@drawable/icon2"
                                 />
                         </com.github.customview.MyFrameLayout>
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center_vertical"
                             android:text="包住"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
                             />
                     </LinearLayout>
-
                     <LinearLayout
+                        android:id="@+id/ll_order_detail_bao3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="10dp"
                         >
-
                         <com.github.customview.MyFrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/img2"
+                            android:background="@drawable/img2_3"
                             >
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:src="@drawable/icon4"
                                 android:layout_gravity="center"
-                                android:src="@drawable/icon2"
                                 />
                         </com.github.customview.MyFrameLayout>
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center_vertical"
                             android:text="可充电"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_order_detail_bao4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="15dp"
+                        >
+                        <com.github.customview.MyFrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/img2_4"
+                            >
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/icon5"
+                                android:layout_gravity="center"
+                                />
+                        </com.github.customview.MyFrameLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="可取水"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -509,9 +552,10 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_order_detail_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="浦东新区康桥镇周园路"
+                    tools:text="浦东新区康桥镇周园路"
                     />
             </LinearLayout>
 
@@ -530,4 +574,80 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+    <com.github.customview.MyLinearLayout
+        app:my_ll_top_line="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/ll_order_detail_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|right"
+        >
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_order_detail_jiedan"
+            android:layout_width="70dp"
+            android:layout_height="28dp"
+            android:text="去接单"
+            app:my_tv_solid="@color/blue"
+            app:my_tv_press="@color/blue_press"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:my_tv_corner_radius="4dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            />
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_order_detail_zhixing"
+            android:layout_width="70dp"
+            android:layout_height="28dp"
+            android:text="去执行"
+            app:my_tv_solid="@color/blue"
+            app:my_tv_press="@color/blue_press"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:my_tv_corner_radius="4dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            />
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_order_detail_tixing"
+            android:layout_width="70dp"
+            android:layout_height="28dp"
+            android:text="时间提醒"
+            app:my_tv_solid="@color/blue"
+            app:my_tv_press="@color/blue_press"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:my_tv_corner_radius="4dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            />
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_order_detail_quxiao"
+            android:layout_width="70dp"
+            android:layout_height="28dp"
+            android:text="取消"
+            app:my_tv_solid="@color/blue"
+            app:my_tv_press="@color/blue_press"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:my_tv_corner_radius="4dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            />
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_order_detail_jiesuan"
+            android:layout_width="70dp"
+            android:layout_height="28dp"
+            android:text="结算"
+            app:my_tv_solid="@color/blue"
+            app:my_tv_press="@color/blue_press"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:my_tv_corner_radius="4dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            />
+    </com.github.customview.MyLinearLayout>
+</com.zhizhong.feishou.view.ProgressLayout>
 </LinearLayout>

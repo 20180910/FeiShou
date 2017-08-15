@@ -13,6 +13,7 @@ import com.zhizhong.feishou.module.my.network.response.InfoObj;
 import com.zhizhong.feishou.module.my.network.response.LevelObj;
 import com.zhizhong.feishou.module.my.network.response.LoginObj;
 import com.zhizhong.feishou.module.my.network.response.MyToolObj;
+import com.zhizhong.feishou.module.my.network.response.OrderDetailObj;
 import com.zhizhong.feishou.module.my.network.response.OrderObj;
 import com.zhizhong.feishou.module.my.network.response.ProvinceObj;
 import com.zhizhong.feishou.module.my.network.response.WalletObj;
@@ -188,5 +189,9 @@ public interface IRequest {
     //订单-时间提醒
     @GET("api/FlyMember/GetTeaTimer")
     Observable<ResponseObj<BaseObj>> tiXing(@Query("order_no") String order_no, @Query("sign") String sign);
+
+    //订单-详情
+    @GET("api/FlyMember/GetOrderMore")
+    Observable<ResponseObj<OrderDetailObj>> getOrderDetail(@Query("order_no") String order_no, @Query("sign") String sign);
 
 }

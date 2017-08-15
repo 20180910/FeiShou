@@ -274,7 +274,7 @@ public class ImageUtils {
     }
 
 
-    public static Bitmap getBitmapFormUri2(Activity ac, Uri uri) throws FileNotFoundException, IOException {
+    public static Bitmap getBitmapFormUri2(Activity ac, Uri uri) throws IOException {
         InputStream input = ac.getContentResolver().openInputStream(uri);
         /*BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
         onlyBoundsOptions.inJustDecodeBounds = true;
@@ -380,7 +380,7 @@ public class ImageUtils {
         String res = null;
         String[] proj = { MediaStore.Images.Media.DATA };
         Cursor cursor = activity.getContentResolver().query(contentUri, proj, null, null, null);
-        if(cursor.moveToFirst()){;
+        if(cursor.moveToFirst()){
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             res = cursor.getString(column_index);
         }

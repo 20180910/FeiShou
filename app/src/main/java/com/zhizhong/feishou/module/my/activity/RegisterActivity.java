@@ -206,7 +206,7 @@ public class RegisterActivity extends BaseActivity {
         Subscription subscribe = Observable.interval(1, TimeUnit.SECONDS)
                 .take(31)//计时次数
                 .map(integer -> count - integer)
-                .compose(RxUtils.<Long>appSchedulers())
+                .compose(RxUtils.appSchedulers())
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onCompleted() {
