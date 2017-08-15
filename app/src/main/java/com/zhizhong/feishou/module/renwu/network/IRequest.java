@@ -1,8 +1,10 @@
 package com.zhizhong.feishou.module.renwu.network;
 
 
+import com.zhizhong.feishou.base.BaseObj;
 import com.zhizhong.feishou.base.ResponseObj;
 import com.zhizhong.feishou.module.renwu.network.response.NZWTypeObj;
+import com.zhizhong.feishou.module.renwu.network.response.RenWuDetailObj;
 import com.zhizhong.feishou.module.renwu.network.response.ZuoWuObj;
 
 import java.util.List;
@@ -32,5 +34,13 @@ public interface IRequest {
     //获取地区筛选条件
     @GET("api/FlyMember/GetProductCropsRegion")
     Observable<ResponseObj<List<NZWTypeObj>>> getDQ(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //任务大厅-详情
+    @GET("api/FlyMember/GetProductMore")
+    Observable<ResponseObj<RenWuDetailObj>> getRenWuDetails(@Query("product_id") String user_id, @Query("sign") String sign);
+
+    //任务大厅-详情-确认订单
+    @GET("api/FlyMember/GetAddOrder")
+    Observable<ResponseObj<BaseObj>> getAddOrder(@QueryMap Map<String, String> map);
 
 }

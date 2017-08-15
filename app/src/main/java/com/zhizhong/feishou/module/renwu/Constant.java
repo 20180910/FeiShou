@@ -12,5 +12,9 @@ public class Constant {
         public static final String id="id";
         public static final String gonglue="gonglue";
         public static final String goodId="goodId";
+        public static final String productId="productId";
+    }
+    public static class RCode{
+        public static final int getOrder=2000;
     }
 }

@@ -34,5 +34,11 @@ public class ApiRequest {
     public static Observable getDQ(String userId,String sign){
         return getCommonClient().getDQ(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
+    public static Observable getRenWuDetails(String productId,String sign){
+        return getCommonClient().getRenWuDetails(productId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getAddOrder(Map map){
+        return getCommonClient().getAddOrder(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 }

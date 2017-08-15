@@ -15,6 +15,7 @@ import com.zhizhong.feishou.base.BaseActivity;
 import com.zhizhong.feishou.broadcast.MyOperationBro;
 import com.zhizhong.feishou.module.my.activity.LoginActivity;
 import com.zhizhong.feishou.module.my.fragment.MyFragment;
+import com.zhizhong.feishou.module.renwu.Constant;
 import com.zhizhong.feishou.module.renwu.fragment.RenWuFragment;
 import com.zhizhong.feishou.module.zengzhi.fragment.ZengZhiFragment;
 
@@ -138,6 +139,18 @@ public class MainActivity extends BaseActivity {
                 }
                 selectMy();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case Constant.RCode.getOrder:
+                    renWuFragment.again();
+                break;
+            }
         }
     }
 

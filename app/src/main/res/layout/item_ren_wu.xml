@@ -41,7 +41,7 @@
                     android:id="@+id/tv_rw_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="早稻/8元每亩/500亩"
+                    tools:text="早稻/8元每亩/500亩"
                     android:textColor="@color/gray_33"
                     android:textSize="15sp"
                     />
@@ -63,7 +63,7 @@
                         android:id="@+id/tv_rw_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="地址:浦东新区康桥镇周园路"
+                        tools:text="浦东新区康桥镇周园路"
                         android:textColor="@color/gray_99"
                         android:textSize="12sp"
                         android:layout_marginTop="11dp"
@@ -86,7 +86,7 @@
                         android:id="@+id/tv_rw_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="时间:09/24-09/25(七天)"
+                        tools:text="09/24-09/25(七天)"
                         android:textColor="@color/gray_99"
                         android:textSize="12sp"
                         />
@@ -105,7 +105,7 @@
                 android:id="@+id/tv_rw_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4000元"
+                tools:text="4000元"
                 android:layout_gravity="center"
                 android:drawableTop="@drawable/img4"
                 android:drawablePadding="6dp"
@@ -133,7 +133,7 @@
                 android:id="@+id/tv_rw_dk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="无连片，无障碍物，作物高度20~30cm"
+                tools:text="无连片，无障碍物，作物高度20~30cm"
                 android:textColor="@color/gray_99"
                 />
         </LinearLayout>

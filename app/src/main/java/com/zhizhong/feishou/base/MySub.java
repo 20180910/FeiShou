@@ -24,9 +24,6 @@ public abstract class MySub<T> extends Subscriber<T> {
     public MySub(Context ctx, ProgressLayout pl) {
         this.context = ctx;
         this.progressLayout=pl;
-        /*if(pl!=null&&!pl.isProgress()){
-            pl.showProgress();
-        }*/
     }
     public MySub(Context ctx, PtrFrameLayout pfl) {
         this.context = ctx;

@@ -1,9 +1,11 @@
 package com.zhizhong.feishou.module.renwu.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -11,11 +13,14 @@ import android.widget.TextView;
 import com.github.androidtools.PhoneUtils;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
+import com.github.baseclass.utils.ActUtils;
 import com.github.baseclass.view.MyPopupwindow;
 import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.renwu.Constant;
+import com.zhizhong.feishou.module.renwu.activity.RenWuDetailsActivity;
 import com.zhizhong.feishou.module.renwu.adapter.RenWuAdapter;
 import com.zhizhong.feishou.module.renwu.network.ApiRequest;
 import com.zhizhong.feishou.module.renwu.network.response.NZWTypeObj;
@@ -74,6 +79,14 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
     protected void initView() {
         renWuAdapter = new RenWuAdapter(mContext, R.layout.item_ren_wu, pageSize);
         renWuAdapter.setOnLoadMoreListener(this);
+        renWuAdapter.setClickListener(new LoadMoreAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                Intent intent=new Intent();
+                intent.putExtra(Constant.IParam.productId,renWuAdapter.getList().get(i).getId()+"");
+                ActUtils.STActivityForResult(mContext,intent,RenWuDetailsActivity.class, Constant.RCode.getOrder, Pair.create(view.findViewById(R.id.iv_rw_img),"iv_rw_detail_img"));
+            }
+        });
         rv_renwu.setLayoutManager(new LinearLayoutManager(mContext));
         rv_renwu.setAdapter(renWuAdapter);
 
@@ -122,8 +135,19 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
     }
 
 
-
     private void reset() {
+        tv_rw_zuowu.setText("农作物");
+        tv_rw_zuowu.setTextColor(getResources().getColor(R.color.gray_66));
+
+        tv_rw_area.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
+        tv_rw_area.setTextColor(getResources().getColor(R.color.gray_66));
+
+        tv_rw_diqu.setText("地区");
+        tv_rw_diqu.setTextColor(getResources().getColor(R.color.gray_66));
+
+        tv_rw_homework.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
+        tv_rw_homework.setTextColor(getResources().getColor(R.color.gray_66));
+
         zuoWu = "";
         areaSort = 0;
         homeworkSort = 0;
@@ -176,13 +200,21 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
                 if(areaSort==0){
                     tv_rw_area.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
                 }else if(areaSort==1){
+                    homeworkSort=0;
+                    tv_rw_homework.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
+
                     tv_rw_area.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom,0);
                 }else if(areaSort==2){
+                    homeworkSort=0;
+                    tv_rw_homework.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
+
                     tv_rw_area.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_up,0);
                 }else{
                     areaSort=0;
                     tv_rw_area.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
                 }
+                showLoading();
+                getData(1,false);
                 break;
             case R.id.tv_rw_diqu:
                 if(dqTypeList==null){
@@ -198,13 +230,21 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
                 if(homeworkSort==0){
                     tv_rw_homework.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
                 }else if(homeworkSort==1){
+                    areaSort=0;
+                    tv_rw_area.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
+
                     tv_rw_homework.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom,0);
                 }else if(homeworkSort==2){
+                    areaSort=0;
+                    tv_rw_area.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
+
                     tv_rw_homework.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_up,0);
                 }else{
                     homeworkSort=0;
                     tv_rw_homework.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.jiantou_bottom_white,0);
                 }
+                showLoading();
+                getData(1,false);
                 break;
         }
     }
@@ -233,6 +273,8 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
                             tv_rw_zuowu.setTextColor(getResources().getColor(R.color.blue));
                         }
                         bankPopu.dismiss();
+                        showLoading();
+                        getData(1,false);
                     });
 
                 }
@@ -264,6 +306,8 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
                             tv_rw_diqu.setTextColor(getResources().getColor(R.color.blue));
                         }
                         typePopu.dismiss();
+                        showLoading();
+                        getData(1,false);
                     });
                 }
             };
