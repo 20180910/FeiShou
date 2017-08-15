@@ -3,6 +3,7 @@ package com.zhizhong.feishou;
 
 import android.app.Application;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.github.retrofitutil.NetWorkManager;
 
 /**
@@ -14,5 +15,6 @@ public class MyApplication extends Application  {
     public void onCreate() {
         super.onCreate();
         NetWorkManager.getInstance(getApplicationContext(),"http://121.40.186.118:5009/",BuildConfig.DEBUG).complete();
+        SDKInitializer.initialize(getApplicationContext());
     }
 }

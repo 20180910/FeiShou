@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -84,7 +83,7 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
             public void onItemClick(View view, int i) {
                 Intent intent=new Intent();
                 intent.putExtra(Constant.IParam.productId,renWuAdapter.getList().get(i).getId()+"");
-                ActUtils.STActivityForResult(mContext,intent,RenWuDetailsActivity.class, Constant.RCode.getOrder, Pair.create(view.findViewById(R.id.iv_rw_img),"iv_rw_detail_img"));
+                ActUtils.STActivityForResult(mContext,intent,RenWuDetailsActivity.class, Constant.RCode.getOrder);
             }
         });
         rv_renwu.setLayoutManager(new LinearLayoutManager(mContext));
