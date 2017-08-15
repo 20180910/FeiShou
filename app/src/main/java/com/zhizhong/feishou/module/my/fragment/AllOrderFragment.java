@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.github.baseclass.adapter.LoadMoreAdapter;
+import com.github.baseclass.utils.ActUtils;
 import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
@@ -24,6 +26,8 @@ import java.util.Map;
 import butterknife.BindView;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by administartor on 2017/8/2.
@@ -62,8 +66,7 @@ public class AllOrderFragment extends BaseFragment implements LoadMoreAdapter.On
                 String orderNo = allOrderAdapter.getList().get(position).getOrder_no();
                 Intent intent=new Intent();
                 intent.putExtra(Constant.IParam.orderNo,orderNo);
-                STActivityForResult(intent, OrderDetailsActivity.class,1000);
-
+                ActUtils.STActivityForResult(mContext,intent, OrderDetailsActivity.class,1000);
             }
         });
         rv_all_order.setLayoutManager(new LinearLayoutManager(mContext));
@@ -74,6 +77,18 @@ public class AllOrderFragment extends BaseFragment implements LoadMoreAdapter.On
                 getData(1,false);
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case 1000:
+                    Log.i("===========","===========1000");
+                    break;
+            }
+        }
     }
 
     @Override
