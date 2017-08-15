@@ -4,10 +4,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.customview.MyLinearLayout;
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.customview.MyTextView;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
+import com.zhizhong.feishou.base.BaseObj;
 import com.zhizhong.feishou.base.MySub;
 import com.zhizhong.feishou.module.my.Constant;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
@@ -72,7 +73,7 @@ public class OrderDetailsActivity extends BaseActivity {
     @BindView(R.id.tv_order_detail_jiesuan)
     MyTextView tv_order_detail_jiesuan;
     @BindView(R.id.ll_order_detail_bottom)
-    MyLinearLayout ll_order_detail_bottom;
+    LinearLayout ll_order_detail_bottom;
     private String orderNo;
 
     @Override
@@ -98,7 +99,9 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
     private void getData() {
-        addSubscription(ApiRequest.getOrderDetail(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<OrderDetailObj>(mContext) {
+        addSubscription(ApiRequest.getOrderDetail(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<OrderDetailObj>(mContext,pl_load) {
+
+
             @Override
             public void onMyNext(OrderDetailObj obj) {
                 tv_order_detail_no.setText(obj.getOrder_no());
@@ -118,18 +121,79 @@ public class OrderDetailsActivity extends BaseActivity {
                 switch (obj.getOrder_status()+""){
                     case Constant.daiJieDanOrder:
                         tv_order_detail_type.setText("订单待接单");
+                        tv_order_detail_jiedan.setVisibility(View.VISIBLE);
+                        tv_order_detail_jiedan.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                jieDan(orderNo);
+                            }
+                        });
                     break;
                     case Constant.daiZhiXingOrder:
                         tv_order_detail_type.setText("订单待执行");
+                        tv_order_detail_zhixing.setVisibility(View.VISIBLE);
+                        tv_order_detail_zhixing.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                zhiXing(orderNo);
+                            }
+                        });
+                        tv_order_detail_tixing.setVisibility(View.VISIBLE);
+                        tv_order_detail_tixing.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                tiXing(orderNo);
+                            }
+                        });
+                        tv_order_detail_quxiao.setVisibility(View.VISIBLE);
+                        tv_order_detail_quxiao.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                quXiao(orderNo);
+                            }
+                        });
                     break;
                     case Constant.daiJieSuanOrder:
                         tv_order_detail_type.setText("订单待结算");
+                        tv_order_detail_jiesuan.setVisibility(View.VISIBLE);
+                        tv_order_detail_jiesuan.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                jieSuan(orderNo);
+                            }
+                        });
                     break;
                     case Constant.yiWanChengOrder:
                         tv_order_detail_type.setText("订单已完成");
                         ll_order_detail_bottom.setVisibility(View.GONE);
                     break;
+                    case Constant.yiQuXiaoOrder:
+                        tv_order_detail_type.setText("订单已取消");
+                        ll_order_detail_bottom.setVisibility(View.GONE);
+                    break;
                 }
+
+                if(obj.getIs_andy()==1){
+                    ll_order_detail_bao1.setVisibility(View.VISIBLE);
+                }else{
+                    ll_order_detail_bao1.setVisibility(View.GONE);
+                }
+                if(obj.getIs_encase()==1){
+                    ll_order_detail_bao2.setVisibility(View.VISIBLE);
+                }else{
+                    ll_order_detail_bao2.setVisibility(View.GONE);
+                }
+                if(obj.getIs_rechargeable()==1){
+                    ll_order_detail_bao3.setVisibility(View.VISIBLE);
+                }else{
+                    ll_order_detail_bao3.setVisibility(View.GONE);
+                }
+                if(obj.getIs_getwater()==1){
+                    ll_order_detail_bao4.setVisibility(View.VISIBLE);
+                }else{
+                    ll_order_detail_bao4.setVisibility(View.GONE);
+                }
+
             }
         }));
     }
@@ -149,5 +213,66 @@ public class OrderDetailsActivity extends BaseActivity {
             case R.id.tv_order_detail_jiesuan:
                 break;
         }
+    }
+
+    private void tiXing(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.tiXing(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                setResult(RESULT_OK);
+                finish();
+            }
+        }));
+
+    }
+
+    private void quXiao(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.quXiao(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                setResult(RESULT_OK);
+                finish();
+            }
+        }));
+    }
+
+    private void jieSuan(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.complete(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                setResult(RESULT_OK);
+                finish();
+            }
+        }));
+    }
+
+    private void zhiXing(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.zhiXing(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                setResult(RESULT_OK);
+                finish();
+            }
+        }));
+    }
+
+    private void jieDan(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.jieDan(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                setResult(RESULT_OK);
+                finish();
+            }
+        }));
     }
 }

@@ -9,512 +9,514 @@
     >
 
     <include layout="@layout/app_title"/>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_above="@+id/ll_renwu_details"
+    <com.zhizhong.feishou.view.ProgressLayout
+        android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
+            android:layout_above="@+id/ll_renwu_details"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <ImageView
-                android:id="@+id/iv_rw_detail_img"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img27"
-                android:transitionName="iv_rw_detail_img"
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                >
-
-                <View
-                    android:layout_width="4dp"
-                    android:layout_height="25dp"
-                    android:background="@color/blue"
-                    />
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/blue"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="订单编号:"
-                    android:textSize="15sp"
-                    />
-                <TextView
-                    android:id="@+id/tv_rw_detail_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="SC123456"
-                    android:textSize="15sp"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="1dp"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                >
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="地区"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_rw_detail_dq"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        tools:text="上海市"
-                        android:textColor="@color/gray_33"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="13dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/gray_d7"
-                    />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="农作物"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_rw_detail_nzw"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        tools:text="早稻"
-                        android:textColor="@color/gray_33"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="13dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/gray_d7"
-                    />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="单价"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_rw_detail_dj"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        tools:text="122元/亩"
-                        android:textColor="@color/gray_33"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="13dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/gray_d7"
-                    />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="亩数"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_rw_detail_ms"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        tools:text="500亩"
-                        android:textColor="@color/gray_33"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
-            </LinearLayout>
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
                 android:orientation="vertical"
-                android:paddingBottom="8dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
                 >
 
+                <ImageView
+                    android:id="@+id/iv_rw_detail_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img27"
+                    android:transitionName="iv_rw_detail_img"
+                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:paddingLeft="10dp"
                     >
 
-                    <ImageView
-                        android:layout_width="38dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/img28"
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="25dp"
+                        android:background="@color/blue"
+                        />
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/blue"
                         />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:gravity="center_vertical"
-                        android:text="时间:"
+                        android:layout_height="wrap_content"
+                        android:text="订单编号:"
+                        android:textSize="15sp"
                         />
-
                     <TextView
-                        android:id="@+id/tv_rw_detail_time"
+                        android:id="@+id/tv_rw_detail_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center_vertical"
-                        tools:text="06/25~07-01(天)"
+                        tools:text="SC123456"
+                        android:textSize="15sp"
                         />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     >
 
-                    <ImageView
-                        android:layout_width="38dp"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="地区"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_rw_detail_dq"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            tools:text="上海市"
+                            android:textColor="@color/gray_33"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="13dp"
+                        android:layout_marginTop="13dp"
+                        android:background="@color/gray_d7"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="农作物"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_rw_detail_nzw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            tools:text="早稻"
+                            android:textColor="@color/gray_33"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="13dp"
+                        android:layout_marginTop="13dp"
+                        android:background="@color/gray_d7"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单价"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_rw_detail_dj"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            tools:text="122元/亩"
+                            android:textColor="@color/gray_33"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="13dp"
+                        android:layout_marginTop="13dp"
+                        android:background="@color/gray_d7"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="亩数"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_rw_detail_ms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            tools:text="500亩"
+                            android:textColor="@color/gray_33"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img28"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:gravity="center_vertical"
+                            android:text="时间:"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_rw_detail_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center_vertical"
+                            tools:text="06/25~07-01(天)"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img1"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:gravity="center_vertical"
+                            android:text="地况:"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_rw_detail_dk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center_vertical"
+                            tools:text="无连片，无障碍物，作物高度20~30cm"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/gray_d7"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    >
+
+                    <LinearLayout
+                        android:id="@+id/ll_rw_details_bao1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                        <com.github.customview.MyFrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/img2"
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/icon2"
+                                />
+                        </com.github.customview.MyFrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center_vertical"
+                            android:text="包吃"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_rw_details_bao2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                        <com.github.customview.MyFrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/img2_2"
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/icon3"
+                                />
+                        </com.github.customview.MyFrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center_vertical"
+                            android:text="包吃"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_rw_details_bao3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                        <com.github.customview.MyFrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/img2_3"
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/icon4"
+                                />
+                        </com.github.customview.MyFrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center_vertical"
+                            android:text="可充电"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_rw_details_bao4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                        <com.github.customview.MyFrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/img2_4"
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/icon5"
+                                />
+                        </com.github.customview.MyFrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center_vertical"
+                            android:text="可取水"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    >
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="25dp"
+                        android:background="@color/blue"
+                        />
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/blue"
                         />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:gravity="center_vertical"
-                        android:text="地况:"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="位置分布"
+                        android:textColor="@color/gray_33"
+                        android:textSize="16sp"
                         />
 
                     <TextView
-                        android:id="@+id/tv_rw_detail_dk"
+                        android:id="@+id/tv_rw_detail_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center_vertical"
-                        tools:text="无连片，无障碍物，作物高度20~30cm"
+                        tools:text="浦东新区康桥镇周园路"
                         />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:gravity="center"
+                    android:text="地图模块"
+                    />
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/gray_d7"
-                />
-
+        </android.support.v4.widget.NestedScrollView>
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_renwu_details"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            app:my_ll_top_line="true"
+            >
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingLeft="10dp"
-                android:paddingBottom="10dp"
-                >
-
-                <LinearLayout
-                    android:id="@+id/ll_rw_details_bao1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
-
-                    <com.github.customview.MyFrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/img2"
-                        >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/icon2"
-                            />
-                    </com.github.customview.MyFrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center_vertical"
-                        android:text="包吃"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_rw_details_bao2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
-
-                    <com.github.customview.MyFrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/img2_2"
-                        >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/icon3"
-                            />
-                    </com.github.customview.MyFrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center_vertical"
-                        android:text="包吃"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_rw_details_bao3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
-
-                    <com.github.customview.MyFrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/img2_3"
-                        >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/icon4"
-                            />
-                    </com.github.customview.MyFrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center_vertical"
-                        android:text="可充电"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_rw_details_bao4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
-
-                    <com.github.customview.MyFrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/img2_4"
-                        >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/icon5"
-                            />
-                    </com.github.customview.MyFrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center_vertical"
-                        android:text="可取水"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/white"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:background="@color/white"
                 android:paddingLeft="10dp"
                 >
-
-                <View
-                    android:layout_width="4dp"
-                    android:layout_height="25dp"
-                    android:background="@color/blue"
-                    />
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/blue"
-                    />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="位置分布"
-                    android:textColor="@color/gray_33"
+                    android:text="总价："
                     android:textSize="16sp"
                     />
-
                 <TextView
-                    android:id="@+id/tv_rw_detail_address"
+                    android:id="@+id/tv_rw_detail_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="浦东新区康桥镇周园路"
+                    tools:text="4000元"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
                     />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+            <com.github.customview.MyTextView
+                android:id="@+id/tv_rw_detail_commit"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="地图模块"
+                android:text="确认订单"
+                app:my_tv_solid="@color/blue"
+                app:my_tv_press="@color/blue_press"
+                android:textColor="@color/white"
                 />
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-    <com.github.customview.MyLinearLayout
-        android:id="@+id/ll_renwu_details"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        app:my_ll_top_line="true"
-        >
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="总价："
-                android:textSize="16sp"
-                />
-            <TextView
-                android:id="@+id/tv_rw_detail_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="4000元"
-                android:textColor="@color/blue"
-                android:textSize="16sp"
-                />
-        </LinearLayout>
-        <com.github.customview.MyTextView
-            android:id="@+id/tv_rw_detail_commit"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="确认订单"
-            app:my_tv_solid="@color/blue"
-            app:my_tv_press="@color/blue_press"
-            android:textColor="@color/white"
-            />
-    </com.github.customview.MyLinearLayout>
-</RelativeLayout>
+        </com.github.customview.MyLinearLayout>
+
+    </com.zhizhong.feishou.view.ProgressLayout>
 </LinearLayout>
