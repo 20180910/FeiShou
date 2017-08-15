@@ -1,10 +1,12 @@
 package com.zhizhong.feishou.module.my.activity;
 
+import android.content.DialogInterface;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.inter.MyOnClickListener;
+import com.github.baseclass.view.MyDialog;
 import com.github.customview.MyTextView;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
@@ -125,7 +127,23 @@ public class OrderDetailsActivity extends BaseActivity {
                         tv_order_detail_jiedan.setOnClickListener(new MyOnClickListener() {
                             @Override
                             protected void onNoDoubleClick(View view) {
-                                jieDan(orderNo);
+                                MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
+                                mDialog.setMessage("确认接单吗?");
+                                mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        jieDan(orderNo);
+                                    }
+                                });
+                                mDialog.create().show();
+
                             }
                         });
                     break;
@@ -135,7 +153,22 @@ public class OrderDetailsActivity extends BaseActivity {
                         tv_order_detail_zhixing.setOnClickListener(new MyOnClickListener() {
                             @Override
                             protected void onNoDoubleClick(View view) {
-                                zhiXing(orderNo);
+                                MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
+                                mDialog.setMessage("确认执行吗?");
+                                mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        zhiXing(orderNo);
+                                    }
+                                });
+                                mDialog.create().show();
                             }
                         });
                         tv_order_detail_tixing.setVisibility(View.VISIBLE);
@@ -149,7 +182,22 @@ public class OrderDetailsActivity extends BaseActivity {
                         tv_order_detail_quxiao.setOnClickListener(new MyOnClickListener() {
                             @Override
                             protected void onNoDoubleClick(View view) {
-                                quXiao(orderNo);
+                                MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
+                                mDialog.setMessage("确认取消吗?");
+                                mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        quXiao(orderNo);
+                                    }
+                                });
+                                mDialog.create().show();
                             }
                         });
                     break;
@@ -159,7 +207,22 @@ public class OrderDetailsActivity extends BaseActivity {
                         tv_order_detail_jiesuan.setOnClickListener(new MyOnClickListener() {
                             @Override
                             protected void onNoDoubleClick(View view) {
-                                jieSuan(orderNo);
+                                MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
+                                mDialog.setMessage("确认结算吗?");
+                                mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        jieSuan(orderNo);
+                                    }
+                                });
+                                mDialog.create().show();
                             }
                         });
                     break;
@@ -221,8 +284,6 @@ public class OrderDetailsActivity extends BaseActivity {
             @Override
             public void onMyNext(BaseObj obj) {
                 showMsg(obj.getMsg());
-                setResult(RESULT_OK);
-                finish();
             }
         }));
 
