@@ -152,7 +152,6 @@ public class RenWuDetailsActivity extends BaseActivity {
             break;
         }
     }
-
     private void commitOrder() {
         showLoading();
         Map<String,String> map=new HashMap<String,String>();
