@@ -152,6 +152,7 @@ public class TiXianActivity extends BaseActivity {
             @Override
             public void onMyNext(BaseObj obj) {
                 showMsg(obj.getMsg());
+                setResult(RESULT_OK);
                 finish();
             }
         }));

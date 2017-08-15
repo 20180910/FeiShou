@@ -5,14 +5,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import com.github.baseclass.rx.MySubscriber;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
+import com.zhizhong.feishou.base.BaseObj;
+import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.my.Constant;
 import com.zhizhong.feishou.module.my.adapter.OrderFragmentAdapter;
+import com.zhizhong.feishou.module.my.event.OrderEvent;
 import com.zhizhong.feishou.module.my.fragment.AllOrderFragment;
-import com.zhizhong.feishou.module.my.fragment.CompleteOrderFragment;
-import com.zhizhong.feishou.module.my.fragment.DaiJieDanOrderFragment;
-import com.zhizhong.feishou.module.my.fragment.DaiJieSuanOrderFragment;
-import com.zhizhong.feishou.module.my.fragment.DaiZhiXingOrderFragment;
+import com.zhizhong.feishou.module.my.network.ApiRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +36,11 @@ public class MyOrderActivity extends BaseActivity {
     List<Fragment> list;
 
     AllOrderFragment allOrderFragment;
-    DaiJieDanOrderFragment daiJieDanOrderFragment;
-    DaiZhiXingOrderFragment daiZhiXingOrderFragment;
-    DaiJieSuanOrderFragment daiJieSuanOrderFragment;
-    CompleteOrderFragment completeOrderFragment;
+    AllOrderFragment daiJieDanOrderFragment;
+    AllOrderFragment daiZhiXingOrderFragment;
+    AllOrderFragment daiJieSuanOrderFragment;
+    AllOrderFragment completeOrderFragment;
+//    AllOrderFragment yiQuXiaoOrderFragment;
 
     @Override
     public void again() {
@@ -52,13 +55,15 @@ public class MyOrderActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+//        Constant.IParam.orderType
+        int orderType = getIntent().getIntExtra(Constant.IParam.orderType, 0);
         adapter = new OrderFragmentAdapter(getSupportFragmentManager());
 
-        allOrderFragment = new AllOrderFragment();
-        daiJieDanOrderFragment = new DaiJieDanOrderFragment();
-        daiZhiXingOrderFragment = new DaiZhiXingOrderFragment();
-        daiJieSuanOrderFragment = new DaiJieSuanOrderFragment();
-        completeOrderFragment = new CompleteOrderFragment();
+        allOrderFragment = AllOrderFragment.newInstance(Constant.allOrder);
+        daiJieDanOrderFragment = AllOrderFragment.newInstance(Constant.daiJieDanOrder);
+        daiZhiXingOrderFragment = AllOrderFragment.newInstance(Constant.daiZhiXingOrder);
+        daiJieSuanOrderFragment = AllOrderFragment.newInstance(Constant.daiJieSuanOrder);
+        completeOrderFragment = AllOrderFragment.newInstance(Constant.yiWanChengOrder);
 
         list = new ArrayList<>();
         list.add(allOrderFragment);
@@ -70,13 +75,112 @@ public class MyOrderActivity extends BaseActivity {
         adapter.setList(list);
         vp_my_order.setAdapter(adapter);
         vp_my_order.setOffscreenPageLimit(list.size()-1);
-
+        vp_my_order.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                vp_my_order.setCurrentItem(orderType);
+            }
+        },100);
         tl_all_order.setupWithViewPager(vp_my_order);
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    protected void initRxBus() {
+        super.initRxBus();
+        getRxBusEvent(OrderEvent.class, new MySubscriber<OrderEvent>() {
+            @Override
+            public void onMyNext(OrderEvent event) {
+                switch (event.type){
+                    case Constant.daiJieDanOrder:
+                        jieDan(event.orderNo);
+                    break;
+                    case Constant.daiZhiXingOrder:
+                        zhiXing(event.orderNo);
+                    break;
+                    case Constant.daiJieSuanOrder:
+                        jieSuan(event.orderNo);
+                    break;
+                    case Constant.quXiaoOrder:
+                        quXiao(event.orderNo);
+                    break;
+                    case Constant.shiJianTiXing:
+                        tiXing(event.orderNo);
+                    break;
+                }
+            }
+        });
+    }
+
+    private void tiXing(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.tiXing(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                allOrderFragment.getData(1,false);
+
+                daiZhiXingOrderFragment.getData(1,false);
+            }
+        }));
+
+    }
+
+    private void quXiao(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.quXiao(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                allOrderFragment.getData(1,false);
+
+                daiZhiXingOrderFragment.getData(1,false);
+            }
+        }));
+    }
+
+    private void jieSuan(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.complete(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                allOrderFragment.getData(1,false);
+
+                daiJieSuanOrderFragment.getData(1,false);
+                completeOrderFragment.getData(1,false);
+            }
+        }));
+    }
+
+    private void zhiXing(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.zhiXing(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                allOrderFragment.getData(1,false);
+                daiZhiXingOrderFragment.getData(1,false);
+                daiJieSuanOrderFragment.getData(1,false);
+            }
+        }));
+    }
+
+    private void jieDan(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.jieDan(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                allOrderFragment.getData(1,false);
+                daiJieDanOrderFragment.getData(1,false);
+                daiZhiXingOrderFragment.getData(1,false);
+            }
+        }));
     }
 
     @Override

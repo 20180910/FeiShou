@@ -120,5 +120,23 @@ public class ApiRequest {
     public static Observable authCommit(Map map){
         return getCommonClient().authCommit(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getAllOrder(Map map){
+        return getCommonClient().getAllOrder(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable jieDan(String orderNo,String sign){
+        return getCommonClient().jieDan(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable zhiXing(String orderNo,String sign){
+        return getCommonClient().zhiXing(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable complete(String orderNo,String sign){
+        return getCommonClient().complete(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable quXiao(String orderNo,String sign){
+        return getCommonClient().quXiao(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable tiXing(String orderNo,String sign){
+        return getCommonClient().tiXing(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 }

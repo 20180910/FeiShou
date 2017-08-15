@@ -13,6 +13,7 @@ import com.zhizhong.feishou.module.my.network.response.InfoObj;
 import com.zhizhong.feishou.module.my.network.response.LevelObj;
 import com.zhizhong.feishou.module.my.network.response.LoginObj;
 import com.zhizhong.feishou.module.my.network.response.MyToolObj;
+import com.zhizhong.feishou.module.my.network.response.OrderObj;
 import com.zhizhong.feishou.module.my.network.response.ProvinceObj;
 import com.zhizhong.feishou.module.my.network.response.WalletObj;
 
@@ -163,5 +164,29 @@ public interface IRequest {
     //实名认证申请
     @GET("api/FlyMember/GetSetMemberAuthentication")
     Observable<ResponseObj<BaseObj>> authCommit(@QueryMap Map<String,String> map);
+
+    //获取订单
+    @GET("api/FlyMember/GetOrderList")
+    Observable<ResponseObj<List<OrderObj>>> getAllOrder(@QueryMap Map<String,String> map);
+
+    //订单-接单
+    @GET("api/FlyMember/GetGoAddOrder")
+    Observable<ResponseObj<BaseObj>> jieDan(@Query("order_no") String order_no, @Query("sign") String sign);
+
+    //订单-去执行
+    @GET("api/FlyMember/GetGoCompleteOrder")
+    Observable<ResponseObj<BaseObj>> zhiXing(@Query("order_no") String order_no, @Query("sign") String sign);
+
+    //订单-执行完成
+    @GET("api/FlyMember/GetCompleteOrder")
+    Observable<ResponseObj<BaseObj>> complete(@Query("order_no") String order_no, @Query("sign") String sign);
+
+    //订单-取消订单
+    @GET("api/FlyMember/GetCancelOrder")
+    Observable<ResponseObj<BaseObj>> quXiao(@Query("order_no") String order_no, @Query("sign") String sign);
+
+    //订单-时间提醒
+    @GET("api/FlyMember/GetTeaTimer")
+    Observable<ResponseObj<BaseObj>> tiXing(@Query("order_no") String order_no, @Query("sign") String sign);
 
 }

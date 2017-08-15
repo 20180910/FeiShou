@@ -27,6 +27,8 @@ public class OrderFragmentAdapter extends FragmentStatePagerAdapter {
         return list.get(position);
     }
 
+
+
     @Override
     public int getCount() {
         return list==null?0:list.size();

@@ -1,5 +1,6 @@
 package com.zhizhong.feishou.module.my.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.my.Constant;
 import com.zhizhong.feishou.module.my.activity.CeMuToolActivity;
 import com.zhizhong.feishou.module.my.activity.HomeworkScopeActivity;
 import com.zhizhong.feishou.module.my.activity.MyDataActivity;
@@ -41,6 +43,7 @@ public class MyFragment extends BaseFragment {
     TextView tv_info_auth;
     @BindView(R.id.tv_info_level)
     TextView tv_info_level;
+    private Intent intent;
 
     @Override
     protected int getContentView() {
@@ -126,16 +129,24 @@ public class MyFragment extends BaseFragment {
                 STActivity(MyWalletActivity.class);
                 break;
             case R.id.tv_my_all:
-                STActivity(MyOrderActivity.class);
+                intent = new Intent();
+                intent.putExtra(Constant.IParam.orderType,0);
+                STActivity(intent,MyOrderActivity.class);
                 break;
             case R.id.tv_my_djd:
-                STActivity(MyOrderActivity.class);
+                intent = new Intent();
+                intent.putExtra(Constant.IParam.orderType,1);
+                STActivity(intent,MyOrderActivity.class);
                 break;
             case R.id.tv_my_yjd:
-                STActivity(MyOrderActivity.class);
+                intent = new Intent();
+                intent.putExtra(Constant.IParam.orderType,2);
+                STActivity(intent,MyOrderActivity.class);
                 break;
             case R.id.tv_my_complete:
-                STActivity(MyOrderActivity.class);
+                intent = new Intent();
+                intent.putExtra(Constant.IParam.orderType,4);
+                STActivity(intent,MyOrderActivity.class);
                 break;
             case R.id.tv_my_tool://我的工具
                 STActivity(MyToolListActivity.class);

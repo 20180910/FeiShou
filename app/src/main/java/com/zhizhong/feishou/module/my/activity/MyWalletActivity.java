@@ -1,5 +1,6 @@
 package com.zhizhong.feishou.module.my.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -79,8 +80,21 @@ public class MyWalletActivity extends BaseActivity {
                 STActivity(ShouZhiMingXiActivity.class);
                 break;
             case R.id.ll_my_tixian:
-                STActivity(TiXianActivity.class);
+                STActivityForResult(TiXianActivity.class,1000);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case 1000:
+                    initData();
+                    break;
+            }
+        }
+
     }
 }
