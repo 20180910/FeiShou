@@ -1,7 +1,6 @@
 package com.zhizhong.feishou.module.renwu.activity;
 
 import android.content.DialogInterface;
-import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -105,8 +104,6 @@ public class RenWuDetailsActivity extends BaseActivity {
     public BDLocationListener myListener = new MyLocationListenner();
     BaiduMap mBaiduMap;
     private boolean isFirstLoc=true;
-    private String locationCity;
-    private boolean isTouchMap;
     @Override
     protected int getContentView() {
         setAppTitle("任务详情");
@@ -116,6 +113,11 @@ public class RenWuDetailsActivity extends BaseActivity {
     @Override
     protected void initView() {
         productId = getIntent().getStringExtra(Constant.IParam.productId);
+
+        setBaiDuMap();
+    }
+
+    private void setBaiDuMap() {
         View childAt = mv_renwu_detail.getChildAt(0);
         childAt.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -128,10 +130,6 @@ public class RenWuDetailsActivity extends BaseActivity {
                 return false;
             }
         });
-        setBaiDuMap();
-    }
-
-    private void setBaiDuMap() {
 
         mBaiduMap = mv_renwu_detail.getMap();
 // 开启定位图层
@@ -162,7 +160,7 @@ public class RenWuDetailsActivity extends BaseActivity {
         addSubscription(ApiRequest.getRenWuDetails(productId, getSign("product_id", productId)).subscribe(new MySub<RenWuDetailObj>(mContext, pl_load) {
             @Override
             public void onMyNext(RenWuDetailObj obj) {
-                setMapAddress(obj.getAddress());
+                setMapAddress(obj.getRegion(),obj.getAddress());
                 Glide.with(mContext).load(obj.getImage_url()).error(R.color.c_press).into(iv_rw_detail_img);
                 orderNo = obj.getNh_order_no();
                 tv_rw_detail_number.setText(obj.getNh_order_no());
@@ -200,7 +198,7 @@ public class RenWuDetailsActivity extends BaseActivity {
         }));
     }
 
-    public void setMapAddress(String address){
+    public void setMapAddress(String city,String address){
         GeoCoder geoCoder = GeoCoder.newInstance();
         OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
             public void onGetGeoCodeResult(GeoCodeResult result) {
@@ -233,10 +231,7 @@ public class RenWuDetailsActivity extends BaseActivity {
 //        第三步，设置地理编码检索监听者；
         geoCoder.setOnGetGeoCodeResultListener(listener);
 //        第四步，发起地理编码检索；
-        String city="上海";
-        if(!TextUtils.isEmpty(locationCity)){
-            city=locationCity;
-        }
+
         geoCoder.geocode(new GeoCodeOption()
                 .city(city)
                 .address(address));//百度地图上少一个括号
@@ -313,7 +308,6 @@ public class RenWuDetailsActivity extends BaseActivity {
 
 //            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
             if (isFirstLoc) {
-                locationCity = location.getCity();
                 MyLocationData locData = new MyLocationData.Builder()
                         .accuracy(location.getRadius())
                         // 此处设置开发者获取到的方向信息，顺时针0-360

@@ -1,10 +1,35 @@
 package com.zhizhong.feishou.module.my.activity;
 
 import android.content.DialogInterface;
+import android.support.v4.widget.NestedScrollView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.Marker;
+import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.MyLocationConfiguration;
+import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.geocode.GeoCodeOption;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.view.MyDialog;
 import com.github.customview.MyTextView;
@@ -17,7 +42,6 @@ import com.zhizhong.feishou.module.my.network.ApiRequest;
 import com.zhizhong.feishou.module.my.network.response.OrderDetailObj;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by administartor on 2017/8/3.
@@ -76,7 +100,21 @@ public class OrderDetailsActivity extends BaseActivity {
     MyTextView tv_order_detail_jiesuan;
     @BindView(R.id.ll_order_detail_bottom)
     LinearLayout ll_order_detail_bottom;
+    @BindView(R.id.mv_order_detail)
+    MapView mv_order_detail;
+
+    @BindView(R.id.nsv_order_detail)
+    NestedScrollView nsv_order_detail;
+
     private String orderNo;
+
+
+
+
+    public BDLocationListener myListener = new MyLocationListenner();
+    BaiduMap mBaiduMap;
+    private boolean isFirstLoc=true;
+    private String locationCity;
 
     @Override
     public void again() {
@@ -92,6 +130,7 @@ public class OrderDetailsActivity extends BaseActivity {
     @Override
     protected void initView() {
         orderNo = getIntent().getStringExtra(Constant.IParam.orderNo);
+        setBaiDuMap();
     }
 
     @Override
@@ -103,9 +142,9 @@ public class OrderDetailsActivity extends BaseActivity {
     private void getData() {
         addSubscription(ApiRequest.getOrderDetail(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<OrderDetailObj>(mContext,pl_load) {
 
-
             @Override
             public void onMyNext(OrderDetailObj obj) {
+                setMapAddress(obj.getRegion(),obj.getAddress());
                 tv_order_detail_no.setText(obj.getOrder_no());
                 tv_order_detail_dq.setText(obj.getRegion());
                 tv_order_detail_nzw.setText(obj.getCrops());
@@ -262,20 +301,8 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_order_detail_jiedan, R.id.tv_order_detail_zhixing, R.id.tv_order_detail_tixing, R.id.tv_order_detail_quxiao, R.id.tv_order_detail_jiesuan})
     protected void onViewClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_order_detail_jiedan:
-                break;
-            case R.id.tv_order_detail_zhixing:
-                break;
-            case R.id.tv_order_detail_tixing:
-                break;
-            case R.id.tv_order_detail_quxiao:
-                break;
-            case R.id.tv_order_detail_jiesuan:
-                break;
-        }
+
     }
 
     private void tiXing(String orderNo) {
@@ -335,5 +362,120 @@ public class OrderDetailsActivity extends BaseActivity {
                 finish();
             }
         }));
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mv_order_detail.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mv_order_detail.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mv_order_detail.onDestroy();
+    }
+    private void setBaiDuMap() {
+        View childAt = mv_order_detail.getChildAt(0);
+        childAt.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    nsv_order_detail.requestDisallowInterceptTouchEvent(false);
+                }else{
+                    nsv_order_detail.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
+
+        mBaiduMap = mv_order_detail.getMap();
+// 开启定位图层
+        mBaiduMap.setMyLocationEnabled(true);
+        BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
+                .fromResource(R.drawable.back);
+        MyLocationConfiguration config = new MyLocationConfiguration( MyLocationConfiguration.LocationMode.FOLLOWING, true, null);
+        mBaiduMap.setMyLocationConfiguration(config);
+
+// 定位初始化
+        LocationClient mLocClient = new LocationClient(this);
+        mLocClient.registerLocationListener(myListener);
+        LocationClientOption option = new LocationClientOption();
+        option.setOpenGps(true);// 打开gps
+        option.setCoorType("bd09ll"); // 设置坐标类型
+        option.setScanSpan(1000);
+        mLocClient.setLocOption(option);
+        mLocClient.start();
+    }
+    public void setMapAddress(String city,String address){
+        GeoCoder geoCoder = GeoCoder.newInstance();
+        OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
+            public void onGetGeoCodeResult(GeoCodeResult result) {
+                if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+                    //没有检索到结果
+                }else {
+                    //获取地理编码结果
+                    float latitude = (float) result.getLocation().latitude;
+                    float longitude = (float) result.getLocation().longitude;
+                    final LatLng point = new LatLng(latitude, longitude);
+                    //加载自定义marker
+                    BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.map);
+                    //构建MarkerOption，用于在地图上添加Marker
+                    OverlayOptions option = new MarkerOptions()
+                            .position(point)
+                            .icon(bitmapDescriptor);
+                    //在地图上添加Marker，并显示
+                    Marker marker = (Marker) mBaiduMap.addOverlay(option);
+
+                }
+            }
+            @Override
+            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
+                if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+                    //没有找到检索结果
+                }
+                //获取反向地理编码结果
+            }
+        };
+//        第三步，设置地理编码检索监听者；
+        geoCoder.setOnGetGeoCodeResultListener(listener);
+//        第四步，发起地理编码检索；
+        geoCoder.geocode(new GeoCodeOption()
+                .city(city)
+                .address(address));//百度地图上少一个括号
+    }
+    public class MyLocationListenner implements BDLocationListener {
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            // map view 销毁后不在处理新接收的位置
+            if (location == null || mv_order_detail == null)
+                return;
+
+//            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
+            if (isFirstLoc) {
+                locationCity = location.getCity();
+                MyLocationData locData = new MyLocationData.Builder()
+                        .accuracy(location.getRadius())
+                        // 此处设置开发者获取到的方向信息，顺时针0-360
+                        .direction(100).latitude(location.getLatitude())
+                        .longitude(location.getLongitude()).build();
+                mBaiduMap.setMyLocationData(locData);
+                mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
+                isFirstLoc = false;
+                LatLng ll = new LatLng(location.getLatitude(),
+                        location.getLongitude());
+                MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
+                mBaiduMap.animateMapStatus(u);
+            }
+        }
+
+        public void onReceivePoi(BDLocation poiLocation) {
+        }
     }
 }
