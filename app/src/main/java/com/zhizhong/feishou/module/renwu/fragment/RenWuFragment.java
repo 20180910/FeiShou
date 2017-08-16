@@ -97,9 +97,11 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
                 getData(1, false);
             }
         });
+        if(!TextUtils.isEmpty(getUserId())){
+            getNZW(false);
+            getDQ(false);
+        }
 
-        getNZW(false);
-        getDQ(false);
 
     }
     private void getNZW(boolean manual) {
@@ -186,12 +188,17 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
     protected void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.tv_rw_zuowu:
-                if (nzwTypeList == null) {
-                    showLoading();
-                    getNZW(true);
+                if(TextUtils.isEmpty(getUserId())){
+                    STActivity(LoginActivity.class);
                 }else{
-                    showNZW(nzwTypeList);
+                    if (nzwTypeList == null) {
+                        showLoading();
+                        getNZW(true);
+                    }else{
+                        showNZW(nzwTypeList);
+                    }
                 }
+
                 break;
             case R.id.tv_rw_area:
 //                showLoading();
@@ -218,7 +225,6 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
             case R.id.tv_rw_diqu:
                 if(TextUtils.isEmpty(getUserId())){
                     STActivity(LoginActivity.class);
-                    return;
                 }else{
                     if(dqTypeList==null){
                         showLoading();
