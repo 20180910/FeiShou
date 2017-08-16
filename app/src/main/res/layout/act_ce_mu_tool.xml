@@ -35,13 +35,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:hint="搜索地点或地址"
-                android:textColor="@color/gray_99"
+                android:textColor="@color/gray_66"
+                android:textColorHint="@color/gray_99"
                 android:drawableLeft="@drawable/search"
                 app:my_et_solid="#FFDAD9D5"
                 app:my_et_corner_radius="10dp"
                 android:layout_margin="10dp"
                 app:my_et_hiddenClear="true"
                 android:paddingLeft="3dp"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:inputType="text"
                 />
         </com.github.customview.MyLinearLayout>
     </RelativeLayout>
