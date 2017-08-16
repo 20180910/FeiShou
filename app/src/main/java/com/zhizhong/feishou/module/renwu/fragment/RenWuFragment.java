@@ -18,6 +18,7 @@ import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.my.activity.LoginActivity;
 import com.zhizhong.feishou.module.renwu.Constant;
 import com.zhizhong.feishou.module.renwu.activity.RenWuDetailsActivity;
 import com.zhizhong.feishou.module.renwu.adapter.RenWuAdapter;
@@ -118,7 +119,6 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
         }));
     }
     private void getDQ(boolean manual) {
-
         addSubscription(ApiRequest.getDQ(getUserId(),getSign()).subscribe(new MySub<List<NZWTypeObj>>(mContext) {
             @Override
             public void onMyNext(List<NZWTypeObj> list) {
@@ -216,12 +216,18 @@ public class RenWuFragment extends BaseFragment implements LoadMoreAdapter.OnLoa
                 getData(1,false);
                 break;
             case R.id.tv_rw_diqu:
-                if(dqTypeList==null){
-                    showLoading();
-                    getDQ(true);
+                if(TextUtils.isEmpty(getUserId())){
+                    STActivity(LoginActivity.class);
+                    return;
                 }else{
-                    showDQ(dqTypeList);
+                    if(dqTypeList==null){
+                        showLoading();
+                        getDQ(true);
+                    }else{
+                        showDQ(dqTypeList);
+                    }
                 }
+
                 break;
             case R.id.tv_rw_homework:
                 //                showLoading();

@@ -134,6 +134,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.rb_home_my:
                 if(TextUtils.isEmpty(getUserId())){
+                    selectButton.setChecked(true);
                     STActivity(LoginActivity.class);
                     return;
                 }

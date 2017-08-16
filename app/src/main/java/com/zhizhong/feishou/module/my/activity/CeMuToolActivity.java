@@ -1,5 +1,6 @@
 package com.zhizhong.feishou.module.my.activity;
 
+import android.util.Log;
 import android.view.View;
 
 import com.baidu.location.BDLocation;
@@ -152,13 +153,17 @@ public class CeMuToolActivity extends BaseActivity {
                 return;
 
 //            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
+            Log.i("========","========"+location.getRadius());
+            MyLocationData locData = new MyLocationData.Builder()
+                    .accuracy(location.getRadius()/2)
+                    // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .direction(100).latitude(location.getLatitude())
+                    .longitude(location.getLongitude()).build();
+            // 设置定位数据
+            mBaiduMap.setMyLocationData(locData);
+            MyLocationConfiguration config = new MyLocationConfiguration( MyLocationConfiguration.LocationMode.NORMAL, true, null);
+            mBaiduMap.setMyLocationConfiguration(config);
             if (isFirstLoc) {
-                MyLocationData locData = new MyLocationData.Builder()
-                        .accuracy(location.getRadius())
-                        // 此处设置开发者获取到的方向信息，顺时针0-360
-                        .direction(100).latitude(location.getLatitude())
-                        .longitude(location.getLongitude()).build();
-                mBaiduMap.setMyLocationData(locData);
                 mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(18).build()));
                 isFirstLoc = false;
                 LatLng ll = new LatLng(location.getLatitude(),

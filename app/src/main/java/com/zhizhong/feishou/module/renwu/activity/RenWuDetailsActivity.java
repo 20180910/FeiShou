@@ -1,6 +1,7 @@
 package com.zhizhong.feishou.module.renwu.activity;
 
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,6 +40,7 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 import com.zhizhong.feishou.base.BaseObj;
 import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.my.activity.LoginActivity;
 import com.zhizhong.feishou.module.renwu.Constant;
 import com.zhizhong.feishou.module.renwu.network.ApiRequest;
 import com.zhizhong.feishou.module.renwu.network.response.RenWuDetailObj;
@@ -241,6 +243,10 @@ public class RenWuDetailsActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.tv_rw_detail_commit:
+                if(TextUtils.isEmpty(getUserId())){
+                    STActivity(LoginActivity.class);
+                    return;
+                }
                 mDialog=new MyDialog.Builder(mContext);
                 mDialog.setMessage("确认接单吗?");
                 mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
