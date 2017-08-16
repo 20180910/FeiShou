@@ -73,7 +73,7 @@
         <activity android:name=".module.home.activity.WebActivity"/>
 
         <!--测亩工具-->
-        <activity android:name=".module.my.activity.CeMuToolActivity"/>
+        <activity android:name=".module.my.activity.CeMuToolActivity" android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
         <!--增加作业范围-->
         <activity android:name=".module.my.activity.AddHomeworkScopeActivity"/>
         <!--作业范围-->

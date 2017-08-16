@@ -114,7 +114,6 @@ public class OrderDetailsActivity extends BaseActivity {
     public BDLocationListener myListener = new MyLocationListenner();
     BaiduMap mBaiduMap;
     private boolean isFirstLoc=true;
-    private String locationCity;
 
     @Override
     public void again() {
@@ -459,7 +458,6 @@ public class OrderDetailsActivity extends BaseActivity {
 
 //            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
             if (isFirstLoc) {
-                locationCity = location.getCity();
                 MyLocationData locData = new MyLocationData.Builder()
                         .accuracy(location.getRadius())
                         // 此处设置开发者获取到的方向信息，顺时针0-360
