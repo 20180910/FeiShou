@@ -1,9 +1,12 @@
 package com.zhizhong.feishou.module.renwu.activity;
 
 import android.content.DialogInterface;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -52,6 +55,8 @@ import butterknife.OnClick;
  */
 
 public class RenWuDetailsActivity extends BaseActivity {
+    @BindView(R.id.sv_renwu_detail)
+    ScrollView sv_renwu_detail;
     @BindView(R.id.iv_rw_detail_img)
     ImageView iv_rw_detail_img;
     @BindView(R.id.tv_rw_detail_number)
@@ -100,7 +105,8 @@ public class RenWuDetailsActivity extends BaseActivity {
     public BDLocationListener myListener = new MyLocationListenner();
     BaiduMap mBaiduMap;
     private boolean isFirstLoc=true;
-
+    private String locationCity;
+    private boolean isTouchMap;
     @Override
     protected int getContentView() {
         setAppTitle("任务详情");
@@ -110,7 +116,18 @@ public class RenWuDetailsActivity extends BaseActivity {
     @Override
     protected void initView() {
         productId = getIntent().getStringExtra(Constant.IParam.productId);
-
+        View childAt = mv_renwu_detail.getChildAt(0);
+        childAt.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    sv_renwu_detail.requestDisallowInterceptTouchEvent(false);
+                }else{
+                    sv_renwu_detail.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
         setBaiDuMap();
     }
 
@@ -216,8 +233,12 @@ public class RenWuDetailsActivity extends BaseActivity {
 //        第三步，设置地理编码检索监听者；
         geoCoder.setOnGetGeoCodeResultListener(listener);
 //        第四步，发起地理编码检索；
+        String city="上海";
+        if(!TextUtils.isEmpty(locationCity)){
+            city=locationCity;
+        }
         geoCoder.geocode(new GeoCodeOption()
-                .city("上海")
+                .city(city)
                 .address(address));//百度地图上少一个括号
     }
 
@@ -292,6 +313,7 @@ public class RenWuDetailsActivity extends BaseActivity {
 
 //            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
             if (isFirstLoc) {
+                locationCity = location.getCity();
                 MyLocationData locData = new MyLocationData.Builder()
                         .accuracy(location.getRadius())
                         // 此处设置开发者获取到的方向信息，顺时针0-360

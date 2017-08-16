@@ -14,12 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nsv_renwu_detail"
+        <ScrollView
+            android:id="@+id/sv_renwu_detail"
             android:layout_above="@+id/ll_renwu_details"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -473,7 +474,7 @@
                     android:clickable="true"
                     />
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </ScrollView>
         <com.github.customview.MyLinearLayout
             android:id="@+id/ll_renwu_details"
             android:layout_width="match_parent"
