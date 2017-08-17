@@ -45,13 +45,14 @@ public class MyWalletActivity extends BaseActivity {
             @Override
             public void bindData(LoadMoreViewHolder holder, int position, WalletObj.UserMoneyLogBean item) {
                 holder.setText(R.id.tv_wallet_title,item.getRemark())
-                        .setText(R.id.tv_wallet_money,item.getValue()+"")
                 .setText(R.id.tv_wallet_time,item.getAdd_time());
                 TextView textView = holder.getTextView(R.id.tv_wallet_money);
                 if(item.getValue()>0){
                     textView.setTextColor(getResources().getColor(R.color.blue));
+                    textView.setText("+"+item.getValue()+"元");
                 }else{
                     textView.setTextColor(getResources().getColor(R.color.red));
+                    textView.setText(""+item.getValue()+"元");
                 }
 
             }
