@@ -146,6 +146,10 @@ public interface IRequest {
     @GET("api/FlyMember/GetAccount")
     Observable<ResponseObj<List<AccountObj>>> getAccount(@Query("user_id") String user_id, @Query("sign") String sign);
 
+    //删除账户
+    @GET("api/FlyMember/GetDelAccount")
+    Observable<ResponseObj<BaseObj>> deleteAccount(@Query("account_id") String account_id, @Query("sign") String sign);
+
     //设置默认账户
     @GET("api/FlyMember/GetEditDefalut")
     Observable<ResponseObj<BaseObj>> setDefaultAccount(@QueryMap Map<String,String> map);

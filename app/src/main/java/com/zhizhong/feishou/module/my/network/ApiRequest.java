@@ -105,6 +105,9 @@ public class ApiRequest {
     public static Observable getAccount(String userId,String sign){
         return getCommonClient().getAccount(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
+    public static Observable deleteAccount(String accountId, String sign){
+        return getCommonClient().deleteAccount(accountId,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable getDefaultAccount(String userId,String sign){
         return getCommonClient().getDefaultAccount(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }

@@ -122,6 +122,9 @@ public class TiXianActivity extends BaseActivity {
                 if(TextUtils.isEmpty(getSStr(tv_tx_accout))){
                     showMsg("请选择到账账户");
                     return;
+                }else if(TextUtils.isEmpty(money)){
+                    showMsg("请输入金额");
+                    return;
                 }else if(money.length()==1&&money.indexOf(".")==0){
                     showMsg("请输入金额");
                     return;
@@ -179,6 +182,14 @@ public class TiXianActivity extends BaseActivity {
                     accountId=account.getId()+"";
                     tv_tx_accout.setText(account.getBank_card());
                     Glide.with(mContext).load(account.getBank_image()).error(R.color.c_press).into(iv_tx_bank);
+                    break;
+            }
+        }else if(resultCode==Constant.RCode.deleteDefaultAccount){
+            switch (requestCode){
+                case 100:
+                    tv_tx_accout.setText(null);
+                    iv_tx_bank.setImageDrawable(null);
+                    initData();
                     break;
             }
         }

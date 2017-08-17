@@ -11,12 +11,17 @@
         android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <in.srain.cube.views.ptr.PtrClassicFrameLayout
             android:id="@id/pcfl_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:ptr_resistance="2.1"
             app:ptr_ratio_of_header_height_to_refresh="1.2"
+            android:layout_above="@+id/tv_account_edit"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_account"
@@ -27,6 +32,23 @@
 
             </android.support.v7.widget.RecyclerView>
         </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+            <com.github.customview.MyTextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/tv_account_edit"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:layout_margin="10dp"
+                android:text="编 辑"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:my_tv_corner_radius="23dp"
+                app:my_tv_press="@color/blue_press"
+                app:my_tv_solid="@color/blue"
+                app:my_tv_top_line="true"
+                />
+        </RelativeLayout>
     </com.zhizhong.feishou.view.ProgressLayout>
 
 

@@ -30,6 +30,7 @@ public class Constant {
         public static final int login=400;
         public static final int addTool=1000;
         public static final int addHomework=10001;
+        public static final int deleteDefaultAccount=200;
     }
     public static class IParam{
         public static final String phone="phone";

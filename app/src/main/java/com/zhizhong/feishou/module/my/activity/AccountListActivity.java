@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.baseclass.adapter.LoadMoreAdapter;
+import com.github.baseclass.rx.MySubscriber;
 import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
@@ -13,6 +15,7 @@ import com.zhizhong.feishou.base.BaseObj;
 import com.zhizhong.feishou.base.MySub;
 import com.zhizhong.feishou.module.my.Constant;
 import com.zhizhong.feishou.module.my.adapter.AccountAdapter;
+import com.zhizhong.feishou.module.my.event.DeleteAccountEvent;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
 import com.zhizhong.feishou.module.my.network.response.AccountObj;
 
@@ -32,8 +35,11 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 public class AccountListActivity extends BaseActivity implements LoadMoreAdapter.OnLoadMoreListener{
     @BindView(R.id.rv_account)
     RecyclerView rv_account;
+    @BindView(R.id.tv_account_edit)
+    TextView tv_account_edit;
 
     AccountAdapter adapter;
+    private boolean isDelete;
     @Override
     public void again() {
         initData();
@@ -66,7 +72,21 @@ public class AccountListActivity extends BaseActivity implements LoadMoreAdapter
             }
         });
     }
-
+    @Override
+    protected void initRxBus() {
+        super.initRxBus();
+        getRxBusEvent(DeleteAccountEvent.class, new MySubscriber<DeleteAccountEvent>() {
+            @Override
+            public void onMyNext(DeleteAccountEvent event) {
+                isDelete=event.isDeleteDefault;
+                if(adapter.getList()==null||adapter.getList().size()==0){
+                    tv_account_edit.setVisibility(View.GONE);
+                }else{
+                    tv_account_edit.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
     private void setDefault(int position) {
         showLoading();
         Map<String,String> map=new HashMap<String,String>();
@@ -83,16 +103,31 @@ public class AccountListActivity extends BaseActivity implements LoadMoreAdapter
             }
         }));
     }
-
+    @Override
+    public void finish() {
+        if(isDelete){
+            setResult(Constant.RCode.deleteDefaultAccount);
+        }
+        super.finish();
+    }
     @Override
     protected void initData() {
         showProgress();
         getData(1,false);
     }
 
-    @OnClick({R.id.app_right_iv})
+    @OnClick({R.id.app_right_iv,R.id.tv_account_edit})
     protected void onViewClick(View v) {
         switch (v.getId()){
+            case R.id.tv_account_edit:
+                adapter.setDelete(!adapter.isDelete());
+                if(adapter.isDelete()){
+                    tv_account_edit.setText("完成");
+                }else{
+                    tv_account_edit.setText("编辑");
+                }
+                adapter.notifyDataSetChanged();
+                break;
             case R.id.app_right_iv:
                 STActivityForResult(AddBankCardActivity.class,100);
             break;
@@ -117,6 +152,11 @@ public class AccountListActivity extends BaseActivity implements LoadMoreAdapter
         addSubscription(ApiRequest.getAccount(getUserId(),getSign()).subscribe(new MySub<List<AccountObj>>(mContext,pcfl,pl_load) {
             @Override
             public void onMyNext(List<AccountObj> list) {
+                if(isEmpty(list)){
+                    tv_account_edit.setVisibility(View.GONE);
+                }else{
+                    tv_account_edit.setVisibility(View.VISIBLE);
+                }
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

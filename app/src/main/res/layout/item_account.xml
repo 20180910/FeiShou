@@ -5,9 +5,12 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/white"
-              android:layout_marginBottom="2px"
+              android:background="@color/background_f2"
     >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2px">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="60dp"
@@ -15,6 +18,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:gravity="center_vertical"
+    android:background="@color/white"
     >
     <ImageView
         android:id="@+id/iv_account_icon"
@@ -53,4 +57,19 @@
         android:src="@drawable/img23"
         />
 </LinearLayout>
+    <com.github.customview.MyTextView
+        android:id="@+id/tv_account_delete"
+        android:layout_alignParentRight="true"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:text="删\n除"
+        android:lineSpacingExtra="6dp"
+        android:gravity="center"
+        android:layout_gravity="right"
+        app:my_tv_solid="@color/blue"
+        app:my_tv_press="@color/blue_press"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        />
+    </FrameLayout>
 </LinearLayout>
