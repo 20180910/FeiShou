@@ -99,7 +99,7 @@ public class ForgetPWDActivity extends BaseActivity {
         showLoading();
         Map<String,String>map=new HashMap<String,String>();
         map.put("username",phone);
-        map.put("user_type",Config.user_type_1);
+        map.put("user_type",Config.loginAppType_1);
         map.put("newPassword",pwd);
         map.put("sign",GetSign.getSign(map));
         addSubscription(ApiRequest.resetPassword(map).subscribe(new MySub<BaseObj>(mContext) {

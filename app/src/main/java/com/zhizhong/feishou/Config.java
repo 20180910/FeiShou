@@ -23,8 +23,8 @@ public class Config {
     public static final String level="level";
     public static final String authentication="authentication";
 
-    public static final String user_type_1="1";//飞首
-    public static final String user_type_2="2";//农户
+    public static final String loginAppType_1 ="1";//飞首
+    public static final String loginAppType_2 ="2";//农户
 
     /*广播参数*/
     public static class Bro{

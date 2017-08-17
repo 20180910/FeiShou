@@ -107,10 +107,10 @@ public class RegisterActivity extends BaseActivity {
             }
         }));
     }
-    @OnClick({R.id.tv_register_commit,R.id.tv_register_getcode,R.id.tv_register_login,R.id.tv_regiser_xy})
+    @OnClick({R.id.tv_register_commit,R.id.tv_register_getcode,R.id.tv_register_login,R.id.tv_register_xy})
     protected void onViewClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_regiser_xy:
+            case R.id.tv_register_xy:
                 if(TextUtils.isEmpty(agreement)){
                     showLoading();
                     getXieYi(true);
