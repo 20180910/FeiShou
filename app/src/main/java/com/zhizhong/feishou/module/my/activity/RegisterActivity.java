@@ -100,7 +100,7 @@ public class RegisterActivity extends BaseActivity {
         addSubscription(ApiRequest.getRegisterXieYi(rnd,getSign("rnd",rnd)).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
-                agreement = obj.getFly_first_agreement();
+                agreement = obj.getAgreement();
                 if(manual){
                     showXieYi(agreement);
                 }

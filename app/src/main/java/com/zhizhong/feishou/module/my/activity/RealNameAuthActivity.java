@@ -447,7 +447,7 @@ public class RealNameAuthActivity extends BaseActivity {
         addSubscription(ApiRequest.getAuthXieYi(rnd, getSign("rnd", rnd)).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
-                agreement = obj.getRealname_authentication();
+                agreement = obj.getAgreement();
                 if (manual) {
                     showXieYi(agreement);
                 }
