@@ -398,7 +398,7 @@ public class OrderDetailsActivity extends BaseActivity {
         mBaiduMap.setMyLocationEnabled(true);
         BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
                 .fromResource(R.drawable.back);
-        MyLocationConfiguration config = new MyLocationConfiguration( MyLocationConfiguration.LocationMode.FOLLOWING, true, null);
+        MyLocationConfiguration config = new MyLocationConfiguration( MyLocationConfiguration.LocationMode.NORMAL, true, null);
         mBaiduMap.setMyLocationConfiguration(config);
 
 // 定位初始化
