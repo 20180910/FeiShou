@@ -16,5 +16,6 @@ public class MyApplication extends Application  {
         super.onCreate();
         NetWorkManager.getInstance(getApplicationContext(),"http://121.40.186.118:5009/",BuildConfig.DEBUG).complete();
         SDKInitializer.initialize(getApplicationContext());
+
     }
 }

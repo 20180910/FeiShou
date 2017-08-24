@@ -29,7 +29,6 @@
         <activity
             android:name="com.zhizhong.feishou.module.home.activity.MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -73,7 +72,7 @@
         <activity android:name=".module.home.activity.WebActivity"/>
 
         <!--测亩工具-->
-        <activity android:name=".module.my.activity.CeMuToolActivity" android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
+        <activity android:name=".module.my.activity.CeMuToolActivity" android:windowSoftInputMode="adjustNothing"/>
         <!--增加作业范围-->
         <activity android:name=".module.my.activity.AddHomeworkScopeActivity"/>
         <!--作业范围-->

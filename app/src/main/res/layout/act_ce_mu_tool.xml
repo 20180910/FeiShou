@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-            <com.baidu.mapapi.map.TextureMapView
+            <com.baidu.mapapi.map.MapView
                 android:id="@+id/mv_ce_mu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.zhizhong.feishou.R;
 import com.github.androidtools.inter.MyOnClickListener;
+import com.zhizhong.feishou.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -69,7 +68,7 @@ public class ProgressLayout extends RelativeLayout {
 //            mProgressView = new ProgressBar(getContext());
             View inflate = LayoutInflater.from(getContext()).inflate(R.layout.loading_view, null);
             mProgressView=inflate;
-            Log.i("============","=============");
+//            Log.i("============","=============");
             layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             layoutParams.addRule(CENTER_IN_PARENT);
 

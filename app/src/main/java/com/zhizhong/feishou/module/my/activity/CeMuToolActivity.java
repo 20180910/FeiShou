@@ -1,6 +1,13 @@
 package com.zhizhong.feishou.module.my.activity;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +23,7 @@ import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.Overlay;
@@ -23,9 +31,21 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolygonOptions;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.map.Stroke;
-import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.inner.GeoPoint;
+import com.baidu.mapapi.search.core.PoiInfo;
+import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
+import com.baidu.mapapi.search.poi.PoiCitySearchOption;
+import com.baidu.mapapi.search.poi.PoiDetailResult;
+import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiResult;
+import com.baidu.mapapi.search.poi.PoiSearch;
+import com.github.androidtools.PhoneUtils;
+import com.github.androidtools.inter.MyOnClickListener;
+import com.github.baseclass.adapter.LoadMoreAdapter;
+import com.github.baseclass.adapter.LoadMoreViewHolder;
+import com.github.baseclass.view.MyPopupwindow;
 import com.github.customview.MyEditText;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
@@ -44,10 +64,8 @@ import butterknife.OnClick;
  */
 
 public class CeMuToolActivity extends BaseActivity {
-//    @BindView(R.id.mv_ce_mu)
-//    MapView mv_ce_mu;
     @BindView(R.id.mv_ce_mu)
-    TextureMapView mv_ce_mu;
+    MapView mv_ce_mu;
     BaiduMap mBaiduMap;
     @BindView(R.id.tv_cemu_zc)
     TextView tv_cemu_zc;
@@ -75,6 +93,7 @@ public class CeMuToolActivity extends BaseActivity {
     LinearLayout ll_ce_mu_search;
     private boolean isFirstLoc = true;
 
+    private String localCity;
     public BDLocationListener myListener = new MyLocationListenner();
     private UiSettings mUiSettings;
     private boolean isShowPoint;
@@ -82,10 +101,11 @@ public class CeMuToolActivity extends BaseActivity {
     private List<Overlay> pointList = new ArrayList();//覆盖物点
     private List<Overlay> lineList = new ArrayList();//覆盖物线
     private List<LatLng> clickPointList = new ArrayList<>();
+    MyPopupwindow popupwindow;
+    private LocationClient mLocClient;
 
     @Override
     public void again() {
-
     }
 
     @Override
@@ -93,22 +113,96 @@ public class CeMuToolActivity extends BaseActivity {
         setAppTitle("测亩工具");
         return R.layout.act_ce_mu_tool;
     }
-
+    LoadMoreAdapter addressAdapter;
     @Override
     protected void initView() {
         endCeMu();
-
         initMap();
+        et_cemu_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                    searchAddress(et_cemu_search.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+    private void searchAddress(String str) {
+        if(TextUtils.isEmpty(localCity)){
+            showMsg("获取当前城市失败,请稍后再试");
+            return;
+        }
+        PoiSearch poiSearch = PoiSearch.newInstance();
+        PoiCitySearchOption poiCitySearchOption = new PoiCitySearchOption();
+        poiCitySearchOption.city(localCity);
+        poiCitySearchOption.keyword(str);
+        poiCitySearchOption.pageNum(1);
+        poiSearch.setOnGetPoiSearchResultListener(new OnGetPoiSearchResultListener() {
+            @Override
+            public void onGetPoiResult(PoiResult poiResult) {
+                if(poiResult==null||poiResult.getAllPoi()==null){
+                    showMsg("没有搜索到内容");
+                    return;
+                }
+                showPopu(poiResult.getAllPoi());
+                List<PoiInfo> allPoi = poiResult.getAllPoi();
+                for (int i = 0; i <allPoi.size(); i++) {
+                    LatLng location = allPoi.get(i).location;
+                    GeoPoint point=new GeoPoint(location.latitudeE6,location.longitudeE6);
+                    Log.i("==========",allPoi.get(i).name);
+                    Log.i("==========",allPoi.get(i).address);
+                    Log.i("==========","=====================");
+                }
+            }
+
+            @Override
+            public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+            }
+            @Override
+            public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+            }
+        });
+
+        poiSearch.searchInCity(poiCitySearchOption);
     }
 
-
+    private void showPopu(List<PoiInfo> allPoi) {
+        if (popupwindow == null) {
+            addressAdapter=new LoadMoreAdapter<PoiInfo>(mContext,R.layout.item_cemu_address,0) {
+                @Override
+                public void bindData(LoadMoreViewHolder holder, int i, PoiInfo bean) {
+                    holder.setText(R.id.tv_cemu_name,bean.name)
+                            .setText(R.id.tv_cemu_address,bean.address);
+                    holder.itemView.setOnClickListener(new MyOnClickListener() {
+                        @Override
+                        protected void onNoDoubleClick(View view) {
+                            LatLng ll = new LatLng(bean.location.latitudeE6,
+                                    bean.location.longitudeE6);
+                            MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
+                            mBaiduMap.animateMapStatus(u);
+                        }
+                    });
+                }
+            };
+            addressAdapter.setList(allPoi);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.popu_search_city, null);
+            RecyclerView rv_cemu_address = (RecyclerView)view.findViewById(R.id.rv_cemu_address);
+            rv_cemu_address.setLayoutManager(new LinearLayoutManager(mContext));
+            rv_cemu_address.setAdapter(addressAdapter);
+            popupwindow=new MyPopupwindow(mContext,view);
+        }else{
+            addressAdapter.setList(allPoi,true);
+        }
+        popupwindow.showAsDropDown(ll_ce_mu_search, PhoneUtils.dip2px(mContext,10),0);
+    }
 
     @Override
     protected void initData() {
 
     }
 
-    @OnClick({1})
     protected void onViewClick(View v) {
         switch (v.getId()) {
 
@@ -139,9 +233,10 @@ public class CeMuToolActivity extends BaseActivity {
         mBaiduMap.setMyLocationConfiguration(config);
 
 // 定位初始化
-        LocationClient mLocClient = new LocationClient(this);
+        mLocClient = new LocationClient(this);
         mLocClient.registerLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
+        option.setIsNeedAddress(true);
         option.setOpenGps(true);// 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
         option.setScanSpan(1000);
@@ -213,6 +308,7 @@ public class CeMuToolActivity extends BaseActivity {
                 isShowPoint=false;
                 break;
             case R.id.iv_cemu_search://搜索
+                searchAddress(et_cemu_search.getText().toString());
                 break;
             case R.id.iv_cemu_dingwei://定位
                 isFirstLoc=true;
@@ -268,13 +364,19 @@ public class CeMuToolActivity extends BaseActivity {
         iv_cemu_jisuan.setVisibility(View.INVISIBLE);
     }
     public class MyLocationListenner implements BDLocationListener {
+
+
         @Override
         public void onReceiveLocation(BDLocation location) {
             // map view 销毁后不在处理新接收的位置
-            if (location == null || mv_ce_mu == null)
+            if (location == null || mv_ce_mu == null){
                 return;
-
+            }
 //            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
+            Log.i("----------","----------"+location.getCity());
+            if(TextUtils.isEmpty(localCity)){
+                localCity = location.getCity();
+            }
             if (isFirstLoc) {
                 MyLocationData locData = new MyLocationData.Builder()
                         .accuracy(location.getRadius())
@@ -282,7 +384,7 @@ public class CeMuToolActivity extends BaseActivity {
                         .direction(100).latitude(location.getLatitude())
                         .longitude(location.getLongitude()).build();
                 mBaiduMap.setMyLocationData(locData);
-                mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
+                mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(18).build()));
                 isFirstLoc = false;
                 LatLng ll = new LatLng(location.getLatitude(),
                         location.getLongitude());
