@@ -1,53 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
+              android:orientation="vertical"
     >
-<include layout="@layout/app_title"/>
+
+    <include layout="@layout/app_title"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_above="@+id/ll_ce_mu_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            <com.baidu.mapapi.map.TextureMapView
+                android:id="@+id/mv_ce_mu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ll_ce_mu_bottom"
+                />
+<!--
             <com.baidu.mapapi.map.MapView
                 android:id="@+id/mv_ce_mu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
+                android:layout_above="@+id/ll_ce_mu_bottom"
                 />
-        </LinearLayout>
-        <com.github.customview.MyLinearLayout
+-->
+        <LinearLayout
             android:id="@+id/ll_ce_mu_bottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:my_ll_top_line="true"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
             android:layout_alignParentBottom="true"
+            android:background="@color/white"
             >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/tv_cemu_zc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="周长(米)"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/tv_cemu_mj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="面积(平方米)"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/tv_cemu_ms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00亩"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_ce_mu_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            app:my_ll_corner_radius="5dp"
+            android:gravity="center_vertical"
+            app:my_ll_solid="@color/white"
+            app:my_ll_all_line="true"
+            app:my_ll_border_width="2px"
+            android:padding="2px"
+            >
+
             <com.github.customview.MyEditText
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:id="@+id/et_cemu_search"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/search_ico"
                 android:hint="搜索地点或地址"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="7dp"
+                android:drawablePadding="3dp"
                 android:textColor="@color/gray_66"
                 android:textColorHint="@color/gray_99"
-                android:drawableLeft="@drawable/search"
-                app:my_et_solid="#FFDAD9D5"
                 app:my_et_corner_radius="10dp"
-                android:layout_margin="10dp"
                 app:my_et_hiddenClear="true"
-                android:paddingLeft="3dp"
-                android:imeOptions="actionSearch"
-                android:maxLines="1"
-                android:inputType="text"
+                android:textSize="15sp"
+                app:my_et_solid="@color/white"
+                />
+            <ImageView
+                android:id="@+id/iv_cemu_search"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="11dp"
+                android:src="@drawable/search_address"
                 />
         </com.github.customview.MyLinearLayout>
+        <ImageView
+            android:id="@+id/iv_cemu_dingwei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dingwei"
+            android:layout_above="@+id/ll_ce_mu_bottom"
+            android:layout_marginBottom="45dp"
+            android:layout_marginLeft="20dp"
+            />
+        <ImageView
+            android:id="@+id/iv_cemu_fanhui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/return_init"
+            android:layout_above="@+id/iv_cemu_dingwei"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:id="@+id/iv_cemu_quandi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/quandi"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/ll_ce_mu_search"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            />
+        <ImageView
+            android:id="@+id/iv_cemu_jisuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:src="@drawable/wancheng"
+            android:layout_below="@+id/iv_cemu_quandi"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/iv_cemu_chexiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/chexiao"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/ll_ce_mu_search"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:id="@+id/iv_cemu_clean"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:src="@drawable/clean"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            />
     </RelativeLayout>
 
 </LinearLayout>
