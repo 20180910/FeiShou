@@ -3,7 +3,6 @@ package com.zhizhong.feishou.module.my.activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +32,6 @@ import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.model.inner.GeoPoint;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
 import com.baidu.mapapi.search.poi.PoiCitySearchOption;
@@ -103,6 +101,7 @@ public class CeMuToolActivity extends BaseActivity {
     private List<LatLng> clickPointList = new ArrayList<>();
     MyPopupwindow popupwindow;
     private LocationClient mLocClient;
+    private RecyclerView rv_cemu_address;
 
     @Override
     public void again() {
@@ -123,6 +122,7 @@ public class CeMuToolActivity extends BaseActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH){
                     searchAddress(et_cemu_search.getText().toString());
+                    PhoneUtils.hiddenKeyBoard(mContext);
                     return true;
                 }
                 return false;
@@ -138,6 +138,7 @@ public class CeMuToolActivity extends BaseActivity {
         PoiCitySearchOption poiCitySearchOption = new PoiCitySearchOption();
         poiCitySearchOption.city(localCity);
         poiCitySearchOption.keyword(str);
+        poiCitySearchOption.pageCapacity(15);
         poiCitySearchOption.pageNum(1);
         poiSearch.setOnGetPoiSearchResultListener(new OnGetPoiSearchResultListener() {
             @Override
@@ -147,14 +148,6 @@ public class CeMuToolActivity extends BaseActivity {
                     return;
                 }
                 showPopu(poiResult.getAllPoi());
-                List<PoiInfo> allPoi = poiResult.getAllPoi();
-                for (int i = 0; i <allPoi.size(); i++) {
-                    LatLng location = allPoi.get(i).location;
-                    GeoPoint point=new GeoPoint(location.latitudeE6,location.longitudeE6);
-                    Log.i("==========",allPoi.get(i).name);
-                    Log.i("==========",allPoi.get(i).address);
-                    Log.i("==========","=====================");
-                }
             }
 
             @Override
@@ -178,8 +171,9 @@ public class CeMuToolActivity extends BaseActivity {
                     holder.itemView.setOnClickListener(new MyOnClickListener() {
                         @Override
                         protected void onNoDoubleClick(View view) {
-                            LatLng ll = new LatLng(bean.location.latitudeE6,
-                                    bean.location.longitudeE6);
+                            popupwindow.dismiss();
+                            LatLng ll = new LatLng(bean.location.latitude,
+                                    bean.location.longitude);
                             MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
                             mBaiduMap.animateMapStatus(u);
                         }
@@ -188,14 +182,15 @@ public class CeMuToolActivity extends BaseActivity {
             };
             addressAdapter.setList(allPoi);
             View view = LayoutInflater.from(mContext).inflate(R.layout.popu_search_city, null);
-            RecyclerView rv_cemu_address = (RecyclerView)view.findViewById(R.id.rv_cemu_address);
+            rv_cemu_address = (RecyclerView)view.findViewById(R.id.rv_cemu_address);
             rv_cemu_address.setLayoutManager(new LinearLayoutManager(mContext));
             rv_cemu_address.setAdapter(addressAdapter);
-            popupwindow=new MyPopupwindow(mContext,view);
+            popupwindow=new MyPopupwindow(mContext,view,PhoneUtils.getScreenWidth(mContext)-PhoneUtils.dip2px(mContext,20),PhoneUtils.dip2px(mContext,206));
         }else{
             addressAdapter.setList(allPoi,true);
+            rv_cemu_address.scrollToPosition(0);
         }
-        popupwindow.showAsDropDown(ll_ce_mu_search, PhoneUtils.dip2px(mContext,10),0);
+        popupwindow.showAsDropDown(ll_ce_mu_search);
     }
 
     @Override
@@ -373,7 +368,6 @@ public class CeMuToolActivity extends BaseActivity {
                 return;
             }
 //            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
-            Log.i("----------","----------"+location.getCity());
             if(TextUtils.isEmpty(localCity)){
                 localCity = location.getCity();
             }
