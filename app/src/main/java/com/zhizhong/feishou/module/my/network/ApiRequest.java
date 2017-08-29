@@ -60,6 +60,9 @@ public class ApiRequest {
     public static Observable updateInfo(Map map){
         return getCommonClient().updateInfo(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getMemberAuthentication(String userId,String sign){
+        return getCommonClient().getMemberAuthentication(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable getVIPLevel(String userId,String sign){
         return getCommonClient().getVIPLevel(userId,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }

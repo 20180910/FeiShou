@@ -6,6 +6,7 @@ import com.zhizhong.feishou.base.ResponseObj;
 import com.zhizhong.feishou.module.my.network.request.HomeworkCityItem;
 import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
 import com.zhizhong.feishou.module.my.network.response.AccountObj;
+import com.zhizhong.feishou.module.my.network.response.AuthObj;
 import com.zhizhong.feishou.module.my.network.response.BankObj;
 import com.zhizhong.feishou.module.my.network.response.CityObj;
 import com.zhizhong.feishou.module.my.network.response.HomeworkObj;
@@ -76,11 +77,11 @@ public interface IRequest {
 
     //获取实名验证信息
     @GET("api/FlyMember/GetMemberAuthentication")
-    Observable<ResponseObj<BaseObj>> getMemberAuthentication(@Query("user_id") String user_id,@Query("sign") String sign);
+    Observable<ResponseObj<AuthObj>> getMemberAuthentication(@Query("user_id") String user_id, @Query("sign") String sign);
 
-    //设置实名验证信息
+    //实名认证申请
     @GET("api/FlyMember/GetSetMemberAuthentication")
-    Observable<ResponseObj<BaseObj>> setMemberAuthentication(@QueryMap Map<String,String> map);
+    Observable<ResponseObj<BaseObj>> authCommit(@QueryMap Map<String,String> map);
 
     //上传图片
     @POST("api/Lib/PostUploadFileBase64")
@@ -166,9 +167,6 @@ public interface IRequest {
     @GET("api/FlyMember/GetWithdrawals")
     Observable<ResponseObj<BaseObj>> tiXian(@QueryMap Map<String,String> map);
 
-    //实名认证申请
-    @GET("api/FlyMember/GetSetMemberAuthentication")
-    Observable<ResponseObj<BaseObj>> authCommit(@QueryMap Map<String,String> map);
 
     //获取订单
     @GET("api/FlyMember/GetOrderList")
