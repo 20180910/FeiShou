@@ -28,7 +28,7 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
  */
 
 public abstract class BaseFragment extends IBaseFragment implements View.OnClickListener,ProgressLayout.OnAgainInter{
-    protected int pageNum=1;
+    protected int pageNum=2;
     protected int pageSize=20;
 
     private boolean isFirstLoadData=true;

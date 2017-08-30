@@ -44,7 +44,7 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     protected Toolbar toolbar;
     private boolean showNavigationIcon =true;
     private int navigationIcon =-1;
-    protected int pageNum=1;
+    protected int pageNum=2;
     protected int pageSize= 20;
     private String appTitle,appRightTitle;
     private int appTitleColor,appRightTitleColor;
