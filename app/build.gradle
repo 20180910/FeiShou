@@ -10,6 +10,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders  = [
+                JPUSH_PKGNAME : "com.zhizhong.feishou",
+                JPUSH_APPKEY : "33cb68512966131819416de9", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     signingConfigs {
         release {
@@ -41,6 +47,7 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
 
 }
 
@@ -75,4 +82,8 @@ dependencies {
     //下拉刷新
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     compile files('libs/BaiduLBS_Android.jar')
+
+    //极光推送
+    compile 'cn.jiguang.sdk:jpush:3.0.3'  // 此处以JPush 3.0.3 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.1.1'  // 此处以JCore 1.1.1 版本为例。
 }
