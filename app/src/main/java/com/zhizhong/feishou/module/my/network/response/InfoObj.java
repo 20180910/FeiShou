@@ -23,6 +23,7 @@ public class InfoObj extends BaseObj {
     private String birthday;
     private String sex;
     private int user_type;
+    private int is_authentication;
 
     public String getUser_id() {
         return user_id;
@@ -54,6 +55,14 @@ public class InfoObj extends BaseObj {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public int getIs_authentication() {
+        return is_authentication;
+    }
+
+    public void setIs_authentication(int is_authentication) {
+        this.is_authentication = is_authentication;
     }
 
     public String getSex() {

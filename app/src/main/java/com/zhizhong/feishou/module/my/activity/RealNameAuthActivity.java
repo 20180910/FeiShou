@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -44,6 +45,7 @@ import com.zhizhong.feishou.base.MySub;
 import com.zhizhong.feishou.module.my.bean.CityBean;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
 import com.zhizhong.feishou.module.my.network.request.UploadImgItem;
+import com.zhizhong.feishou.module.my.network.response.AuthObj;
 import com.zhizhong.feishou.tools.BitmapUtils;
 import com.zhizhong.feishou.tools.ImageUtils;
 import com.zhizhong.feishou.tools.StreamUtils;
@@ -82,6 +84,8 @@ public class RealNameAuthActivity extends BaseActivity {
     MyRadioButton rb_auth_jz;
     @BindView(R.id.iv_auth_img1)
     ImageView iv_auth_img1;
+    @BindView(R.id.ll_auth_xieyi)
+    LinearLayout ll_auth_xieyi;
     @BindView(R.id.fl_auth_img1)
     FrameLayout fl_auth_img1;
     @BindView(R.id.iv_auth_img2)
@@ -106,6 +110,7 @@ public class RealNameAuthActivity extends BaseActivity {
     private ArrayList<String> options1Items;
     private ArrayList<ArrayList<String>> options2Items;
     private ArrayList<ArrayList<ArrayList<String>>> options3Items;
+    private boolean isAuth;
     @Override
     protected int getContentView() {
         setAppTitle("实名认证");
@@ -114,7 +119,44 @@ public class RealNameAuthActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        if("auth".equals(getIntent().getAction())){
+            isAuth=true;
+        }
+        getData();
+    }
 
+    private void getData() {
+        showLoading();
+        addSubscription(ApiRequest.getMemberAuthentication(getUserId(),getSign()).subscribe(new MySub<AuthObj>(mContext) {
+            @Override
+            public void onMyNext(AuthObj obj) {
+                et_auth_name.setText(obj.getReal_name());
+                et_auth_idcard.setText(obj.getCard_id());
+                tv_auth_area.setText(obj.getProvince()+","+obj.getCity()+","+obj.getArea());
+                et_auth_address.setText(obj.getAddr());
+                rb_auth_wrj.setChecked(obj.getHave_fly()==1);
+                rb_auth_jz.setChecked(obj.getHave_license()==1);
+
+                if (!TextUtils.isEmpty(obj.getCard_front_img())){
+                    imgUrlOne=obj.getCard_front_img();
+                    iv_auth_img1.setVisibility(View.VISIBLE);
+                    Glide.with(mContext).load(obj.getCard_front_img()).error(R.color.c_press).into(iv_auth_img1);
+                }
+                if(!TextUtils.isEmpty(obj.getCard_back_img())){
+                    imgUrlSecond=obj.getCard_back_img();
+                    iv_auth_img2.setVisibility(View.VISIBLE);
+                    Glide.with(mContext).load(obj.getCard_back_img()).error(R.color.c_press).into(iv_auth_img2);
+                }
+
+                if(obj.getIs_authentication()==2){
+                    tv_real_name_commit.setVisibility(View.GONE);
+                    ll_auth_xieyi.setVisibility(View.GONE);
+                }else{
+                    tv_real_name_commit.setVisibility(View.VISIBLE);
+                    ll_auth_xieyi.setVisibility(View.VISIBLE);
+                }
+            }
+        }));
     }
 
     @Override

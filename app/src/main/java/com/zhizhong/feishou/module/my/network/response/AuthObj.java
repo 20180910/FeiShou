@@ -7,21 +7,22 @@ import com.zhizhong.feishou.base.BaseObj;
  */
 
 public class AuthObj extends BaseObj{
+
     /**
-     * id : 0
-     * user_id : 2
-     * real_name :
-     * card_id :
-     * province :
-     * city :
-     * area :
-     * addr :
-     * have_fly : 0
+     * id : 1
+     * user_id : 11
+     * real_name : 哟嚯
+     * card_id : 4676946434946838
+     * province : 上海市
+     * city : 上海市
+     * area : 黄浦区
+     * addr : 航海
+     * have_fly : 1
      * have_license : 0
-     * card_front_img :
-     * card_back_img :
-     * addtime :
-     * is_validation : 0
+     * card_front_img : http://121.40.186.118:5009/upload/201708/30/17083013074686362965.jpg
+     * card_back_img : http://121.40.186.118:5009/upload/201708/30/17083013075259517943.jpg
+     * addtime : 2017-08-30 13:07:54
+     * is_authentication : 2
      */
 
     private int id;
@@ -37,7 +38,7 @@ public class AuthObj extends BaseObj{
     private String card_front_img;
     private String card_back_img;
     private String addtime;
-    private int is_validation;
+    private int is_authentication;
 
     public int getId() {
         return id;
@@ -143,11 +144,11 @@ public class AuthObj extends BaseObj{
         this.addtime = addtime;
     }
 
-    public int getIs_validation() {
-        return is_validation;
+    public int getIs_authentication() {
+        return is_authentication;
     }
 
-    public void setIs_validation(int is_validation) {
-        this.is_validation = is_validation;
+    public void setIs_authentication(int is_authentication) {
+        this.is_authentication = is_authentication;
     }
 }

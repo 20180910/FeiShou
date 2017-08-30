@@ -183,7 +183,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="30dp"
                         android:button="@null"
-                        android:checked="true"
                         android:drawablePadding="7dp"
                         android:text="是"
                         android:textColor="@color/gray_33"
@@ -194,6 +193,7 @@
                         />
 
                     <com.github.customview.MyRadioButton
+                        android:id="@+id/rb_auth_wrj2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:button="@null"
@@ -204,6 +204,7 @@
                         app:my_radio_checked="@drawable/img23"
                         app:my_radio_checked_drawable="right"
                         app:my_radio_normal="@drawable/img24"
+                        android:checked="true"
                         />
                 </RadioGroup>
             </com.github.customview.MyLinearLayout>
@@ -240,7 +241,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="30dp"
                         android:button="@null"
-                        android:checked="true"
                         android:drawablePadding="7dp"
                         android:text="是"
                         android:textColor="@color/gray_33"
@@ -251,6 +251,7 @@
                         />
 
                     <com.github.customview.MyRadioButton
+                        android:id="@+id/rb_auth_jz2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:button="@null"
@@ -261,6 +262,7 @@
                         app:my_radio_checked="@drawable/img23"
                         app:my_radio_checked_drawable="right"
                         app:my_radio_normal="@drawable/img24"
+                        android:checked="true"
                         />
                 </RadioGroup>
             </com.github.customview.MyLinearLayout>
@@ -380,6 +382,7 @@
                     />
             </LinearLayout>
             <com.github.customview.MyLinearLayout
+                android:id="@+id/ll_auth_xieyi"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:gravity="center_vertical"

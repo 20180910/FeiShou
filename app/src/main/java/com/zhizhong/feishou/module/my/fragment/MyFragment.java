@@ -22,7 +22,6 @@ import com.zhizhong.feishou.module.my.activity.MyWalletActivity;
 import com.zhizhong.feishou.module.my.activity.RealNameAuthActivity;
 import com.zhizhong.feishou.module.my.activity.VIPLevelActivity;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
-import com.zhizhong.feishou.module.my.network.response.AuthObj;
 import com.zhizhong.feishou.module.my.network.response.InfoObj;
 
 import butterknife.BindView;
@@ -77,9 +76,17 @@ public class MyFragment extends BaseFragment {
         }
         int level = SPUtils.getPrefInt(mContext, Config.level, 0);
         int auth = SPUtils.getPrefInt(mContext, Config.authentication, 0);
-        if (auth == 2) {
+       /* if (auth == 2) {
             tv_info_auth.setText("身份证已认证");
-        } else {
+        }else if(auth== 3){
+            tv_info_auth.setText("身份证认证失败");
+            tv_info_auth.setOnClickListener(new MyOnClickListener() {
+                @Override
+                protected void onNoDoubleClick(View view) {
+                    STActivity(RealNameAuthActivity.class);
+                }
+            });
+        }  else {
             tv_info_auth.setText("身份证未认证");
             tv_info_auth.setOnClickListener(new MyOnClickListener() {
                 @Override
@@ -87,7 +94,7 @@ public class MyFragment extends BaseFragment {
                     STActivity(RealNameAuthActivity.class);
                 }
             });
-        }
+        }*/
         tv_info_name.setText(userName);
         tv_info_level.setText(level+"");
     }
@@ -98,12 +105,34 @@ public class MyFragment extends BaseFragment {
     }
 
     private void getAuth() {
-        addSubscription(ApiRequest.getMemberAuthentication(getUserId(), getSign()).subscribe(new MySub<AuthObj>(mContext) {
+        addSubscription(ApiRequest.getInfo(getUserId(), getSign()).subscribe(new MySub<InfoObj>(mContext) {
             @Override
-            public void onMyNext(AuthObj obj) {
-                SPUtils.setPrefInt(mContext, Config.authentication, obj.getIs_validation());
-                if (obj.getIs_validation() == 2) {
+            public void onMyNext(InfoObj obj) {
+                SPUtils.setPrefString(mContext,Config.sex,obj.getSex());
+                SPUtils.setPrefString(mContext,Config.birthday,obj.getBirthday());
+                SPUtils.setPrefString(mContext,Config.nick_name,obj.getNick_name());
+                tv_info_name.setText(obj.getNick_name());
+
+                Glide.with(mContext).load(obj.getAvatar()).error(R.color.c_press).into(civ_my_img);
+
+                SPUtils.setPrefInt(mContext, Config.authentication, obj.getIs_authentication());
+                if (obj.getIs_authentication() == 2) {
                     tv_info_auth.setText("身份证已认证");
+                    tv_info_auth.setOnClickListener(new MyOnClickListener() {
+                        @Override
+                        protected void onNoDoubleClick(View view) {
+                            Intent intent=new Intent("auth");
+                            STActivity(intent,RealNameAuthActivity.class);
+                        }
+                    });
+                }else if(obj.getIs_authentication() == 3){
+                    tv_info_auth.setText("身份证认证失败");
+                    tv_info_auth.setOnClickListener(new MyOnClickListener() {
+                        @Override
+                        protected void onNoDoubleClick(View view) {
+                            STActivity(RealNameAuthActivity.class);
+                        }
+                    });
                 } else {
                     tv_info_auth.setText("身份证未认证");
                     tv_info_auth.setOnClickListener(new MyOnClickListener() {
@@ -115,6 +144,31 @@ public class MyFragment extends BaseFragment {
                 }
             }
         }));
+        /*addSubscription(ApiRequest.getMemberAuthentication(getUserId(), getSign()).subscribe(new MySub<AuthObj>(mContext) {
+            @Override
+            public void onMyNext(AuthObj obj) {
+                SPUtils.setPrefInt(mContext, Config.authentication, obj.getIs_authentication());
+                if (obj.getIs_authentication() == 2) {
+                    tv_info_auth.setText("身份证已认证");
+                }else if(obj.getIs_authentication() == 3){
+                    tv_info_auth.setText("身份证认证失败");
+                    tv_info_auth.setOnClickListener(new MyOnClickListener() {
+                        @Override
+                        protected void onNoDoubleClick(View view) {
+                            STActivity(RealNameAuthActivity.class);
+                        }
+                    });
+                } else {
+                    tv_info_auth.setText("身份证未认证");
+                    tv_info_auth.setOnClickListener(new MyOnClickListener() {
+                        @Override
+                        protected void onNoDoubleClick(View view) {
+                            STActivity(RealNameAuthActivity.class);
+                        }
+                    });
+                }
+            }
+        }));*/
     }
 
     private void getData() {
