@@ -2,6 +2,7 @@ package com.zhizhong.feishou.module.my.activity;
 
 import android.content.DialogInterface;
 import android.support.v4.widget.NestedScrollView;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -33,6 +34,7 @@ import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.view.MyDialog;
 import com.github.customview.MyTextView;
+import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 import com.zhizhong.feishou.base.BaseObj;
@@ -40,6 +42,9 @@ import com.zhizhong.feishou.base.MySub;
 import com.zhizhong.feishou.module.my.Constant;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
 import com.zhizhong.feishou.module.my.network.response.OrderDetailObj;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -165,6 +170,10 @@ public class OrderDetailsActivity extends BaseActivity {
                         tv_order_detail_jiedan.setOnClickListener(new MyOnClickListener() {
                             @Override
                             protected void onNoDoubleClick(View view) {
+                                if(TextUtils.isEmpty(getUserId())){
+                                    STActivity(LoginActivity.class);
+                                    return;
+                                }
                                 MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
                                 mDialog.setMessage("确认接单吗?");
                                 mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
@@ -353,7 +362,11 @@ public class OrderDetailsActivity extends BaseActivity {
 
     private void jieDan(String orderNo) {
         showLoading();
-        addSubscription(ApiRequest.jieDan(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("order_no",orderNo);
+        map.put("user_id",getUserId());
+        map.put("sign", GetSign.getSign(map));
+        addSubscription(ApiRequest.jieDan(map).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
                 showMsg(obj.getMsg());

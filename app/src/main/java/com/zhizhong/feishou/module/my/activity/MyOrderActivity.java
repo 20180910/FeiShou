@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.github.baseclass.rx.MySubscriber;
+import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
 import com.zhizhong.feishou.base.BaseObj;
@@ -18,7 +19,9 @@ import com.zhizhong.feishou.module.my.fragment.AllOrderFragment;
 import com.zhizhong.feishou.module.my.network.ApiRequest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -173,7 +176,11 @@ public class MyOrderActivity extends BaseActivity {
 
     private void jieDan(String orderNo) {
         showLoading();
-        addSubscription(ApiRequest.jieDan(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("order_no",orderNo);
+        map.put("user_id",getUserId());
+        map.put("sign", GetSign.getSign(map));
+        addSubscription(ApiRequest.jieDan(map).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
                 showMsg(obj.getMsg());

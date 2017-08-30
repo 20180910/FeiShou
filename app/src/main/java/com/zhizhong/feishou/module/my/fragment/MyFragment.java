@@ -2,6 +2,7 @@ package com.zhizhong.feishou.module.my.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -68,7 +69,9 @@ public class MyFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getAuth();
+        if(!TextUtils.isEmpty(getUserId())){
+            getAuth();
+        }
         String userName = SPUtils.getPrefString(mContext, Config.nick_name, null);
         String avatar = SPUtils.getPrefString(mContext, Config.avatar, null);
         if (avatar != null) {

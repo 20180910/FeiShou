@@ -129,8 +129,8 @@ public class ApiRequest {
     public static Observable getAllOrder(Map map){
         return getCommonClient().getAllOrder(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
-    public static Observable jieDan(String orderNo,String sign){
-        return getCommonClient().jieDan(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    public static Observable jieDan(Map map){
+        return getCommonClient().jieDan(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
     public static Observable zhiXing(String orderNo,String sign){
         return getCommonClient().zhiXing(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());

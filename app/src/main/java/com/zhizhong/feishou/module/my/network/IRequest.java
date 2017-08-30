@@ -174,7 +174,7 @@ public interface IRequest {
 
     //订单-接单
     @GET("api/FlyMember/GetGoAddOrder")
-    Observable<ResponseObj<BaseObj>> jieDan(@Query("order_no") String order_no, @Query("sign") String sign);
+    Observable<ResponseObj<BaseObj>> jieDan(@QueryMap Map<String,String> map);
 
     //订单-去执行
     @GET("api/FlyMember/GetGoCompleteOrder")
