@@ -59,7 +59,7 @@ public class VIPLevelActivity extends BaseActivity {
     @Override
     protected void initView() {
         String avatar = SPUtils.getPrefString(mContext, Config.avatar, null);
-        Glide.with(mContext).load(avatar).error(R.color.c_press).into(icv_vip_img);
+        Glide.with(mContext).load(avatar).error(R.drawable.people).into(icv_vip_img);
     }
 
     @Override

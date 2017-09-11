@@ -132,7 +132,11 @@ public class RealNameAuthActivity extends BaseActivity {
             public void onMyNext(AuthObj obj) {
                 et_auth_name.setText(obj.getReal_name());
                 et_auth_idcard.setText(obj.getCard_id());
-                tv_auth_area.setText(obj.getProvince()+","+obj.getCity()+","+obj.getArea());
+                if(TextUtils.isEmpty(obj.getProvince())){
+                    tv_auth_area.setText(null);
+                }else{
+                    tv_auth_area.setText(obj.getProvince()+","+obj.getCity()+","+obj.getArea());
+                }
                 et_auth_address.setText(obj.getAddr());
                 rb_auth_wrj.setChecked(obj.getHave_fly()==1);
                 rb_auth_jz.setChecked(obj.getHave_license()==1);

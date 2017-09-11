@@ -75,7 +75,7 @@ public class MyFragment extends BaseFragment {
         String userName = SPUtils.getPrefString(mContext, Config.nick_name, null);
         String avatar = SPUtils.getPrefString(mContext, Config.avatar, null);
         if (avatar != null) {
-            Glide.with(mContext).load(avatar).error(R.color.c_press).into(civ_my_img);
+            Glide.with(mContext).load(avatar).error(R.drawable.people).into(civ_my_img);
         }
         int level = SPUtils.getPrefInt(mContext, Config.level, 0);
         int auth = SPUtils.getPrefInt(mContext, Config.authentication, 0);
@@ -116,7 +116,7 @@ public class MyFragment extends BaseFragment {
                 SPUtils.setPrefString(mContext,Config.nick_name,obj.getNick_name());
                 tv_info_name.setText(obj.getNick_name());
 
-                Glide.with(mContext).load(obj.getAvatar()).error(R.color.c_press).into(civ_my_img);
+                Glide.with(mContext).load(obj.getAvatar()).error(R.drawable.people).into(civ_my_img);
 
                 SPUtils.setPrefInt(mContext, Config.authentication, obj.getIs_authentication());
                 if (obj.getIs_authentication() == 2) {
@@ -184,7 +184,7 @@ public class MyFragment extends BaseFragment {
                 SPUtils.setPrefString(mContext,Config.nick_name,obj.getNick_name());
                 tv_info_name.setText(obj.getNick_name());
 
-                Glide.with(mContext).load(obj.getAvatar()).error(R.color.c_press).into(civ_my_img);
+                Glide.with(mContext).load(obj.getAvatar()).error(R.drawable.people).into(civ_my_img);
             }
         }));
     }
