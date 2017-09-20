@@ -147,5 +147,7 @@ public class ApiRequest {
     public static Observable getOrderDetail(String orderNo,String sign){
         return getCommonClient().getOrderDetail(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
-
+    public static Observable uploadImgForInfo(Map map){
+        return getCommonClient().uploadImgForInfo(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 }
