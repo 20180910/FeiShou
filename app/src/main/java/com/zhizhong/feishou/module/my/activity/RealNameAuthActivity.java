@@ -412,7 +412,7 @@ public class RealNameAuthActivity extends BaseActivity {
                             + options3Items.get(options1).get(option2).get(options3);
                     tv_auth_area.setText(area);
                 });
-                pwOptions.showAtLocation(tv_auth_area, Gravity.BOTTOM, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+                pwOptions.showAtLocation(tv_auth_area, Gravity.BOTTOM, ActionBar.LayoutParams.WRAP_CONTENT,PhoneUtils.getNavigationBarHeight(mContext));
             }
         });
     }
