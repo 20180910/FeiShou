@@ -28,5 +28,8 @@ public class ApiRequest {
     public static Observable getZengZhiList(Map map){
         return getCommonClient().getZengZhiList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
+    public static Observable getZhuanYePeiXunList(Map map){
+        return getCommonClient().getZhuanYePeiXunList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 
 }

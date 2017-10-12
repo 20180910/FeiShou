@@ -6,7 +6,6 @@
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
-
     <com.github.customview.MyTextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_title_height"
@@ -16,26 +15,22 @@
         android:textSize="17sp"
         app:my_tv_bottom_line="true"
         />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_my_order"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/blue"
+        app:tabSelectedTextColor="@color/blue"
+        app:tabIndicatorHeight="3dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        >
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_zz"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-   <com.zhizhong.feishou.view.ProgressLayout
-       android:id="@id/pl_load"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_marginTop="5dp"
-       >
-       <in.srain.cube.views.ptr.PtrClassicFrameLayout
-           android:id="@id/pcfl_refresh"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           app:ptr_resistance="2.1"
-           app:ptr_ratio_of_header_height_to_refresh="1.2"
-           >
-           <android.support.v7.widget.RecyclerView
-               android:id="@+id/rv_zz_list"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
-
-           </android.support.v7.widget.RecyclerView>
-       </in.srain.cube.views.ptr.PtrClassicFrameLayout>
-   </com.zhizhong.feishou.view.ProgressLayout>
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

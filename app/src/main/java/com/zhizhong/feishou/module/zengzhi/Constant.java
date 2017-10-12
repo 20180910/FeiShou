@@ -5,4 +5,6 @@ package com.zhizhong.feishou.module.zengzhi;
  */
 
 public class Constant {
+    public static final String sbgm="sbgm";//设备购买
+    public static final String zypx="zypx";//专业培训
 }
