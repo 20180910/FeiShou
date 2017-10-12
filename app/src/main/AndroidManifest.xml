@@ -84,6 +84,7 @@
         <activity android:name=".module.my.activity.AddBankCardActivity"/>
 
 
+        <activity android:name=".module.zengzhi.activity.ZengZhiDetailActivity"/>
 
         <!--任务列表-->
         <activity android:name=".module.renwu.activity.RenWuDetailsActivity"/>

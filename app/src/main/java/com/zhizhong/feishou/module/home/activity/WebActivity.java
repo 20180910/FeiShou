@@ -26,7 +26,7 @@ public class WebActivity extends BaseActivity {
     protected int getContentView() {
         String title = getIntent().getStringExtra(Constant.title);
         setAppTitle(title);
-        //R.layout.act_home_web
+        //R.layout.act_home_web{"id":16,"content":""}
         return 0;
     }
 

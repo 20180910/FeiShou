@@ -31,5 +31,11 @@ public class ApiRequest {
     public static Observable getZhuanYePeiXunList(Map map){
         return getCommonClient().getZhuanYePeiXunList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
+    public static Observable getSheBeiDetail(Map map){
+        return getCommonClient().getSheBeiDetail(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getPeiXunDetail(Map map){
+        return getCommonClient().getPeiXunDetail(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 
 }

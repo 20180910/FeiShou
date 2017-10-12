@@ -1,5 +1,6 @@
 package com.zhizhong.feishou.module.zengzhi.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,12 +8,15 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.zengzhi.Constant;
+import com.zhizhong.feishou.module.zengzhi.activity.ZengZhiDetailActivity;
 import com.zhizhong.feishou.module.zengzhi.network.ApiRequest;
 import com.zhizhong.feishou.module.zengzhi.network.response.ZengZhiObj;
 
@@ -55,6 +59,15 @@ public class SheBeiGouMaiFragment extends BaseFragment implements LoadMoreAdapte
                 holder.setText(R.id.tv_zz_name,bean.getProduct_name())
                         .setText(R.id.tv_zz_model,bean.getProduct_model())
                         .setText(R.id.tv_zz_money,"¥"+bean.getPrice()+"");
+                holder.itemView.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        Intent intent=new Intent();
+                        intent.putExtra(Constant.IParam.zz_detail_type,Constant.IParam.zz_detail_type_1);
+                        intent.putExtra(Constant.IParam.id,bean.getId()+"");
+                        STActivity(intent,ZengZhiDetailActivity.class);
+                    }
+                });
             }
         };
         adapter.setOnLoadMoreListener(this);

@@ -1,5 +1,6 @@
 package com.zhizhong.feishou.module.zengzhi.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.zhizhong.feishou.GetSign;
@@ -14,6 +16,8 @@ import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseFragment;
 import com.zhizhong.feishou.base.DividerGridItemDecoration;
 import com.zhizhong.feishou.base.MySub;
+import com.zhizhong.feishou.module.zengzhi.Constant;
+import com.zhizhong.feishou.module.zengzhi.activity.ZengZhiDetailActivity;
 import com.zhizhong.feishou.module.zengzhi.network.ApiRequest;
 import com.zhizhong.feishou.module.zengzhi.network.response.ZhuanYePeiXunObj;
 
@@ -55,6 +59,16 @@ public class ZhuanYePeiXunFragment extends BaseFragment implements LoadMoreAdapt
                 Glide.with(mContext).load(bean.getImage_url()).error(R.color.c_press).into(imageView);
                 holder.setText(R.id.tv_pei_xun_title,bean.getTitle())
                         .setText(R.id.tv_pei_xun_people,"培训讲师:"+bean.getTraining_teacher());
+
+                holder.itemView.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        Intent intent=new Intent();
+                        intent.putExtra(Constant.IParam.zz_detail_type,Constant.IParam.zz_detail_type_2);
+                        intent.putExtra(Constant.IParam.id,bean.getId()+"");
+                        STActivity(intent,ZengZhiDetailActivity.class);
+                    }
+                });
             }
         };
         adapter.setOnLoadMoreListener(this);

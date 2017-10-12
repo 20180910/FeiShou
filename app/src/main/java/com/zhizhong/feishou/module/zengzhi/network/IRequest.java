@@ -1,6 +1,7 @@
 package com.zhizhong.feishou.module.zengzhi.network;
 
 import com.zhizhong.feishou.base.ResponseObj;
+import com.zhizhong.feishou.module.zengzhi.network.response.WebZengZhiContentObj;
 import com.zhizhong.feishou.module.zengzhi.network.response.ZengZhiObj;
 import com.zhizhong.feishou.module.zengzhi.network.response.ZhuanYePeiXunObj;
 
@@ -26,4 +27,12 @@ public interface IRequest {
     //增值服务列表-专业培训
     @GET("api/FlyMember/GetProfessionalTraining")
     Observable<ResponseObj<List<ZhuanYePeiXunObj>>> getZhuanYePeiXunList(@QueryMap Map<String,String> map);
+
+    //增值服务列表-设备购买-详情
+    @GET("api/FlyMember/GetAppreciationServiceDetails")
+    Observable<ResponseObj<WebZengZhiContentObj>> getSheBeiDetail(@QueryMap Map<String,String> map);
+
+    //增值服务列表-专业培训-详情
+    @GET("api/FlyMember/GetProfessionalTrainingDetails")
+    Observable<ResponseObj<WebZengZhiContentObj>> getPeiXunDetail(@QueryMap Map<String,String> map);
 }
