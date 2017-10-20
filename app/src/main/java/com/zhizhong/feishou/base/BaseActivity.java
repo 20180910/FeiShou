@@ -49,8 +49,8 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     private String appTitle,appRightTitle;
     private int appTitleColor,appRightTitleColor;
     private int appRightImg;
-    private int titleBackgroud= R.color.white;
-    private int statusBarBackgroud= R.color.white;
+    private int titleBackgroud= R.color.blue;
+    private int statusBarBackgroud= R.color.blue;
     protected TextView app_title,app_right_tv;
     protected ImageView app_right_iv;
     private View status_bar;
@@ -189,7 +189,7 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
             if(navigationIcon!=-1){
                 getSupportActionBar().setHomeAsUpIndicator(navigationIcon);
             }else{
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back_white);
 //                getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
             }
             getSupportActionBar().setDisplayHomeAsUpEnabled(showNavigationIcon);

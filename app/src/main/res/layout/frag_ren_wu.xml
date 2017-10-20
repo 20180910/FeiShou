@@ -12,9 +12,10 @@
         android:layout_height="@dimen/app_title_height"
         android:gravity="center"
         android:text="飞农宝"
-        android:textColor="@color/gray_33"
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:my_tv_bottom_line="true"
+        android:background="@color/blue"
         />
 
     <com.zhizhong.feishou.view.ProgressLayout

@@ -10,15 +10,15 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="@dimen/app_title_height"
-    android:background="@color/white">
+    android:background="@color/blue">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="我的"
-        android:textColor="@color/gray_33"
         android:textSize="17sp"
         android:layout_centerInParent="true"
+        android:textColor="@color/white"
         />
         <ImageView
             android:id="@+id/iv_my_set"

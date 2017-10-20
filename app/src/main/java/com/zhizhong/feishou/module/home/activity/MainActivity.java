@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.height = statusBarHeight;
         status_bar.setLayoutParams(layoutParams);
-        status_bar.setBackgroundColor(getResources().getColor(R.color.white));
+        status_bar.setBackgroundColor(getResources().getColor(R.color.blue));
 
         selectButton = rb_home_rwdt;
         renWuFragment = new RenWuFragment();

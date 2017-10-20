@@ -104,7 +104,7 @@
                             android:layout_marginTop="10dp"
                             tools:text="上海市"
                             android:textColor="@color/gray_33"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             />
                     </LinearLayout>
 
@@ -137,7 +137,7 @@
                             android:layout_marginTop="10dp"
                             tools:text="早稻"
                             android:textColor="@color/gray_33"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             />
                     </LinearLayout>
 
@@ -168,9 +168,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            tools:text="122元/亩"
+                            tools:text="122.00元/亩"
                             android:textColor="@color/gray_33"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             />
                     </LinearLayout>
 
@@ -203,7 +203,7 @@
                             android:layout_marginTop="10dp"
                             tools:text="500亩"
                             android:textColor="@color/gray_33"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -513,7 +513,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="确认订单"
+                android:text="确认接单"
                 app:my_tv_solid="@color/blue"
                 app:my_tv_press="@color/blue_press"
                 android:textColor="@color/white"
