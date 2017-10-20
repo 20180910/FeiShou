@@ -25,6 +25,10 @@ public class ExampleUnitTest {
         System.out.println(System.currentTimeMillis());
     }
     @Test
+    public void asfd() throws Exception {
+        System.out.println("4000000.0元".length());
+    }
+    @Test
     public void adf() throws Exception {
         PoiSearch poiSearch = PoiSearch.newInstance();
         poiSearch.setOnGetPoiSearchResultListener(new OnGetPoiSearchResultListener() {

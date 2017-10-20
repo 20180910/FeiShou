@@ -103,14 +103,15 @@
                 />
             <TextView
                 android:id="@+id/tv_rw_money"
-                android:layout_width="wrap_content"
+                android:layout_width="68dp"
                 android:layout_height="wrap_content"
-                tools:text="4000元"
+                tools:text="40000.0元"
                 android:layout_gravity="center"
                 android:drawableTop="@drawable/img4"
                 android:drawablePadding="6dp"
                 android:textColor="@color/blue"
-                android:textSize="14dp"
+                android:textSize="12dp"
+                android:gravity="center_horizontal"
                 />
         </LinearLayout>
         <LinearLayout

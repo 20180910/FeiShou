@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.baseclass.adapter.LoadMoreAdapter;
@@ -23,11 +24,20 @@ public class RenWuAdapter extends LoadMoreAdapter<ZuoWuObj> {
     public void bindData(LoadMoreViewHolder holder, int i, ZuoWuObj bean) {
         ImageView imageView = holder.getImageView(R.id.iv_rw_img);
         Glide.with(mContext).load(bean.getImage_url()).error(R.color.c_press).into(imageView);
+        TextView tv_rw_money = holder.getTextView(R.id.tv_rw_money);
+        String totalPrice = bean.getTotal_price() + "元";
+        tv_rw_money.setText(totalPrice);
+        if(totalPrice.length()>9){
+            tv_rw_money.setTextSize(11);
+        }else if(totalPrice.length()>7){
+            tv_rw_money.setTextSize(12);
+        }else{
+            tv_rw_money.setTextSize(14);
+        }
         holder.setText(R.id.tv_rw_address,bean.getAddress())
                 .setText(R.id.tv_rw_title,bean.getTitle())
                 .setText(R.id.tv_rw_dk,bean.getCondition())
-                .setText(R.id.tv_rw_time,bean.getRequest_time())
-                .setText(R.id.tv_rw_money,bean.getTotal_price()+"元");
+                .setText(R.id.tv_rw_time,bean.getRequest_time());
         LinearLayout ll_rw_bao1 = (LinearLayout) holder.getView(R.id.ll_rw_bao1);
         LinearLayout ll_rw_bao2 = (LinearLayout) holder.getView(R.id.ll_rw_bao2);
         LinearLayout ll_rw_bao3 = (LinearLayout) holder.getView(R.id.ll_rw_bao3);
