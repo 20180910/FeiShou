@@ -99,11 +99,11 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/gray_d7"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="5dp"
                 />
             <TextView
                 android:id="@+id/tv_rw_money"
-                android:layout_width="68dp"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 tools:text="40000.0元"
                 android:layout_gravity="center"

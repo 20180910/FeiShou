@@ -43,7 +43,7 @@ public class HomeworkScopeActivity extends BaseActivity {
     protected int getContentView() {
         setAppTitle("作业范围");
         setAppRightTitle("编辑");
-        setAppRightTitleColor(getResources().getColor(R.color.blue));
+        setAppRightTitleColor(getResources().getColor(R.color.app_title_white));
         return R.layout.act_homework_scope;
     }
 

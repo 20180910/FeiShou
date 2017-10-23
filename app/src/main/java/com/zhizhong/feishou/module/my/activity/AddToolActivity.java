@@ -68,11 +68,10 @@ public class AddToolActivity extends BaseActivity {
     @BindView(R.id.tv_add_tool_commit)
     MyTextView tv_add_tool_commit;
     private String imgUrl="";
-    private boolean addSuccess;
     private BottomSheetDialog selectPhotoDialog;
     @Override
     public void again() {
-
+        initData();
     }
 
     @Override
@@ -138,18 +137,11 @@ public class AddToolActivity extends BaseActivity {
         addSubscription(ApiRequest.addTool(map).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
-                addSuccess=true;
                 showMsg(obj.getMsg());
+                setResult(RESULT_OK);
+                finish();
             }
         }));
-    }
-
-    @Override
-    public void finish() {
-        if(addSuccess){
-            setResult(RESULT_OK);
-        }
-        super.finish();
     }
 
     @Override

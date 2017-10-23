@@ -27,8 +27,8 @@ public class RenWuAdapter extends LoadMoreAdapter<ZuoWuObj> {
         TextView tv_rw_money = holder.getTextView(R.id.tv_rw_money);
         String totalPrice = bean.getTotal_price() + "元";
         tv_rw_money.setText(totalPrice);
-        if(totalPrice.length()>9){
-            tv_rw_money.setTextSize(11);
+        if(totalPrice.length()>=9){
+            tv_rw_money.setTextSize(10);
         }else if(totalPrice.length()>7){
             tv_rw_money.setTextSize(12);
         }else{
