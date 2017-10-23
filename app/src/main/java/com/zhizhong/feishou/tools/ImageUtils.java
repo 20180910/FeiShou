@@ -38,9 +38,9 @@ public class ImageUtils {
         }
     }
     //拍照保存目录
-    public static final String fileSavePath= Environment.getExternalStorageDirectory().getPath() + "/yinya/save/";
+    public static final String fileSavePath= Environment.getExternalStorageDirectory().getPath() + "/feishou/save/";
     //图片压缩保存目录
-    public static final String filePath= Environment.getExternalStorageDirectory().getPath() + "/yinya/compression/";
+    public static final String filePath= Environment.getExternalStorageDirectory().getPath() + "/feishou/compression/";
     public static final String fileName= Long.toString(System.nanoTime())+".png";
     public static void makeFolder(String path) {
         makeFolder(path,false);

@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -42,17 +40,18 @@ import com.zhizhong.feishou.tools.ImageUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import rx.Subscriber;
+import top.zibin.luban.Luban;
 
 /**
  * Created by administartor on 2017/8/3.
@@ -210,7 +209,47 @@ public class MyDataActivity extends BaseActivity {
     private void uploadImg() {
         showLoading();
         Log.i("========","========"+imgSaveName);
+
         RXStart(new IOCallBack<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                String newPath= ImageUtils.filePath;
+                ImageUtils.makeFolder(newPath);
+                FileInputStream fis = null;
+                try {
+                    List<File> files = Luban.with(mContext).load(imgSaveName).get();
+                    String imgStr = BitmapUtils.bitmapToString2(files.get(0));
+                    subscriber.onNext(imgStr);
+                    subscriber.onCompleted();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    subscriber.onError(e);
+                }
+            }
+            @Override
+            public void onMyNext(String baseImg) {
+                UploadImgItem item=new UploadImgItem();
+                item.setFile(baseImg);
+                String rnd = getRnd();
+                addSubscription(ApiRequest.uploadImg(rnd,getSign("rnd",rnd),item).subscribe(new MySub<BaseObj>(mContext,true) {
+                    @Override
+                    public void onMyNext(BaseObj obj) {
+                        imgUrl = obj.getImg();
+                        Glide.with(mContext).load(imgSaveName).error(R.drawable.people).into(civ_info_img);
+                        updateUserImg();
+
+                    }
+                }));
+            }
+            @Override
+            public void onMyError(Throwable e) {
+                super.onMyError(e);
+                dismissLoading();
+                showToastS("图片处理失败");
+            }
+        });
+
+        /*RXStart(new IOCallBack<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 String newPath= ImageUtils.filePath;
@@ -249,7 +288,7 @@ public class MyDataActivity extends BaseActivity {
                 dismissLoading();
                 showToastS("图片处理失败");
             }
-        });
+        });*/
     }
     private void updateUserImg() {
         Map<String,String>map=new HashMap<String,String>();

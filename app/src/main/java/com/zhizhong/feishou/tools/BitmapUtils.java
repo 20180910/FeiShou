@@ -5,6 +5,12 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 
 /**
  * Created by Administrator on 2017/5/18.
@@ -17,6 +23,41 @@ public class BitmapUtils {
         bgimage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] b = baos.toByteArray();
         return Base64.encodeToString(b, Base64.DEFAULT);
+    }
+    public static String bitmapToString2(File file) {
+        String base64 = null;
+        InputStream in = null;
+        try {
+            in = new FileInputStream(file);
+            byte[] bytes = new byte[in.available()];
+            int length = in.read(bytes);
+            base64 = Base64.encodeToString(bytes, 0, length, Base64.DEFAULT);
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return base64;
+    }
+    public static String bitmapToString2(Bitmap bgimage) {
+        int bytes = bgimage.getByteCount();
+
+        ByteBuffer buf = ByteBuffer.allocate(bytes);
+        bgimage.copyPixelsToBuffer(buf);
+
+        byte[] byteArray = buf.array();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
     // 计算图片的缩放值

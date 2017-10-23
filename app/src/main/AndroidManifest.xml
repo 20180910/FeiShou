@@ -69,7 +69,7 @@
         <!--实名认证-->
         <activity android:name=".module.my.activity.RealNameAuthActivity"/>
         <!--注册-->
-        <activity android:name=".module.my.activity.RegisterActivity"/>
+        <activity android:name=".module.my.activity.RegisterActivity" android:windowSoftInputMode="adjustResize"/>
         <!--我的等级-->
         <activity android:name=".module.my.activity.VIPLevelActivity"/>
         <!--我的钱包-->
