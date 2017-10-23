@@ -359,7 +359,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:gravity="center_vertical"
-                            android:text="包吃"
+                            android:text="包住"
                             />
                     </LinearLayout>
 
