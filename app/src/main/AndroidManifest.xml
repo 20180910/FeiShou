@@ -45,7 +45,19 @@
                  android:process=":multiprocess"
                  tools:node="replace" >
         </service>
-
+        <receiver
+            android:name=".broadcast.JpushReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.zhizhong.feishou" />
+            </intent-filter>
+        </receiver>
         <activity
             android:name="com.zhizhong.feishou.module.home.activity.MainActivity"
             android:label="@string/app_name"
