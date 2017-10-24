@@ -45,6 +45,9 @@ public class ApiRequest {
     public static Observable login(Map map){
         return getCommonClient().login(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable exitApp(Map map){
+        return getCommonClient().exitApp(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable getInfo(String userId,String sign){
         return getCommonClient().getInfo(userId,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }

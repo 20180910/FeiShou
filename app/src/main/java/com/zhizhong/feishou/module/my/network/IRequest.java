@@ -55,6 +55,10 @@ public interface IRequest {
     @GET("api/FlyMember/GetUserLogin")
     Observable<ResponseObj<LoginObj>> login(@QueryMap Map<String,String> map);
 
+    //退出登录
+    @GET("api/Lib/GetLogOut")
+    Observable<ResponseObj<BaseObj>> exitApp(@QueryMap Map<String,String> map);
+
     //单独修改图片
     @GET("api/FlyMember/GetSetUserAvatar")
     Observable<ResponseObj<BaseObj>> uploadImgForInfo(@QueryMap Map<String,String> map);
