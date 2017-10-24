@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.github.androidtools.SPUtils;
 import com.github.androidtools.StatusBarUtils;
 import com.github.customview.MyRadioButton;
-import com.github.retrofitutil.NetWorkManager;
 import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.R;
 import com.zhizhong.feishou.base.BaseActivity;
@@ -23,11 +23,7 @@ import com.zhizhong.feishou.module.zengzhi.fragment.ZengZhiFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
+import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends BaseActivity {
 
@@ -67,6 +63,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        String registrationID = JPushInterface.getRegistrationID(mContext);
+        Log.i("registrationID","registrationID====="+registrationID);
+        SPUtils.setPrefString(mContext,Config.jiguangRegistrationId,registrationID);
+
         setBroadcast();
 
         int statusBarHeight = StatusBarUtils.getStatusBarHeight(this);
@@ -120,38 +120,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        testData();
     }
-    public static class ApiRequest{
-        public static IRequest getClient(){
-            return NetWorkManager.getGeneralStringClient().create(IRequest.class);
-        }
-        public static void getList(Callback callBack){
-            getClient().getList("1","1cd92815f64aa33b70317909e0aadd13").enqueue(callBack);
-        }
-    }
-    public interface IRequest{
-        @GET("api/Farmer/GetBankList")
-        Call<String> getList(@Query("rnd") String rnd, @Query("sign") String sign);
-    }
-    private void testData() {
-        ApiRequest.getList(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                Log.i("====","==="+response.isSuccessful());
-                System.out.println("==="+response.isSuccessful());
-                response.body().toString();
-                Log.i("====" ,"==="+response.body().toString());
-                System.out.println("==="+response.body().toString());
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-
-            }
-        });
-    }
-
     @OnClick({R.id.rb_home_rwdt, R.id.rb_home_zzfw, R.id.rb_home_my})
     protected void onViewClick(View v) {
         switch (v.getId()) {

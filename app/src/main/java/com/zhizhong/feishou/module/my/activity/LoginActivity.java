@@ -93,7 +93,7 @@ public class LoginActivity extends BaseActivity {
         map.put("username",phone);
         map.put("password",pwd);
         map.put("user_type", Config.loginAppType_1);
-        map.put("RegistrationID","11");
+        map.put("RegistrationID",SPUtils.getPrefString(mContext,Config.jiguangRegistrationId,""));
         map.put("sign",GetSign.getSign(map));
         addSubscription(ApiRequest.login(map).subscribe(new MySub<LoginObj>(mContext) {
             @Override

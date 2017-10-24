@@ -7,6 +7,7 @@ package com.zhizhong.feishou;
 public class Config {
     public static final String jiguang_appkey = "33cb68512966131819416de9";
     public static final String jiguang_secret = "b78cdd44039623316a05bd5b";
+    public static final String jiguangRegistrationId = "jiguangRegistrationId";
     //百度地图-KEY：8aFeUXK0pzqiFi58WUniIV8S2RWCVNq7
 
     //飞首
