@@ -381,6 +381,7 @@ public class MyDataActivity extends BaseActivity {
                 if(!TextUtils.isEmpty(name)){
                     SPUtils.setPrefString(mContext,Config.nick_name,name);
                 }
+                finish();
             }
         }));
 
