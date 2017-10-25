@@ -69,6 +69,7 @@ public class VIPLevelActivity extends BaseActivity {
             @Override
             public void onMyNext(LevelObj obj) {
                 tv_vip_level.setText(obj.getUser_level()+"");
+                SPUtils.setPrefInt(mContext,Config.level,obj.getUser_level());
                 tv_vip_content.setText(obj.getContent());
                 switch (obj.getUser_level()){
                     case 0:
