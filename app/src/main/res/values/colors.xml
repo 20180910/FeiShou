@@ -31,7 +31,7 @@
     <color name="colorPrimaryAlpha">#70000000</color>
     <color name="colorPrimaryAlpha1">#BF58C2F7</color>
     <color name="white">#ffffff</color>
-    <color name="app_title_white">#ffffff</color>
+    <color name="app_title_white">#666666</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="transparent_half">#70000000</color>
