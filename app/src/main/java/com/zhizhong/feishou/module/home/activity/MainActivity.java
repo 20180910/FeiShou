@@ -65,7 +65,9 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
         String registrationID = JPushInterface.getRegistrationID(mContext);
         Log.i("registrationID","registrationID====="+registrationID);
-        SPUtils.setPrefString(mContext,Config.jiguangRegistrationId,registrationID);
+        if(!TextUtils.isEmpty(registrationID)){
+            SPUtils.setPrefString(mContext,Config.jiguangRegistrationId,registrationID);
+        }
 
         setBroadcast();
 
