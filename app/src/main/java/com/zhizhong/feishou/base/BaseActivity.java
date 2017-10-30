@@ -25,6 +25,7 @@ import com.github.baseclass.activity.IBaseActivity;
 import com.zhizhong.feishou.Config;
 import com.zhizhong.feishou.GetSign;
 import com.zhizhong.feishou.R;
+import com.zhizhong.feishou.module.home.activity.SplashActivity;
 import com.zhizhong.feishou.view.ProgressLayout;
 
 import java.util.List;
@@ -106,12 +107,18 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext=this;
         if(getRequestedOrientation()!= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
-        setTheme(R.style.AppTheme_NoActionBar);
-        mContext=this;
-        setContentView(getContentView());
+        if(mContext instanceof SplashActivity){
+            setTheme(R.style.spalshTheme);
+        }else{
+            setTheme(R.style.AppTheme_NoActionBar);
+        }
+        if(getContentView()!=0){
+            setContentView(getContentView());
+        }
         if(Build.VERSION.SDK_INT< Build.VERSION_CODES.LOLLIPOP){
 //            StatusBarUtils.setTransparent(this);
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
@@ -240,6 +247,9 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
         final View rootView = ((ViewGroup) this.findViewById(android.R.id.content))
                 .getChildAt(0);
         final View decorView = getWindow().getDecorView();
+        if(rootView==null||decorView==null){
+            return;
+        }
         decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
             @Override

@@ -188,9 +188,13 @@ public interface IRequest {
     @GET("api/FlyMember/GetGoCompleteOrder")
     Observable<ResponseObj<BaseObj>> zhiXing(@Query("order_no") String order_no, @Query("sign") String sign);
 
-    //订单-执行完成
+    //订单-确认执行
     @GET("api/FlyMember/GetCompleteOrder")
     Observable<ResponseObj<BaseObj>> complete(@Query("order_no") String order_no, @Query("sign") String sign);
+
+    //订单-确认结算
+    @GET("api/FlyMember/GetComplete")
+    Observable<ResponseObj<BaseObj>> completeJieSuan(@QueryMap Map<String,String> map);
 
     //订单-取消订单
     @GET("api/FlyMember/GetCancelOrder")

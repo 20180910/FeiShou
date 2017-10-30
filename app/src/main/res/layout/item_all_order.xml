@@ -246,11 +246,25 @@
                  android:layout_marginRight="10dp"
                  android:visibility="gone"
                  />
+
+             <com.github.customview.MyTextView
+                 android:id="@+id/tv_order_qrzx"
+                 android:layout_width="70dp"
+                 android:layout_height="28dp"
+                 android:text="执行完成"
+                 app:my_tv_solid="@color/blue"
+                 app:my_tv_press="@color/blue_press"
+                 android:gravity="center"
+                 android:textColor="@color/white"
+                 app:my_tv_corner_radius="4dp"
+                 android:layout_marginRight="10dp"
+                 android:visibility="gone"
+                 />
              <com.github.customview.MyTextView
                  android:id="@+id/tv_order_jiesuan"
                  android:layout_width="70dp"
                  android:layout_height="28dp"
-                 android:text="结算"
+                 android:text="确认结算"
                  app:my_tv_solid="@color/blue"
                  app:my_tv_press="@color/blue_press"
                  android:gravity="center"

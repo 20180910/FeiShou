@@ -58,14 +58,19 @@
                 <category android:name="com.zhizhong.feishou" />
             </intent-filter>
         </receiver>
-        <activity
-            android:name="com.zhizhong.feishou.module.home.activity.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".module.home.activity.SplashActivity"
+                  android:theme="@style/spalshTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.zhizhong.feishou.module.home.activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
 
         <!--忘记密码-->

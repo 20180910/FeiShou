@@ -141,6 +141,9 @@ public class ApiRequest {
     public static Observable complete(String orderNo,String sign){
         return getCommonClient().complete(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable completeJieSuan(Map map){
+        return getCommonClient().completeJieSuan(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable quXiao(String orderNo,String sign){
         return getCommonClient().quXiao(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }

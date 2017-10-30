@@ -42,6 +42,7 @@ public class MyOrderActivity extends BaseActivity {
     AllOrderFragment allOrderFragment;
     AllOrderFragment daiJieDanOrderFragment;
     AllOrderFragment daiZhiXingOrderFragment;
+    AllOrderFragment zhiXingZhongOrderFragment;
     AllOrderFragment daiJieSuanOrderFragment;
     AllOrderFragment completeOrderFragment;
 //    AllOrderFragment yiQuXiaoOrderFragment;
@@ -66,6 +67,7 @@ public class MyOrderActivity extends BaseActivity {
         allOrderFragment = AllOrderFragment.newInstance(Constant.allOrder);
         daiJieDanOrderFragment = AllOrderFragment.newInstance(Constant.daiJieDanOrder);
         daiZhiXingOrderFragment = AllOrderFragment.newInstance(Constant.daiZhiXingOrder);
+        zhiXingZhongOrderFragment = AllOrderFragment.newInstance(Constant.zhiXingZhong);
         daiJieSuanOrderFragment = AllOrderFragment.newInstance(Constant.daiJieSuanOrder);
         completeOrderFragment = AllOrderFragment.newInstance(Constant.yiWanChengOrder);
 
@@ -73,6 +75,7 @@ public class MyOrderActivity extends BaseActivity {
         list.add(allOrderFragment);
         list.add(daiJieDanOrderFragment);
         list.add(daiZhiXingOrderFragment);
+        list.add(zhiXingZhongOrderFragment);
         list.add(daiJieSuanOrderFragment);
         list.add(completeOrderFragment);
 
@@ -105,6 +108,9 @@ public class MyOrderActivity extends BaseActivity {
                     break;
                     case Constant.daiZhiXingOrder:
                         zhiXing(event.orderNo);
+                    break;
+                    case Constant.zhiXingZhong:
+                        sureZhiXing(event.orderNo);
                     break;
                     case Constant.daiJieSuanOrder:
                         jieSuan(event.orderNo);
@@ -149,7 +155,11 @@ public class MyOrderActivity extends BaseActivity {
 
     private void jieSuan(String orderNo) {
         showLoading();
-        addSubscription(ApiRequest.complete(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("order_no",orderNo);
+        map.put("sign",GetSign.getSign(map));
+        addSubscription(ApiRequest.completeJieSuan(map).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
                 showMsg(obj.getMsg());
@@ -169,6 +179,19 @@ public class MyOrderActivity extends BaseActivity {
                 showMsg(obj.getMsg());
                 allOrderFragment.getData(1,false);
                 daiZhiXingOrderFragment.getData(1,false);
+                zhiXingZhongOrderFragment.getData(1,false);
+                daiJieSuanOrderFragment.getData(1,false);
+            }
+        }));
+    }
+    private void sureZhiXing(String orderNo) {
+        showLoading();
+        addSubscription(ApiRequest.complete(orderNo,getSign("order_no",orderNo)).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                allOrderFragment.getData(1,false);
+                zhiXingZhongOrderFragment.getData(1,false);
                 daiJieSuanOrderFragment.getData(1,false);
             }
         }));

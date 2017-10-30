@@ -19,7 +19,8 @@ public class Constant {
     public static final String daiJieSuanOrder="3";
     public static final String yiWanChengOrder="4";
     public static final String yiQuXiaoOrder="5";
-    public static final String shiJianTiXing="6";
+    public static final String shiJianTiXing="66";
+    public static final String zhiXingZhong="6";
     public static final String quXiaoOrder="7";
 
 

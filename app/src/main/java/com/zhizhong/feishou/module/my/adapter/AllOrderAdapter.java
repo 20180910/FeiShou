@@ -33,6 +33,7 @@ public class AllOrderAdapter extends LoadMoreAdapter<OrderObj> {
         TextView tv_order_tixing = holder.getTextView(R.id.tv_order_tixing);
         TextView tv_order_quxiao = holder.getTextView(R.id.tv_order_quxiao);
         TextView tv_order_jiesuan = holder.getTextView(R.id.tv_order_jiesuan);
+        TextView tv_order_qrzx = holder.getTextView(R.id.tv_order_qrzx);
         ImageView imageView = holder.getImageView(R.id.iv_order_img);
         Glide.with(mContext).load(bean.getImage_url()).error(R.color.c_press).into(imageView);
         TextView tv_order_type = holder.getTextView(R.id.tv_order_type);
@@ -43,6 +44,7 @@ public class AllOrderAdapter extends LoadMoreAdapter<OrderObj> {
                 setGone(tv_order_zhixing);
                 setGone(tv_order_tixing);
                 setGone(tv_order_quxiao);
+                setGone(tv_order_qrzx);
                 setGone(tv_order_jiesuan);
 
                 tv_order_jiedan.setOnClickListener(new MyOnClickListener() {
@@ -127,6 +129,42 @@ public class AllOrderAdapter extends LoadMoreAdapter<OrderObj> {
                     }
                 });
             break;
+            case Constant.zhiXingZhong:
+                tv_order_type.setText("执行中");
+                tv_order_qrzx.setVisibility(View.VISIBLE);
+                setGone(tv_order_zhixing);
+                setGone(tv_order_tixing);
+                setGone(tv_order_quxiao);
+                setGone(tv_order_jiedan);
+                setGone(tv_order_jiesuan);
+
+
+
+                tv_order_qrzx.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
+                        mDialog.setMessage("确认执行完成吗?");
+                        mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                RxBus.getInstance().post(new OrderEvent(Constant.zhiXingZhong,bean.getOrder_no()));
+                            }
+                        });
+                        mDialog.create().show();
+
+                    }
+                });
+
+
+                break;
             case Constant.daiJieSuanOrder:
                 tv_order_type.setText("待结算");
                 tv_order_jiesuan.setVisibility(View.VISIBLE);
